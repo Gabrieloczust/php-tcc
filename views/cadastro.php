@@ -2,7 +2,7 @@
     <img src="<?= IMG ?>login.png" alt="login" class="mb-3" />
     <p class="h2">Bem-Vindo</p>
     <p>Você está a 30 segundos de iniciar seu <br>primeiro projeto.</p>
-    <a href="login" class="btn btn-success mt-3">Login</a>
+    <a href="login" class="btn btn-outline-light mt-3">Login</a>
 </section>
 <section class="register-right">
     <div class="accordion" id="accordionExample">

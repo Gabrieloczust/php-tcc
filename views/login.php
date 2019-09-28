@@ -1,6 +1,6 @@
 <section class="container login">
 
-  <h3 class="mb-3">Login</h3>
+  <h3 class="mb-3 text-dark">Login</h3>
 
   <?php
   foreach ($success as $s) {

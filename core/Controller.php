@@ -8,10 +8,16 @@ class Controller
         require 'views/' . $viewName . '.php';
     }
 
-    public function loadTemplate($viewName, $viewData = array())
+    public function loadTemplateAluno($viewName, $viewData = array())
     {
         extract($viewData);
-        require 'views/template.php';
+        require 'views/templateAluno.php';
+    }
+
+    public function loadTemplateProfessor($viewName, $viewData = array())
+    {
+        extract($viewData);
+        require 'views/templateProfessor.php';
     }
 
     public function loadTemplateRegister($viewName, $viewData = array())

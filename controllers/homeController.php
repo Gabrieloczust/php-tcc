@@ -17,8 +17,13 @@ class homeController extends Controller
 
         $dados = array(
             "nome" => $user->getNome(),
-            "letra" => substr($user->getNome(),0, 1)
+            "letra" => substr($user->getNome(), 0, 1)
         );
-        $this->loadTemplate('home', $dados);
+
+        if ($tipo == 'Aluno') {
+            $this->loadTemplateAluno('homeAluno', $dados);
+        } else {
+            $this->loadTemplateProfessor('homeProfessor', $dados);
+        }
     }
 }

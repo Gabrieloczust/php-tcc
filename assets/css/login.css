@@ -7,8 +7,8 @@ body {
 }
 
 .conteudo-central {
-    background: #3931af;
-    background: -webkit-linear-gradient(to right, #3931af, #00c6ff);
+    background-color: #4e73df;
+    background-image: linear-gradient(to bottom, #4e73df, #224abe);
     height: 100vh;
     width: 100%;
     display: flex;
@@ -17,7 +17,8 @@ body {
 }
 
 .background-professor {
-    background: -webkit-linear-gradient(left, #456f50, #106f28);
+    background-color: #1cc88a;
+    background-image: linear-gradient(to bottom, #1cc88a, #13855c);
 }
 
 .login {
@@ -28,7 +29,7 @@ body {
     padding: 5%
 }
 
-select.form-control{
+select.form-control {
     padding-left: 0.50rem;
 }
 
