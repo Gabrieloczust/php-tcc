@@ -2,22 +2,33 @@
 
 class Controller
 {
+
+    public function __construct()
+    {
+        $u = new Usuario();
+        if ($u->logado() == false) {
+            header("Location:" . HOME . "login");
+            exit;
+        }
+    }
+
+
     public function loadView($viewName, $viewData = array())
     {
         extract($viewData);
         require 'views/' . $viewName . '.php';
     }
 
-    public function loadTemplateAluno($viewName, $viewData = array())
+    public function loadTemplate($viewName, $viewData = array())
     {
-        extract($viewData);
-        require 'views/templateAluno.php';
-    }
+        $tipoUsuario = $_SESSION['userType'];
+        $usuario = new $tipoUsuario($_SESSION['user']);
 
-    public function loadTemplateProfessor($viewName, $viewData = array())
-    {
+        $viewData["nome"] = $usuario->getNome();
+        $viewData["letra"] = substr($usuario->getNome(), 0, 1);
+
         extract($viewData);
-        require 'views/templateProfessor.php';
+        require "views/template{$tipoUsuario}.php";
     }
 
     public function loadTemplateRegister($viewName, $viewData = array())

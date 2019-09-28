@@ -17,6 +17,7 @@ class Professor extends Usuario {
             $this->setEmail($user['email']);
             $this->setTelefone($user['telefone']);
             $this->setSenha($user['senha']);
+            $this->setTipo('Professor');
             $this->setEscola($user['escola']);
         }
     }

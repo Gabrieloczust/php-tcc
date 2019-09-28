@@ -122,7 +122,7 @@
               <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar projeto..." aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -147,35 +147,35 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                      <i class="fas fa-file-alt text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Setembro 20, 2019</div>
-                    <span class="font-weight-bold">Novo projeto adicionado!</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-donate text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Setembro 18, 2019</div>
-                    Alguma notificação qualquer!
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
                     <div class="icon-circle bg-warning">
                       <i class="fas fa-exclamation-triangle text-white"></i>
                     </div>
                   </div>
                   <div>
+                    <div class="small text-gray-500">Setembro 20, 2019</div>
+                    <span class="font-weight-bold">O prazo de entrega da Introdução da Calculadora de Orçamentos é hoje</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-check text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">Setembro 18, 2019</div>
+                    MyTCC foi aprovado para a Biblioteca de Projetos
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-danger">
+                      <i class="fas fa-times-circle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
                     <div class="small text-gray-500">Setembro 15, 2019</div>
-                    Alguma notificação qualquer!
+                    Kane recusou seu convite para Avaliador da Calculadora de Orçamentos
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Ver Todas</a>
@@ -196,42 +196,38 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-danger">A</div>
-                    <div class="status-indicator bg-success"></div>
+                    <div class="rounded-circle btn-circle btn-success">G</div>
                   </div>
                   <div class="font-weight-bold">
-                    <div class="text-truncate">Convite para o Projeto Minha Casa</div>
-                    <div class="small text-gray-500">Ana Maria · 58m</div>
+                    <div class="text-truncate">Convite para Mapeamento de Rede</div>
+                    <div class="small text-gray-500">Gabriel· 58m</div>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-info">J</div>
-                    <div class="status-indicator"></div>
+                    <div class="rounded-circle btn-circle btn-danger">N</div>
                   </div>
                   <div>
-                    <div class="text-truncate">Convite para o TCC Curitiba</div>
-                    <div class="small text-gray-500">Jose Marcos · 1d</div>
+                    <div class="text-truncate">Convite para Calculadora de Orçamentos 2.0</div>
+                    <div class="small text-gray-500">Nicolli · 1d</div>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-primary">J</div>
-                    <div class="status-indicator bg-warning"></div>
+                    <div class="rounded-circle btn-circle btn-warning">M</div>
                   </div>
                   <div>
-                    <div class="text-truncate">Convite para o TCC New</div>
-                    <div class="small text-gray-500">João Carlos · 2d</div>
+                    <div class="text-truncate">Convite para o MyTCC</div>
+                    <div class="small text-gray-500">Edivaldo · 2d</div>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                   <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-warning">D</div>
-                    <div class="status-indicator bg-success"></div>
+                    <div class="rounded-circle btn-circle btn-success">G</div>
                   </div>
                   <div>
-                    <div class="text-truncate">Convite para o Projeto Dog</div>
-                    <div class="small text-gray-500">Dog · 4d</div>
+                    <div class="text-truncate">Convite para Calculadora de Orçamentos</div>
+                    <div class="small text-gray-500">Gabriel · 4d</div>
                   </div>
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Ver Todos</a>
@@ -314,7 +310,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="title" class="text-primary">Título do Projeto: </label>
-              <input type="text" id="title" class="form-control" placeholder="Título..." name="titulo" required/>
+              <input type="text" id="title" class="form-control" placeholder="Título..." name="titulo" required />
             </div>
             <div class="form-group form-group-colega">
               <label for="inviteColegas" class="text-primary">Convidar Colegas: </label>
