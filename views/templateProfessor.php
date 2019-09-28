@@ -18,6 +18,9 @@
   <link href="<?= CSS ?>sb-admin-2.min.css" rel="stylesheet">
   <link href="<?= CSS ?>style.css" rel="stylesheet">
 
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -47,18 +50,10 @@
         </a>
       </li>
 
-      <!-- Nav Item - Novo Projeto -->
-      <li class="nav-item">
-        <a class="nav-link" href="#" data-toggle="modal" data-target="#projectModal">
-          <i class="fas fa-fw fa-folder-plus"></i>
-          <span>Novo Projeto</span>
-        </a>
-      </li>
-
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Nav Item - Outros Projetos -->
+      <!-- Nav Item - Biblioteca Projetos -->
       <li class="nav-item">
         <a class="nav-link" href="<?= HOME ?>biblioteca">
           <i class="fas fa-fw fa-book"></i>
@@ -314,7 +309,7 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="title" class="text-success">Título do Projeto: </label>
-              <input type="text" id="title" class="form-control" placeholder="Título..." name="titulo" required/>
+              <input type="text" id="title" class="form-control" placeholder="Título..." name="titulo" required />
             </div>
             <div class="form-group form-group-colega">
               <label for="inviteColegas" class="text-success">Convidar Colegas: </label>
@@ -385,6 +380,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= JS ?>sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="<?= JS ?>demo/datatables-demo.js"></script>
 
 </body>
 

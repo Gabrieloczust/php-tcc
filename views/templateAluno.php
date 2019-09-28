@@ -18,6 +18,9 @@
   <link href="<?= CSS ?>sb-admin-2.min.css" rel="stylesheet">
   <link href="<?= CSS ?>style.css" rel="stylesheet">
 
+  <!-- Custom styles for this page -->
+  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+
 </head>
 
 <body id="page-top">
@@ -58,7 +61,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Nav Item - Outros Projetos -->
+      <!-- Nav Item - Biblioteca Projetos -->
       <li class="nav-item">
         <a class="nav-link" href="<?= HOME ?>biblioteca">
           <i class="fas fa-fw fa-book"></i>
@@ -381,6 +384,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= JS ?>sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="<?= JS ?>demo/datatables-demo.js"></script>
 
 </body>
 

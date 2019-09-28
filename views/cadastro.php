@@ -1,7 +1,7 @@
 <section class="register-left text-center text-white p-3">
     <img src="<?= IMG ?>login.png" alt="login" class="mb-3" />
     <p class="h2">Bem-Vindo</p>
-    <p>Você está a 30 segundos de iniciar seu <br>primeiro projeto.</p>
+    <p>Você está a 45 segundos de iniciar seu <br>primeiro projeto.</p>
     <a href="login" class="btn btn-outline-light mt-3">Login</a>
 </section>
 <section class="register-right">
@@ -27,14 +27,14 @@
                 <div class="col">
                     <input type="hidden" name="usuario" value="Aluno">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nome *" name="nome" required />
+                        <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Curso" name="curso" />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Seu Email *" name="email" data-error="Por favor, informe um e-mail correto" required />
+                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -60,14 +60,14 @@
                 <div class="col">
                     <input type="hidden" name="usuario" value="Professor">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nome *" name="nome" required />
+                        <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Escola" name="escola" />
+                        <input type="text" class="form-control" placeholder="Área de Atuação" name="escola" />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Seu Email *" name="email" data-error="Por favor, informe um e-mail correto" required />
+                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">

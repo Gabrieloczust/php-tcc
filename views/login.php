@@ -36,7 +36,7 @@
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">
-        <input type="email" class="form-control" placeholder="Email" name="email" data-error="Por favor, informe um e-mail correto" required />
+        <input type="email" class="form-control" placeholder="E-mail" name="email" data-error="Por favor, informe um e-mail correto" required />
         <div class="help-block with-errors"></div>
       </div>
       <div class="form-group">
@@ -78,7 +78,7 @@
           <div class="help-block with-errors"></div>
         </div>
         <div class="form-group">
-          <input type="email" class="form-control" placeholder="Email" name="email-recuperar" data-error="Por favor, informe um e-mail correto" required />
+          <input type="email" class="form-control" placeholder="E-mail" name="email-recuperar" data-error="Por favor, informe um e-mail correto" required />
           <div class="help-block with-errors"></div>
         </div>
       </div>
