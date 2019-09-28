@@ -1,1 +1,10 @@
-.input-add-colega, .form-group-avaliador, .remove_field{cursor: pointer;}
+.logo {
+    height: 40px;
+    margin: 0 -22px;
+}
+
+.input-add-colega,
+.form-group-avaliador,
+.remove_field {
+    cursor: pointer;
+}
