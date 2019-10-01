@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="<?= CSS ?>sb-admin-2.min.css" rel="stylesheet">
+  <link href="<?= CSS ?>sb-admin-2.css" rel="stylesheet">
   <link href="<?= CSS ?>style.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
@@ -43,7 +43,9 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Meus Projetos -->
-      <li class="nav-item">
+      <li class="nav-item <?php if ($viewName == 'homeAluno') {
+                            echo 'active';
+                          } ?>">
         <a class="nav-link" href="<?= HOME ?>">
           <i class="fas fa-fw fa-paste"></i>
           <span>Meus Projetos</span>
@@ -62,7 +64,9 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Biblioteca Projetos -->
-      <li class="nav-item">
+      <li class="nav-item <?php if ($viewName == 'biblioteca') {
+                            echo 'active';
+                          } ?>">
         <a class="nav-link" href="<?= HOME ?>biblioteca">
           <i class="fas fa-fw fa-book"></i>
           <span>Biblioteca de Projetos</span>
@@ -70,9 +74,11 @@
       </li>
 
       <!-- Nav Item - Configurações -->
-      <li class="nav-item">
+      <li class="nav-item <?php if ($viewName == 'configuracoes') {
+                            echo 'active';
+                          } ?>">
         <a class="nav-link" href="<?= HOME ?>configuracoes">
-          <i class="fas fa-fw fa-cogs"></i>
+          <i class="fas fa-fw fa-cog"></i>
           <span>Configurações</span></a>
       </li>
 
@@ -83,7 +89,6 @@
       <div class="text-center d-none d-md-inline">
         <button class="rounded-circle border-0" id="sidebarToggle"></button>
       </div>
-
     </ul>
     <!-- End of Sidebar -->
 
@@ -247,9 +252,9 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Perfil
+                <a class="dropdown-item" href="configuracoes">
+                  <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Configurações
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -375,6 +380,7 @@
       </div>
     </div>
 
+
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -383,7 +389,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?= JS ?>sb-admin-2.min.js"></script>
+    <script src="<?= JS ?>sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>

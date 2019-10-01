@@ -40,10 +40,10 @@
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <small class="text-muted">Curso: Sistemas para Internet</small>
                 <a href="#" class="btn btn-sm btn-primary btn-icon-split">
+                    <span class="text">Abrir</span>
                     <span class="icon text-white-50">
                         <i class="fas fa-external-link-alt"></i>
                     </span>
-                    <span class="text">Abrir</span>
                 </a>
             </div>
         </div>
@@ -80,10 +80,10 @@
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <small class="text-muted">Curso: Redes de Computadores</small>
                 <a href="#" class="btn btn-sm btn-primary btn-icon-split">
+                    <span class="text">Abrir</span>
                     <span class="icon text-white-50">
                         <i class="fas fa-external-link-alt"></i>
                     </span>
-                    <span class="text">Abrir</span>
                 </a>
             </div>
         </div>
@@ -120,10 +120,10 @@
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <small class="text-muted">Curso: Gestão da Tecnologia da Informação</small>
                 <a href="#" class="btn btn-sm btn-primary btn-icon-split">
+                    <span class="text">Abrir</span>
                     <span class="icon text-white-50">
                         <i class="fas fa-external-link-alt"></i>
                     </span>
-                    <span class="text">Abrir</span>
                 </a>
             </div>
         </div>
@@ -160,10 +160,10 @@
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <small class="text-muted">Curso: Gestão da Tecnologia da Informação</small>
                 <a href="#" class="btn btn-sm btn-primary btn-icon-split">
+                    <span class="text">Abrir</span>
                     <span class="icon text-white-50">
                         <i class="fas fa-external-link-alt"></i>
                     </span>
-                    <span class="text">Abrir</span>
                 </a>
             </div>
         </div>

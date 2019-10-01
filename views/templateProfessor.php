@@ -15,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="<?= CSS ?>sb-admin-2.min.css" rel="stylesheet">
+  <link href="<?= CSS ?>sb-admin-2.css" rel="stylesheet">
   <link href="<?= CSS ?>style.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
@@ -43,10 +43,10 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Meus Projetos -->
-      <li class="nav-item">
+      <li class="nav-item <?php if($viewName == 'homeProfessor'){echo 'active';} ?>">
         <a class="nav-link" href="<?= HOME ?>">
           <i class="fas fa-fw fa-paste"></i>
-          <span>Meus Projetos</span>
+          <span>Projetos</span>
         </a>
       </li>
 
@@ -54,7 +54,7 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Biblioteca Projetos -->
-      <li class="nav-item">
+      <li class="nav-item <?php if($viewName == 'biblioteca'){echo 'active';} ?>">
         <a class="nav-link" href="<?= HOME ?>biblioteca">
           <i class="fas fa-fw fa-book"></i>
           <span>Biblioteca de Projetos</span>
@@ -62,9 +62,9 @@
       </li>
 
       <!-- Nav Item - Configurações -->
-      <li class="nav-item">
+      <li class="nav-item <?php if($viewName == 'configuracoes'){echo 'active';} ?>">
         <a class="nav-link" href="<?= HOME ?>configuracoes">
-          <i class="fas fa-fw fa-cogs"></i>
+          <i class="fas fa-fw fa-cog"></i>
           <span>Configurações</span></a>
       </li>
 
@@ -243,9 +243,9 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Perfil
+                <a class="dropdown-item" href="configuracoes">
+                  <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Configurações
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
@@ -296,62 +296,6 @@
       <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- New Project Modal-->
-    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="projectModalLabel">Novo Projeto</h5>
-            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div class="form-group">
-              <label for="title" class="text-success">Título do Projeto: </label>
-              <input type="text" id="title" class="form-control" placeholder="Título..." name="titulo" required />
-            </div>
-            <div class="form-group form-group-colega">
-              <label for="inviteColegas" class="text-success">Convidar Colegas: </label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text text-white bg-success border-0">Colega</div>
-                </div>
-                <input type="text" id="inviteColegas" class="form-control" placeholder="E-mail do Colega 1" name="emailColega[]" />
-                <div class="input-group-append input-add-colega">
-                  <a class="input-group-text text-white bg-success border-0" title="Convidar outro Colega">+</a>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inviteCoordenador" class="text-success">Convidar Professores: </label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text text-white bg-success border-0">Coordenador</div>
-                </div>
-                <input type="text" id="inviteCoordenador" class="form-control" placeholder="E-mail do Professor Coordenador" name="emailProfessor" />
-              </div>
-            </div>
-            <div class="form-group form-group-avaliador">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text text-white bg-success border-0">Avaliador</div>
-                </div>
-                <input type="text" class="form-control" placeholder="E-mail do Professor Avaliador 1" name="emailAvaliador[]" />
-                <div class="input-group-append input-add-avaliador">
-                  <a class="input-group-text text-white bg-success border-0" title="Convidar outro Avaliador">+</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-success" href="#">Convidar e Criar</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -379,7 +323,7 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?= JS ?>sb-admin-2.min.js"></script>
+    <script src="<?= JS ?>sb-admin-2.js"></script>
 
     <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>

@@ -8,7 +8,7 @@
     
     <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
-    <link href="<?= CSS ?>sb-admin-2.min.css" rel="stylesheet">
+    <link href="<?= CSS ?>sb-admin-2.css" rel="stylesheet">
 
     <?= $this->loadCssInTemplate($viewName); ?>
 

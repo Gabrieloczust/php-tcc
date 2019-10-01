@@ -1374,7 +1374,7 @@ pre code {
 .table th,
 .table td {
   padding: 0.75rem;
-  vertical-align: top;
+  vertical-align: middle;
   border-top: 1px solid #e3e6f0;
 }
 
@@ -10220,7 +10220,7 @@ a:focus {
 }
 
 .sidebar hr.sidebar-divider {
-  margin: 0 1rem 1rem;
+  margin: .5rem;
 }
 
 .sidebar .sidebar-heading {

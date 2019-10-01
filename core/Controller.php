@@ -26,6 +26,7 @@ class Controller
 
         $viewData["nome"] = $usuario->getNome();
         $viewData["letra"] = substr($usuario->getNome(), 0, 1);
+        $viewData["email"] = $usuario->getEmail();
 
         extract($viewData);
         require "views/template{$tipoUsuario}.php";
