@@ -42,7 +42,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Nav Item - Meus Projetos -->
+      <!-- Nav Item - Projetos -->
       <li class="nav-item <?php if($viewName == 'homeProfessor'){echo 'active';} ?>">
         <a class="nav-link" href="<?= HOME ?>">
           <i class="fas fa-fw fa-paste"></i>
@@ -260,6 +260,7 @@
         </nav>
         <!-- End of Topbar -->
 
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
@@ -274,6 +275,7 @@
 
         </div>
         <!-- End of Main Content -->
+        
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
