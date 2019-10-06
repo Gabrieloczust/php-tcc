@@ -45,8 +45,8 @@
       <!-- Nav Item - Projetos -->
       <li class="nav-item <?php if($viewName == 'homeProfessor'){echo 'active';} ?>">
         <a class="nav-link" href="<?= HOME ?>">
-          <i class="fas fa-fw fa-paste"></i>
-          <span>Projetos</span>
+          <i class="fas fa-fw fa-users"></i>
+          <span>Turmas</span>
         </a>
       </li>
 

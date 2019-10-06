@@ -17,7 +17,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">4</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <i class="fas fa-hourglass-start fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -34,9 +34,7 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                         <div class="dropdown-header">Ações:</div>
                         <a class="dropdown-item" href="#">Editar</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Convidar Colega</a>
-                        <a class="dropdown-item" href="#">Convidar Professor</a>
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Sair</a>
                     </div>
@@ -46,7 +44,7 @@
                 Lorem Ipsum é uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <small class="text-muted">Coordenador: Kane Chan</small>
+                <small class="text-muted">Orientador: Kane Chan</small>
                 <a href="projeto" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="text">Abrir</span>
                     <span class="icon text-white-50">
@@ -68,9 +66,7 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink5">
                         <div class="dropdown-header">Ações:</div>
                         <a class="dropdown-item" href="#">Editar</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Convidar Colega</a>
-                        <a class="dropdown-item" href="#">Convidar Professor</a>
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Sair</a>
                     </div>
@@ -80,7 +76,7 @@
                 Lorem Ipsum é uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <small class="text-muted">Coordenador: Kane Chan</small>
+                <small class="text-muted">Orientador: Kane Chan</small>
                 <a href="projeto" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="text">Abrir</span>
                     <span class="icon text-white-50">
@@ -102,9 +98,7 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink3">
                         <div class="dropdown-header">Ações:</div>
                         <a class="dropdown-item" href="#">Editar</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Convidar Colega</a>
-                        <a class="dropdown-item" href="#">Convidar Professor</a>
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Sair</a>
                     </div>
@@ -114,7 +108,7 @@
                 Lorem Ipsum é uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <small class="text-muted">Coordenador: Kane Chan</small>
+                <small class="text-muted">Orientador: Kane Chan</small>
                 <a href="projeto" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="text">Abrir</span>
                     <span class="icon text-white-50">
@@ -136,9 +130,7 @@
                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink2">
                         <div class="dropdown-header">Ações:</div>
                         <a class="dropdown-item" href="#">Editar</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Convidar Colega</a>
-                        <a class="dropdown-item" href="#">Convidar Professor</a>
+
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="#">Sair</a>
                     </div>
@@ -148,7 +140,7 @@
                 Lorem Ipsum é uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <small class="text-muted">Coordenador: Kane Chan</small>
+                <small class="text-muted">Orientador: Kane Chan</small>
                 <a href="projeto" class="btn btn-sm btn-primary btn-icon-split">
                     <span class="text">Abrir</span>
                     <span class="icon text-white-50">
@@ -167,7 +159,7 @@
                         <div class="h5 mb-0 font-weight-bold text-gray-800">2</div>
                     </div>
                     <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                        <i class="fas fa-check-circle fa-2x text-gray-300"></i>
                     </div>
                 </div>
             </div>
@@ -193,7 +185,7 @@
                 Lorem Ipsum é uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <small class="text-muted">Coordenador: Kane Chan</small>
+                <small class="text-muted">Orientador: Kane Chan</small>
                 <a href="projeto" class="btn btn-sm btn-success btn-icon-split">
                     <span class="text">Abrir</span>
                     <span class="icon text-white-50">
@@ -223,7 +215,7 @@
                 Lorem Ipsum é uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI.
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
-                <small class="text-muted">Coordenador: Kane Chan</small>
+                <small class="text-muted">Orientador: Kane Chan</small>
                 <a href="projeto" class="btn btn-sm btn-success btn-icon-split">
                     <span class="text">Abrir</span>
                     <span class="icon text-white-50">

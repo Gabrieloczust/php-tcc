@@ -49,29 +49,19 @@
   // Add input no model novo projeto
   $(document).ready(function () {
     var max_fields = 10;
-    var wrapper_colega = $(".form-group-colega");
-    var wrapper_avaliador = $(".form-group-avaliador");
-    var add_colega = $(".input-add-colega");
-    var add_avaliador = $(".input-add-avaliador");
+    var wrapper_aluno = $(".form-group-aluno");
+    var add_aluno = $(".input-add-aluno");
     var x = 1;
 
-    $(add_colega).click(function (e) {
+    $(add_aluno).click(function (e) {
       e.preventDefault();
       if (x < max_fields) {
         x++;
-        $(wrapper_colega).append('<div class="input-group my-3"><input type="text" class="form-control" placeholder="E-mail do Colega ' + x + '" name="emailColega[]" /><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
+        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" class="form-control" placeholder="E-mail do Aluno ' + x + '" name="emailAluno[]" /><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
       }
     });
 
-    $(add_avaliador).click(function (e) {
-      e.preventDefault();
-      if (x < max_fields) {
-        x++;
-        $(wrapper_avaliador).append('<div class="input-group my-3"><input type="text" class="form-control" placeholder="E-mail do Avaliador ' + x + '" name="emailAvaliador[]" /><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
-      }
-    });
-
-    $(wrapper_colega).add(wrapper_avaliador).on("click", ".remove_field", function (e) {
+    $(wrapper_aluno).on("click", ".remove_field", function (e) {
       e.preventDefault();
       $(this).parent('div').parent('.input-group').remove();
       x--;

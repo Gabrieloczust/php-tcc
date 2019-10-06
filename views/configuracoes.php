@@ -76,7 +76,7 @@
                 <div class="card-body">
                     <p>Altere o sistema para o tema que lhe mais agradar</p>
                     <div class="d-flex align-items-center my-3">
-                        <label class="label-switch" for="f1">Tema Escuro:</label>
+                        <label class="label-switch" for="f1">Preto e Branco</label>
                         <label class="switch">
                             <input class="check" type="checkbox" id="f1">
                             <span class="slider round"></span>

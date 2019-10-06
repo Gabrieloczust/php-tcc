@@ -9,31 +9,31 @@
                 <thead>
                     <tr>
                         <th>Título</th>
+                        <th>Escola</th>
                         <th>Curso</th>
                         <th>Autor(es)</th>
                         <th>Banca</th>
-                        <th>Data</th>
                         <th>Monografia</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>Título</th>
+                        <th>Escola</th>
                         <th>Curso</th>
                         <th>Autor(es)</th>
                         <th>Banca</th>
-                        <th>Data</th>
                         <th>Monografia</th>
                     </tr>
                 </tfoot>
                 <tbody>
                     <tr>
                         <td>MyTCC</td>
+                        <td>Tecnologia da Informação</td>
                         <td>Sistemas para Internet</td>
                         <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
+                        <td>Orientador: Kane Chan<br>Avaliador: Edson Machado</td>
+                        <td>
                             <a href="#" class="btn btn-success btn-icon-split">
                                 <span class="text">Baixar</span>
                                 <span class="icon text-white-50">
@@ -43,222 +43,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
-                            <a href="#" class="btn btn-success btn-icon-split">
-                                <span class="text">Baixar</span>
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-download"></i>
-                                </span>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>MyTCC</td>
-                        <td>Sistemas para Internet</td>
-                        <td>Edivaldo<br> Gabriel Oczust <br> Nicolli Petry</td>
-                        <td>Coordenador: Kane Chan<br>Avaliador: Edson Machado</td>
-                        <td>09/12/2019</td>
-                        <td> 
+                        <td>Projeto 2</td>
+                        <td>Engenharia</td>
+                        <td>Engenharia da Computação</td>
+                        <td>Josá Alves</td>
+                        <td>Orientador: Pedro Carlos<br>Avaliador: Ana Ribeiro</td>
+                        <td>
                             <a href="#" class="btn btn-success btn-icon-split">
                                 <span class="text">Baixar</span>
                                 <span class="icon text-white-50">

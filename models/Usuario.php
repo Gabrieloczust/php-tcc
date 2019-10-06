@@ -61,6 +61,18 @@ class Usuario extends Model
         }
     }
 
+    public function vereficaEmail($email)
+    {
+        $sql = "SELECT * FROM {$this->getTipo()} WHERE email = ?";
+        $sql = $this->db->prepare($sql);
+        $sql->execute(array($email));
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getIP()
     {
         if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
@@ -76,18 +88,6 @@ class Usuario extends Model
     private function geraToken()
     {
         return password_hash(time() . rand(0, 99999), PASSWORD_BCRYPT);
-    }
-
-    private function vereficaEmail($email)
-    {
-        $sql = "SELECT * FROM {$this->getTipo()} WHERE email = ?";
-        $sql = $this->db->prepare($sql);
-        $sql->execute(array($email));
-        if ($sql->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public function getId()

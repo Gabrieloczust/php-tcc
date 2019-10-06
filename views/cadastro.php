@@ -1,14 +1,14 @@
 <section class="register-left text-center text-white p-3">
     <img src="<?= IMG ?>login.png" alt="login" class="mb-3" />
     <p class="h2">Bem-Vindo</p>
-    <p>Você está a 45 segundos de iniciar seu <br>primeiro projeto.</p>
+    <p>Você está a 1 minuto de iniciar seu <br>primeiro projeto.</p>
     <a href="login" class="btn btn-outline-light mt-3">Login</a>
 </section>
 <section class="register-right">
     <div class="accordion" id="accordionExample">
 
         <?php foreach ($errors as $erro) { ?>
-            <p class="alert alert-warning" role="alert"><?= $erro ?></p>
+        <p class="alert alert-warning" role="alert"><?= $erro ?></p>
         <?php } ?>
 
         <div class="muda-form mb-3">
@@ -34,19 +34,24 @@
                         <input type="text" class="form-control" placeholder="Curso" name="curso" />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
+                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email"
+                            data-error="Por favor, informe um e-mail correto" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" minlength="9" maxlength="16" class="form-control" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
+                        <input type="text" minlength="9" maxlength="16" class="form-control"
+                            data-error="Por favor, informe um telefone correto" placeholder="Seu Celular"
+                            name="telefone" />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="passA" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                        <input type="password" class="form-control" id="passA" placeholder="Senha *" name="senha1"
+                            data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2" data-match="#passA" data-match-error="Atenção! As senhas não estão iguais." required />
+                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2"
+                            data-match="#passA" data-match-error="Atenção! As senhas não estão iguais." required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Cadastrar" />
@@ -64,22 +69,32 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Área de Atuação" name="escola" />
+                        <select class="form-control" name="escola" data-error="Selecione uma opção..." required>
+                            <option disabled selected>Escola de Atuação:</option>
+                            <option>Exatas</option>
+                            <option>Humanas</option>
+                            <option>Biológicas</option>
+                        </select>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
+                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email"
+                            data-error="Por favor, informe um e-mail correto" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" minlength="9" maxlength="16" class="form-control" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
+                        <input type="text" minlength="9" maxlength="16" class="form-control"
+                            data-error="Por favor, informe um telefone correto" placeholder="Seu Celular"
+                            name="telefone" />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="pass" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                        <input type="password" class="form-control" id="pass" placeholder="Senha *" name="senha1"
+                            data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2" data-match="#pass" data-match-error="Atenção! As senhas não estão iguais." required />
+                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2"
+                            data-match="#pass" data-match-error="Atenção! As senhas não estão iguais." required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Cadastrar" />

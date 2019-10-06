@@ -12,7 +12,9 @@
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
 
   <!-- Custom styles for this template-->
   <link href="<?= CSS ?>sb-admin-2.css" rel="stylesheet">
@@ -109,7 +111,8 @@
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
-              <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar projeto..." aria-label="Search" aria-describedby="basic-addon2">
+              <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar projeto..."
+                aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
                 <button class="btn btn-primary" type="button">
                   <i class="fas fa-search fa-sm"></i>
@@ -123,14 +126,17 @@
 
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
             <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-search fa-fw"></i>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                aria-labelledby="searchDropdown">
                 <form class="form-inline mr-auto w-100 navbar-search">
                   <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar projeto..." aria-label="Search" aria-describedby="basic-addon2">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar projeto..."
+                      aria-label="Search" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary" type="button">
                         <i class="fas fa-search fa-sm"></i>
@@ -143,13 +149,15 @@
 
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
                 <!-- Counter - Alerts -->
                 <span class="badge badge-danger badge-counter">3</span>
               </a>
               <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Notificações
                 </h6>
@@ -161,7 +169,8 @@
                   </div>
                   <div>
                     <div class="small text-gray-500">Setembro 20, 2019</div>
-                    <span class="font-weight-bold">O prazo de entrega da Introdução da Calculadora de Orçamentos é hoje</span>
+                    <span class="font-weight-bold">O prazo de entrega da Introdução da Calculadora de Orçamentos é
+                      hoje</span>
                   </div>
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -192,13 +201,15 @@
 
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
                 <!-- Counter - Messages -->
                 <span class="badge badge-danger badge-counter">4+</span>
               </a>
               <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Convites
                 </h6>
@@ -246,7 +257,8 @@
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= $nome ?></span>
                 <div class="img-profile rounded-circle btn-circle btn-primary"><?= $letra ?></div>
               </a>
@@ -284,7 +296,7 @@
 
         </div>
         <!-- End of Main Content -->
-        
+
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
@@ -308,8 +320,10 @@
     </a>
 
     <!-- New Project Modal-->
-    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
+    <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel"
+      aria-hidden="true">
+      <form class="modal-dialog" role="document" method="POST" action="<?= HOME ?>home/novo_projeto">
+        <input type="hidden" name="novo_projeto" value="novo_projeto" />
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="projectModalLabel">Novo Projeto</h5>
@@ -320,51 +334,41 @@
           <div class="modal-body">
             <div class="form-group">
               <label for="title" class="text-primary">Título do Projeto: </label>
-              <input type="text" id="title" class="form-control" placeholder="Título..." name="titulo" required />
+              <input type="text" id="title" class="form-control" placeholder="Título... *" name="ng-titulo" required />
             </div>
-            <div class="form-group form-group-colega">
-              <label for="inviteColegas" class="text-primary">Convidar Colegas: </label>
+            <div class="form-group form-group-aluno">
+              <label for="inviteAlunos" class="text-primary">Convidar: </label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text text-white bg-primary border-0">Colega</div>
+                  <div class="input-group-text text-white bg-primary border-0">Aluno</div>
                 </div>
-                <input type="text" id="inviteColegas" class="form-control" placeholder="E-mail do Colega 1" name="emailColega[]" />
-                <div class="input-group-append input-add-colega">
-                  <a class="input-group-text text-white bg-primary border-0" title="Convidar outro Colega">+</a>
+                <input type="email" id="inviteAlunos" class="form-control" placeholder="E-mail do Aluno 1"
+                  name="emailAluno[]" />
+                <div class="input-group-append input-add-aluno">
+                  <a class="input-group-text text-white bg-primary border-0" title="Convidar outro Aluno">+</a>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="inviteCoordenador" class="text-primary">Convidar Professores: </label>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text text-white bg-primary border-0">Coordenador</div>
+                  <div class="input-group-text text-white bg-primary border-0">Orientador</div>
                 </div>
-                <input type="text" id="inviteCoordenador" class="form-control" placeholder="E-mail do Professor Coordenador" name="emailProfessor" />
-              </div>
-            </div>
-            <div class="form-group form-group-avaliador">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text text-white bg-primary border-0">Avaliador</div>
-                </div>
-                <input type="text" class="form-control" placeholder="E-mail do Professor Avaliador 1" name="emailAvaliador[]" />
-                <div class="input-group-append input-add-avaliador">
-                  <a class="input-group-text text-white bg-primary border-0" title="Convidar outro Avaliador">+</a>
-                </div>
+                <input type="email" id="inviteOrientador" class="form-control"
+                  placeholder="E-mail do Professor Orientador *" name="ng-emailProfessor" required />
               </div>
             </div>
           </div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-            <a class="btn btn-primary" href="#">Convidar e Criar</a>
+            <button class="btn btn-primary">Criar</button>
           </div>
         </div>
-      </div>
+      </form>
     </div>
 
     <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
