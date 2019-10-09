@@ -8,7 +8,7 @@
     <div class="accordion" id="accordionExample">
 
         <?php foreach ($errors as $erro) { ?>
-        <p class="alert alert-warning" role="alert"><?= $erro ?></p>
+            <p class="alert alert-warning" role="alert"><?= $erro ?></p>
         <?php } ?>
 
         <div class="muda-form mb-3">
@@ -27,31 +27,26 @@
                 <div class="col">
                     <input type="hidden" name="usuario" value="Aluno">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
+                        <input type="text" class="form-control input-capitalize" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Curso" name="curso" />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email"
-                            data-error="Por favor, informe um e-mail correto" required />
+                        <input type="email" class="form-control input-lowercase" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" minlength="9" maxlength="16" class="form-control"
-                            data-error="Por favor, informe um telefone correto" placeholder="Seu Celular"
-                            name="telefone" />
+                        <input type="tel" minlength="9" maxlength="16" class="form-control input-number" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="passA" placeholder="Senha *" name="senha1"
-                            data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                        <input type="password" class="form-control" id="passA" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2"
-                            data-match="#passA" data-match-error="Atenção! As senhas não estão iguais." required />
+                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2" data-match="#passA" data-match-error="Atenção! As senhas não estão iguais." required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Cadastrar" />
@@ -65,7 +60,7 @@
                 <div class="col">
                     <input type="hidden" name="usuario" value="Professor">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
+                        <input type="text" class="form-control input-capitalize" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -77,24 +72,19 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Seu E-mail *" name="email"
-                            data-error="Por favor, informe um e-mail correto" required />
+                        <input type="email" class="form-control input-lowercase" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="text" minlength="9" maxlength="16" class="form-control"
-                            data-error="Por favor, informe um telefone correto" placeholder="Seu Celular"
-                            name="telefone" />
+                        <input type="tel" minlength="9" maxlength="16" class="form-control input-number" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="pass" placeholder="Senha *" name="senha1"
-                            data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                        <input type="password" class="form-control" id="pass" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2"
-                            data-match="#pass" data-match-error="Atenção! As senhas não estão iguais." required />
+                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2" data-match="#pass" data-match-error="Atenção! As senhas não estão iguais." required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Cadastrar" />

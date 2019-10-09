@@ -1,6 +1,7 @@
 <?php
 
-class Professor extends Usuario {
+class Professor extends Usuario
+{
 
     private $escola;
 
@@ -19,15 +20,19 @@ class Professor extends Usuario {
             $this->setSenha($user['senha']);
             $this->setTipo('Professor');
             $this->setEscola($user['escola']);
+            return true;
+        } else {
+            return false;
         }
     }
 
-    public function getEscola() {
+    public function getEscola()
+    {
         return $this->escola;
     }
 
-    public function setEscola($escola) {
+    public function setEscola($escola)
+    {
         $this->escola = $escola;
     }
-
 }

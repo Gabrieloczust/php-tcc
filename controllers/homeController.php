@@ -1,44 +1,51 @@
 <?php
 class homeController extends Controller
 {
-    public function index()
-    {
-        $this->loadTemplate("home{$_SESSION['userType']}");
-    }
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
-    public function novo_projeto()
-    {
-        // Array de retorno para o Template
-        $dados = [];
+	public function index()
+	{
+		// Arrays para avisos de Validação
+		$errors = array();
+		$success = array();
 
-        // Arrays para avisos de Validação
-        $errors = array();
-        $success = array();
+		$aluno = new Aluno($_SESSION['user']);
+		$id = $aluno->getId();
 
-        if (filter_input(INPUT_POST, 'novo_projeto') === "novo_projeto") {
-            $titulo = filter_input(INPUT_POST, 'ng-titulo', FILTER_SANITIZE_SPECIAL_CHARS);
-            $orientador = filter_input(INPUT_POST, 'ng-emailProfessor', FILTER_VALIDATE_EMAIL);
+		$projeto = new Projeto();
 
-            $alunos = $_POST["emailAluno"];
-            foreach ($alunos as $aluno) {
-                $a = new Aluno($aluno);
-                if ($a->vereficaEmail($aluno) == false) {
-                    array_push($errors, "O e-mail $aluno não possui cadastro como Aluno!");
-                } else {
-                    $nome = $a->getNome();
-                    array_push($success, "O Aluno $nome recebeu seu convite!");
-                }
-            }
+		if (filter_input(INPUT_POST, 'novo_projeto') === "novo_projeto") {
+			// Pega o Titulo
+			$titulo = filter_input(INPUT_POST, 'ng-titulo', FILTER_SANITIZE_SPECIAL_CHARS);
 
-            $projeto = new Projeto();
-            $projeto->novoProjeto($titulo, $orientador, $alunos);
-        }
+			// Verifica se o aluno ja esta em um projeto com este titulo
+			$existeProjeto = $projeto->novoProjeto($titulo, $id);
+			$idProjeto = $projeto->getId();
+			if ($existeProjeto == 1) {
+				array_push($success, "Projeto <strong>$titulo</strong> criado com sucesso!");
+			} else {
+				array_push($errors, 'Você já participa de um projeto com este titulo!');
+			}
 
-        $dados = array(
-            'errors' => $errors,
-            'success' => $success
-        );
-        
-        header("Location: " . HOME);
-    }
+			$orientador = filter_input(INPUT_POST, 'ng-emailProfessor', FILTER_VALIDATE_EMAIL);
+			$convite = new Convite();
+			$teste = $convite->convidaOrientador($orientador, $idProjeto);
+			print_r($teste);
+		}
+
+		$qtdProjetos = $projeto->qtdProjetos($id);
+		$projetos = $projeto->getProjetos($id);
+
+		$dados = array(
+			'errors' => $errors,
+			'success' => $success,
+			'qtd' => $qtdProjetos,
+			'projetos' => $projetos
+		);
+
+		$this->loadTemplate("home{$_SESSION['userType']}", $dados);
+	}
 }

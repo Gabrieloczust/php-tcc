@@ -1,0 +1,40 @@
+            /*
+
+            $alunos = $_POST["emailAluno"];
+            foreach ($alunos as $aluno) {
+                $a = new Aluno($aluno);
+                if ($a->vereficaEmail($aluno) == false) {
+                    array_push($errors, "O e-mail $aluno não possui cadastro como Aluno!");
+                } else {
+                    $nome = $a->getNome();
+                    array_push($success, "O Aluno $nome recebeu seu convite!");
+                }
+            }*/
+
+
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="projectModalLabel">Projeto TITULO</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group form-group-aluno">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text text-white bg-primary border-0">Aluno</div>
+                </div>
+                <input type="email" id="inviteAlunos" class="form-control" placeholder="E-mail do Aluno 1" name="emailAluno[]" />
+                <div class="input-group-append input-add-aluno">
+                    <a class="input-group-text text-white bg-primary border-0" title="Convidar outro Aluno">+</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" id="btn-novo-projeto-proximo">Convidar</button>
+    </div>
+</div>

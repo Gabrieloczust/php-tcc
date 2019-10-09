@@ -20,6 +20,9 @@ class Aluno extends Usuario
             $this->setSenha($user['senha']);
             $this->setTipo('Aluno');
             $this->setCurso($user['curso']);
+            return true;
+        } else {
+            return false;
         }
     }
 

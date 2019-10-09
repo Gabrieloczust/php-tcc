@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 24-Set-2019 às 23:27
+-- Tempo de geração: 07-Out-2019 às 03:55
 -- Versão do servidor: 10.4.6-MariaDB
 -- versão do PHP: 7.3.9
 
@@ -38,9 +38,8 @@ CREATE TABLE `aluno` (
   `ip_cadastro` varchar(45) DEFAULT NULL,
   `ip_ultimo_acesso` varchar(45) DEFAULT NULL,
   `data_cadastro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `data_ultimo_acesso` timestamp NOT NULL DEFAULT current_timestamp(),
-  `data_upload` timestamp NOT NULL DEFAULT current_timestamp(),
-  `token` varchar(32) DEFAULT NULL,
+  `data_ultimo_acesso` timestamp NULL DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -48,9 +47,9 @@ CREATE TABLE `aluno` (
 -- Extraindo dados da tabela `aluno`
 --
 
-INSERT INTO `aluno` (`ra`, `nome`, `email`, `telefone`, `curso`, `senha`, `ip_cadastro`, `ip_ultimo_acesso`, `data_cadastro`, `data_ultimo_acesso`, `data_upload`, `token`, `ativo`) VALUES
-(7, 'Testador', 'teste@teste.com', NULL, 'Admnistração', '$2y$10$Rk2t8FN1D52veRjjdLEBAub/mI7nEksjIVhYfX6iNA8dveGn72esS', NULL, NULL, '2019-09-18 23:42:11', '2019-09-18 23:42:11', '2019-09-18 23:42:11', NULL, 0),
-(8, 'Gabriel Oczust', 'gabriel.oczust@gmail.com', '4199023899', 'TI', '$2y$10$beru2wfEKcQPpACnqgG8queNyQDJYzUDRoNo89qcoM29ZLHhdbT7q', NULL, NULL, '2019-09-18 23:42:11', '2019-09-18 23:42:11', '2019-09-18 23:42:11', NULL, 0);
+INSERT INTO `aluno` (`ra`, `nome`, `email`, `telefone`, `curso`, `senha`, `ip_cadastro`, `ip_ultimo_acesso`, `data_cadastro`, `data_ultimo_acesso`, `token`, `ativo`) VALUES
+(18, 'Gabriel Oczust', 'gabriel@gabriel.com', NULL, 'Teste', '$2y$10$HCA4o9hLk2LrRUYQc.Bth.sJ4Z9FraZcrzQ92nOdPD4O9iYWhlN5C', '::1', NULL, '2019-09-25 19:42:25', NULL, '$2y$10$ETU7GKBOOpxovohqkYoTpeVM0GxWXb6htHKQ4SgY21xVYC8qofZvm', 0),
+(19, 'Gabriel Oczust', 'teste@teste.com', NULL, '', '$2y$10$hzTxDyg3ZGxeUWxo8zttUuUwWnVj8UNQkRPu78h63mEKfuE2d3RDi', '::1', NULL, '2019-10-05 23:29:29', NULL, '$2y$10$vPftjYJiMwNuYusOPDS4W.SjaVZw/JQxUHdTW8jKLo4vzDVfikS3S', 0);
 
 -- --------------------------------------------------------
 
@@ -98,9 +97,8 @@ CREATE TABLE `professor` (
   `ip_cadastro` varchar(45) DEFAULT NULL,
   `ip_ultimo_acesso` varchar(45) DEFAULT NULL,
   `data_cadastro` timestamp NOT NULL DEFAULT current_timestamp(),
-  `data_ultimo_acesso` timestamp NOT NULL DEFAULT current_timestamp(),
-  `data_upload` timestamp NOT NULL DEFAULT current_timestamp(),
-  `token` varchar(32) DEFAULT NULL,
+  `data_ultimo_acesso` timestamp NULL DEFAULT NULL,
+  `token` varchar(255) DEFAULT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -108,8 +106,8 @@ CREATE TABLE `professor` (
 -- Extraindo dados da tabela `professor`
 --
 
-INSERT INTO `professor` (`rp`, `nome`, `email`, `telefone`, `escola`, `senha`, `ip_cadastro`, `ip_ultimo_acesso`, `data_cadastro`, `data_ultimo_acesso`, `data_upload`, `token`, `ativo`) VALUES
-(5, 'Prof Gabriel', 'prof@prof.com', '4199023899', 'GestÃ£o', '$2y$10$nGipUQYJ0vvyzZmJCak5weP0roTtOV3qDpwUTHIz6/uQz17dM874q', NULL, NULL, '2019-09-24 20:41:55', '2019-09-24 20:41:55', '2019-09-24 20:41:55', NULL, 0);
+INSERT INTO `professor` (`rp`, `nome`, `email`, `telefone`, `escola`, `senha`, `ip_cadastro`, `ip_ultimo_acesso`, `data_cadastro`, `data_ultimo_acesso`, `token`, `ativo`) VALUES
+(12, 'Josnaldo Da Silba Santos', 'teste@teste.com', NULL, 'Exatas', '$2y$10$xfVqogAXtVBl9OGsG.2TTOSScgyrN11g9ZZuKarPAWBA3lli/7klq', '::1', NULL, '2019-10-05 23:28:51', NULL, '$2y$10$rwpb.t5b0vuLOweY3NrW2.DA9APGSBBjpOBxpUtG2WabmygvjseyK', 0);
 
 -- --------------------------------------------------------
 
@@ -133,10 +131,18 @@ CREATE TABLE `professor_avalia_projeto` (
 CREATE TABLE `projeto` (
   `idProjeto` int(11) NOT NULL,
   `titulo` varchar(128) NOT NULL,
-  `data_criacao` date NOT NULL,
+  `data_criacao` timestamp NOT NULL DEFAULT current_timestamp(),
   `notaProjeto` decimal(2,2) NOT NULL DEFAULT 0.00,
   `notaRecuperacao` decimal(2,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `projeto`
+--
+
+INSERT INTO `projeto` (`idProjeto`, `titulo`, `data_criacao`, `notaProjeto`, `notaRecuperacao`) VALUES
+(8, 'dfssdf', '2019-10-06 00:30:56', '0.00', '0.00'),
+(9, 'dfssdf', '2019-10-06 00:32:00', '0.00', '0.00');
 
 -- --------------------------------------------------------
 
@@ -215,7 +221,7 @@ ALTER TABLE `projeto_tem_aluno`
 -- AUTO_INCREMENT de tabela `aluno`
 --
 ALTER TABLE `aluno`
-  MODIFY `ra` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Registro do Aluno', AUTO_INCREMENT=9;
+  MODIFY `ra` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Registro do Aluno', AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de tabela `comentario`
@@ -233,7 +239,7 @@ ALTER TABLE `documento`
 -- AUTO_INCREMENT de tabela `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `rp` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Registro do Professor', AUTO_INCREMENT=6;
+  MODIFY `rp` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Registro do Professor', AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de tabela `professor_avalia_projeto`
@@ -245,7 +251,7 @@ ALTER TABLE `professor_avalia_projeto`
 -- AUTO_INCREMENT de tabela `projeto`
 --
 ALTER TABLE `projeto`
-  MODIFY `idProjeto` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProjeto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de tabela `projeto_tem_aluno`

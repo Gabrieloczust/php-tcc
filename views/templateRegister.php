@@ -29,6 +29,23 @@
 
     <!-- Validor Form FrontEnd -->
     <script src="<?= JS ?>validator.min.js"></script>
+    <script src="<?= JS ?>jquery.mask.min.js"></script>
+
+    <script>
+        $(window).ready(function() {
+            $('.input-number').keyup(function() {
+                $(this).val(this.value.replace(/\D/g, ''));
+                $(this).val();				
+				$(this).mask('(##) #####-####');
+				var tamanho = $(this).val().length;
+				if(tamanho < 11){
+					$(this).mask('(##) ####-####');
+				} else{
+					$(this).mask('(##) #####-####');
+				}
+            });
+        });
+    </script>
 
     <?= $this->loadJsInTemplate($viewName); ?>
 

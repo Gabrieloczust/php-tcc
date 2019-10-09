@@ -22,11 +22,11 @@
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <label class="text-dark" for="perfil-senha">Senha:</label>
+                                <label class="text-dark" for="perfil-senha">Nova Senha:</label>
                                 <input class="form-control" class="text-primary" type="text" name="perfil-senha" id="perfil-senha">
                             </div>
                             <div class="col-6">
-                                <label class="text-dark" for="perfil-c-senha">Confirmar Senha:</label>
+                                <label class="text-dark" for="perfil-c-senha">Confirmar Nova Senha:</label>
                                 <input class="form-control" class="text-primary" type="text" name="perfil-c-senha" id="perfil-c-senha">
                             </div>
                         </div>

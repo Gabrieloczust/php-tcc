@@ -46,7 +46,7 @@ class loginController extends Controller
             $tipo = !empty($t) ? $t : array_push($errors, 'Selecione o Tipo!');
             $u->setTipo($tipo);
 
-            $e = $_POST['email'];
+            $e = strtolower($_POST['email']);
             $email = filter_var($e, FILTER_VALIDATE_EMAIL) ? $e : array_push($errors, 'Digite um e-mail valido!');
 
             $s = $_POST['senha'];

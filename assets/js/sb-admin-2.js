@@ -1,6 +1,6 @@
 (function ($) {
   "use strict"; // Start of use strict
-  
+
   // Toggle the side navigation
   $("#sidebarToggle, #sidebarToggleTop").on('click', function (e) {
     $("body").toggleClass("sidebar-toggled");
@@ -46,7 +46,7 @@
     e.preventDefault();
   });
 
-  // Add input no model novo projeto
+  // Add plus input for aluno
   $(document).ready(function () {
     var max_fields = 10;
     var wrapper_aluno = $(".form-group-aluno");
@@ -67,5 +67,10 @@
       x--;
     })
   });
+
+  //Autofocus no titulo do Modal novo projeto
+  $('#projectModal').on('shown.bs.modal', function () {
+    $('#ng-titulo').trigger('focus')
+  })
 
 })(jQuery); // End of use strict
