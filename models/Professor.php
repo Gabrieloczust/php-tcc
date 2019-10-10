@@ -20,9 +20,6 @@ class Professor extends Usuario
             $this->setSenha($user['senha']);
             $this->setTipo('Professor');
             $this->setEscola($user['escola']);
-            return true;
-        } else {
-            return false;
         }
     }
 

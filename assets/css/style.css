@@ -66,3 +66,5 @@ input:checked+.slider:before {
         margin-top: 1rem;
     }
 }
+
+.card-projeto:hover .card-header{background: #ecf1ff;}

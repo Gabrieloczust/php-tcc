@@ -17,23 +17,35 @@ class homeController extends Controller
 
 		$projeto = new Projeto();
 
+		// Cadastro de Novo Projeto //
 		if (filter_input(INPUT_POST, 'novo_projeto') === "novo_projeto") {
 			// Pega o Titulo
 			$titulo = filter_input(INPUT_POST, 'ng-titulo', FILTER_SANITIZE_SPECIAL_CHARS);
 
-			// Verifica se o aluno ja esta em um projeto com este titulo
-			$existeProjeto = $projeto->novoProjeto($titulo, $id);
-			$idProjeto = $projeto->getId();
-			if ($existeProjeto == 1) {
-				array_push($success, "Projeto <strong>$titulo</strong> criado com sucesso!");
-			} else {
-				array_push($errors, 'Você já participa de um projeto com este titulo!');
-			}
+			if (!empty($titulo)) {
 
-			$orientador = filter_input(INPUT_POST, 'ng-emailProfessor', FILTER_VALIDATE_EMAIL);
-			$convite = new Convite();
-			$teste = $convite->convidaOrientador($orientador, $idProjeto);
-			print_r($teste);
+				// Verifica se o aluno ja esta em um projeto com este titulo				
+				$existeProjeto = $projeto->existeEsseTitulo($titulo, $id);
+
+				if ($existeProjeto == false) {
+
+					// Pega o E-mail do Orientador
+					$orientador = filter_input(INPUT_POST, 'ng-emailProfessor', FILTER_VALIDATE_EMAIL);
+					$prof = new Orientador($orientador);
+
+					if (!empty($prof->getId())) {
+						$projeto->novoProjeto($titulo, $id, $orientador);
+						array_push($success, "Projeto <strong>$titulo</strong> criado com sucesso!");
+						array_push($success, "Convite de Orientador enviado para <strong>$orientador</strong>");
+					} else {
+						array_push($errors, 'Este e-mail não possui cadastro de um professor!');
+					}
+				} else {
+					array_push($errors, 'Você já participa de um projeto com este título!');
+				}
+			} else {
+				array_push($errors, 'Digite um título!');
+			}
 		}
 
 		$qtdProjetos = $projeto->qtdProjetos($id);

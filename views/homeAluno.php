@@ -1,4 +1,3 @@
-<!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Meus Projetos</h1>
     <a href="#" data-toggle="modal" data-target="#projectModal" class="btn btn-primary shadow-sm btn-new">
@@ -38,9 +37,9 @@
 
     <?php foreach ($projetos as $projeto) { ?>
         <div class="col-lg-6">
-            <div class="card shadow mb-4">
-                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary"><?= $projeto['titulo'] ?></h6>
+            <div class="card card-projeto shadow mb-4">
+                <div class="card-header pt-0 pb-0 d-flex flex-row align-items-center justify-content-between">
+                    <a href="projeto/" class="m-0 py-3 w-100 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw"></i>

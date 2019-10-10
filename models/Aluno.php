@@ -21,8 +21,6 @@ class Aluno extends Usuario
             $this->setTipo('Aluno');
             $this->setCurso($user['curso']);
             return true;
-        } else {
-            return false;
         }
     }
 

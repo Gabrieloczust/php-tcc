@@ -9,26 +9,19 @@ class Convite extends Model
 
 	public function convidaOrientador($email, $idProjeto)
 	{
-		$usuario = new Orientador($email);
-		if (!empty($usuario->getId())) {
-			if ($this->orientadorEstaProjeto($idProjeto, $usuario->getId())) {
-				return true;
-			}
-		} else {
-			return false;
-		}
-	}
-
-	private function orientadorEstaProjeto($idProjeto, $idOrientador)
-	{
-		$sql = $this->db->prepare("SELECT * FROM projeto_tem_professor WHERE tipoProfessor = 'Orientador' && fkProjeto = :idProjeto && fkProfessor = :idOrientador");
-		$sql->execute(array($idProjeto, $idOrientador));
-		if ($sql->rowCount() > 0) {
+		$orientador = new Orientador($email);
+		if (!empty($orientador->getId())) {
+			$sql = $this->db->prepare("INSERT INTO convite SET tipo = 'Orientador', fkProjeto = :idProjeto, fkUsuario = :idOrientador");
+			$sql->bindValue(":idOrientador", $orientador->getId());
+			$sql->bindValue(":idProjeto", $idProjeto);
+			$sql->execute();
 			return true;
 		} else {
 			return false;
 		}
 	}
+
+
 
 	public function getId()
 	{

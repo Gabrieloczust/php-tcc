@@ -7,39 +7,33 @@ class Projeto extends Model
 	private $alunos;
 	private $orientador;
 
-	public function novoProjeto($titulo, $ra)
+	public function novoProjeto($titulo, $ra, $orientador)
 	{
-		//Verifica se já existe um projeto deste usuario com o mesmo nome
-		if (($this->existeEsseTitulo($titulo, $ra)) == false) {
+		//Cria o projeto na tabela projeto
+		$sql = $this->db->prepare("INSERT INTO projeto SET titulo = :titulo, fkAlunoLider = :lider");
+		$sql->bindValue(":titulo", $titulo);
+		$sql->bindValue(":lider", $ra);
+		$sql->execute();
 
-			//Cria o projeto na tabela projeto
-			$sql = $this->db->prepare("INSERT INTO projeto SET titulo = :titulo, fkAlunoLider = :lider");
-			$sql->bindValue(":titulo", $titulo);
-			$sql->bindValue(":lider", $ra);
-			$sql->execute();
+		//Pega o ID do projeto criado
+		$sql2 = $this->db->prepare("SELECT idProjeto FROM `projeto` WHERE fkAlunoLider = {$ra} ORDER BY idProjeto DESC LIMIT 1");
+		$sql2->execute();
+		$this->setId($sql2->fetch()['idProjeto']);
 
-			//Pega o ID do projeto criado
-			$sql2 = $this->db->prepare("SELECT idProjeto FROM `projeto` WHERE fkAlunoLider = {$ra} ORDER BY idProjeto DESC LIMIT 1");
-			$sql2->execute();
-			$this->setId($sql2->fetch()['idProjeto']);
+		//Assosia o Projeto ao Aluno que criou como Lider do Projeto
+		$sql3 = $this->db->prepare("INSERT INTO projeto_tem_aluno SET fkAluno = :ra, fkProjeto = :idProjeto, tipoAluno = 'Lider'");
+		$sql3->bindValue(":ra", $ra);
+		$sql3->bindValue(":idProjeto", $this->getId());
+		$sql3->execute();
 
-			//Assosia o Projeto ao Aluno que criou como Lider do Projeto
-			$sql3 = $this->db->prepare("INSERT INTO projeto_tem_aluno SET fkAluno = :ra, fkProjeto = :idProjeto, tipoAluno = 'Lider'");
-			$sql3->bindValue(":ra", $ra);
-			$sql3->bindValue(":idProjeto", $this->getId());
-			$sql3->execute();
-
-			//Envia convite para o Professor Orientador
-
-			return true;
-		} else {
-			return false;
-		}
+		// Convida o Orientador
+		$convite = new Convite();
+		$convite->convidaOrientador($orientador, $this->getId());
 	}
 
 	public function getProjetos($ra)
 	{
-		$sql = $this->db->prepare("SELECT * FROM projeto_tem_aluno INNER JOIN projeto ON(fkProjeto = idProjeto) WHERE fkAluno = $ra");
+		$sql = $this->db->prepare("SELECT * FROM projeto_tem_aluno INNER JOIN projeto ON(fkProjeto = idProjeto) WHERE fkAluno = $ra ORDER BY idAlunoProjeto DESC");
 		$sql->execute();
 		$projetos = $sql->fetchAll();
 		return $projetos;
@@ -53,7 +47,7 @@ class Projeto extends Model
 		return $qtd;
 	}
 
-	private function existeEsseTitulo($titulo, $ra)
+	public function existeEsseTitulo($titulo, $ra)
 	{
 		$sql = $this->db->prepare("SELECT * FROM projeto WHERE titulo = '{$titulo}' && fkAlunoLider = $ra");
 		$sql->execute();
