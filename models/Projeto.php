@@ -9,10 +9,13 @@ class Projeto extends Model
 
 	public function novoProjeto($titulo, $ra, $orientador)
 	{
+		$hashInterno = $this->geraHash($titulo);
+
 		//Cria o projeto na tabela projeto
-		$sql = $this->db->prepare("INSERT INTO projeto SET titulo = :titulo, fkAlunoLider = :lider");
+		$sql = $this->db->prepare("INSERT INTO projeto SET titulo = :titulo, fkAlunoLider = :lider, hashInterno = :hashInterno");
 		$sql->bindValue(":titulo", $titulo);
 		$sql->bindValue(":lider", $ra);
+		$sql->bindValue(":hashInterno", $hashInterno);
 		$sql->execute();
 
 		//Pega o ID do projeto criado
@@ -29,6 +32,28 @@ class Projeto extends Model
 		// Convida o Orientador
 		$convite = new Convite();
 		$convite->convidaOrientador($orientador, $this->getId());
+	}
+
+	public function editaTitulo($titulo, $hash, $ra)
+	{
+		if ($this->existeEsseTitulo($titulo, $ra) == 0) {
+			$sql = $this->db->prepare("UPDATE projeto SET titulo = :titulo WHERE hashInterno = :hashInterno");
+			$sql->bindValue(":titulo", $titulo);
+			$sql->bindValue(":hashInterno", $hash);
+			$sql->execute();
+			return true;
+		}
+		return false;
+	}
+
+	public function sairProjeto($idProjeto, $ra)
+	{
+		$sql = $this->db->prepare("DELETE FROM projeto_tem_aluno WHERE fkProjeto = :idProjeto && fkAluno = :ra");
+		$sql->bindValue(":ra", $ra);
+		$sql->bindValue(":idProjeto", $idProjeto);
+		$sql->execute();
+
+		// Alterar líder para outro aluno
 	}
 
 	public function getProjetos($ra)
@@ -49,13 +74,18 @@ class Projeto extends Model
 
 	public function existeEsseTitulo($titulo, $ra)
 	{
-		$sql = $this->db->prepare("SELECT * FROM projeto WHERE titulo = '{$titulo}' && fkAlunoLider = $ra");
+		$sql = $this->db->prepare("SELECT * FROM projeto INNER JOIN projeto_tem_aluno ON(idProjeto = fkProjeto) WHERE titulo = '{$titulo}' && fkAlunoLider = $ra");
 		$sql->execute();
 		if ($sql->rowCount() > 0) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	private function geraHash($titulo)
+	{
+		return password_hash($titulo, PASSWORD_BCRYPT);
 	}
 
 	public function getId()

@@ -73,4 +73,23 @@
     $('#ng-titulo').trigger('focus')
   })
 
+  //Autofocus no titulo do Modal editar projeto
+  $('#editaTituloModal').on('shown.bs.modal', function () {
+    $('#et-titulo').trigger('focus')
+  })
+
+  // Modal editar titulo
+  $('.btn-editar-titulo').click(function () {
+    var id = $(this).attr('rel')
+    $('#editaTituloModal').find('.et-id').val(id)
+    $('#editaTituloModal').modal('show')
+  })
+
+  // Modal sair projeto
+  $('.btn-sair-projeto').click(function () {
+    var id2 = $(this).attr('rel')
+    $('#sairProjetoModal').find('.sp-id').val(id2)
+    $('#sairProjetoModal').modal('show')
+  })
+
 })(jQuery); // End of use strict

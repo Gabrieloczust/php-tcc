@@ -35,7 +35,6 @@ class homeController extends Controller
 
 					if (!empty($prof->getId())) {
 						$projeto->novoProjeto($titulo, $id, $orientador);
-						array_push($success, "Projeto <strong>$titulo</strong> criado com sucesso!");
 						array_push($success, "Convite de Orientador enviado para <strong>$orientador</strong>");
 					} else {
 						array_push($errors, 'Este e-mail não possui cadastro de um professor!');
@@ -46,6 +45,22 @@ class homeController extends Controller
 			} else {
 				array_push($errors, 'Digite um título!');
 			}
+		}
+
+		// Editar Titulo //
+		$hashProjeto = filter_input(INPUT_POST, 'et-id');
+		if (filter_input(INPUT_POST, 'edita_titulo') === "edita_titulo" && !empty($hashProjeto)) {
+			$novoTitulo = filter_input(INPUT_POST, 'et-titulo', FILTER_SANITIZE_SPECIAL_CHARS);
+			$validaTitulo = $projeto->editaTitulo($novoTitulo, $hashProjeto, $id);
+			if ($validaTitulo == false) {
+				array_push($errors, "Título <strong>$novoTitulo</strong> já existe!");
+			}
+		}
+
+		// Sair do Projeto //
+		$spId = filter_input(INPUT_POST, 'sp-id');
+		if (filter_input(INPUT_POST, 'sair_projeto') === "sair_projeto" && !empty($spId)) {
+			$projeto->sairProjeto($spId, $id);
 		}
 
 		$qtdProjetos = $projeto->qtdProjetos($id);
