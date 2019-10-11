@@ -46,28 +46,6 @@
     e.preventDefault();
   });
 
-  // Add plus input for aluno
-  $(document).ready(function () {
-    var max_fields = 10;
-    var wrapper_aluno = $(".form-group-aluno");
-    var add_aluno = $(".input-add-aluno");
-    var x = 1;
-
-    $(add_aluno).click(function (e) {
-      e.preventDefault();
-      if (x < max_fields) {
-        x++;
-        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" class="form-control" placeholder="E-mail do Aluno ' + x + '" name="emailAluno[]" /><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
-      }
-    });
-
-    $(wrapper_aluno).on("click", ".remove_field", function (e) {
-      e.preventDefault();
-      $(this).parent('div').parent('.input-group').remove();
-      x--;
-    })
-  });
-
   //Autofocus no titulo do Modal novo projeto
   $('#projectModal').on('shown.bs.modal', function () {
     $('#ng-titulo').trigger('focus')
@@ -76,6 +54,11 @@
   //Autofocus no titulo do Modal editar projeto
   $('#editaTituloModal').on('shown.bs.modal', function () {
     $('#et-titulo').trigger('focus')
+  })
+
+  //Autofocus no emial do Modal convidar aluno
+  $('#alunoModal').on('shown.bs.modal', function () {
+    $('#ca-aluno').trigger('focus')
   })
 
   // Modal editar titulo
@@ -91,5 +74,41 @@
     $('#sairProjetoModal').find('.sp-id').val(id2)
     $('#sairProjetoModal').modal('show')
   })
+
+  // Modal convidar aluno
+  $('.btn-convidar-aluno').click(function () {
+    var id3 = $(this).attr('rel')
+    $('#alunoModal').find('.ca-id').val(id3)
+    $('#alunoModal').modal('show')
+  })
+
+  // Adiciona nosso input para convidar aluno
+  $(document).ready(function () {
+    var max_fields = 10;
+    var wrapper_aluno = $("#novos-alunos");
+    var add_aluno = $(".add-novo-aluno");
+    var x = 1;
+
+    $(add_aluno).click(function (e) {
+      e.preventDefault();
+      if (x < max_fields) {
+        x++;
+        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" class="form-control" placeholder="E-mail do Aluno ' + x + '" name="ca-aluno[]" required/><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
+      }
+      if (x == max_fields) {
+        $(add_aluno).toggle()
+      }
+    });
+
+    $(wrapper_aluno).on("click", ".remove_field", function (e) {
+      e.preventDefault();
+      $(this).parent('div').parent('.input-group').remove();
+      x--;
+
+      if (x == (max_fields - 1)) {
+        $(add_aluno).toggle()
+      }
+    })
+  });
 
 })(jQuery); // End of use strict

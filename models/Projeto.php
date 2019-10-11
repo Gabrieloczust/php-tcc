@@ -4,8 +4,16 @@ class Projeto extends Model
 {
 	private $id;
 	private $titulo;
-	private $alunos;
-	private $orientador;
+
+	public function setAll($id)
+	{
+		$sql = $this->db->prepare("SELECT * FROM projeto WHERE idProjeto = :id");
+		$sql->bindValue(":id", $id);
+		$sql->execute();
+		$projeto = $sql->fetch();
+		$this->setId($id);
+		$this->setTitulo($projeto['titulo']);
+	}
 
 	public function novoProjeto($titulo, $ra, $orientador)
 	{
@@ -48,12 +56,29 @@ class Projeto extends Model
 
 	public function sairProjeto($idProjeto, $ra)
 	{
+		// Remove o aluno do projeto
 		$sql = $this->db->prepare("DELETE FROM projeto_tem_aluno WHERE fkProjeto = :idProjeto && fkAluno = :ra");
 		$sql->bindValue(":ra", $ra);
 		$sql->bindValue(":idProjeto", $idProjeto);
 		$sql->execute();
 
-		// Alterar líder para outro aluno
+		//Verifica quantas pessoas tem no projeto
+		$sql2 = $this->db->prepare("SELECT * FROM projeto_tem_aluno WHERE fkProjeto = :idProjeto");
+		$sql2->bindValue(":idProjeto", $idProjeto);
+		$sql2->execute();
+
+		// Se houver apenas uma, remove o projeto 
+		if ($sql2->rowCount() < 2) {
+			$sql3 = $this->db->prepare("DELETE FROM projeto WHERE idProjeto = :idProjeto");
+			$sql3->bindValue(":idProjeto", $idProjeto);
+			$sql3->execute();
+		}
+
+		if ($sql->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public function getProjetos($ra)
