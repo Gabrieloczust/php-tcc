@@ -25,7 +25,7 @@
             <h4 class="mb-3 titulo-register">Cadastro de Aluno</h4>
             <form class="row" data-toggle="validator" method="POST">
                 <div class="col">
-                    <input type="hidden" name="usuario" value="Aluno">
+                    <input type="hidden" name="usuario" value="aluno">
                     <div class="form-group">
                         <input type="text" class="form-control input-capitalize" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
@@ -58,7 +58,7 @@
             <h4 class="mb-3 titulo-register">Cadastro de Professor</h4>
             <form class="row" data-toggle="validator" method="POST">
                 <div class="col">
-                    <input type="hidden" name="usuario" value="Professor">
+                    <input type="hidden" name="usuario" value="professor">
                     <div class="form-group">
                         <input type="text" class="form-control input-capitalize" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>

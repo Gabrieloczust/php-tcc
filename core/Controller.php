@@ -13,7 +13,8 @@ class Controller
             exit;
         } else {
             $this->usuarioLogadoTipo = $_SESSION['userType'];
-            $this->usuarioLogado = new $this->usuarioLogadoTipo($_SESSION['user']);
+            $u = ucfirst($this->usuarioLogadoTipo);
+            $this->usuarioLogado = new $u($_SESSION['user']);
         }
     }
 

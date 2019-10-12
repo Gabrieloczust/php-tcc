@@ -27,7 +27,7 @@ class cadastroController extends Controller
 
             $curso = !empty($_POST['curso']) ? $_POST['curso'] : NULL;
             $escola = !empty($_POST['escola']) ? $_POST['escola'] : NULL;
-            $curso_escola = ($tipo == 'Aluno') ? $curso : $escola;
+            $curso_escola = ($tipo == 'aluno') ? $curso : $escola;
 
             $e = strtolower($_POST['email']);
             $email = filter_var($e, FILTER_VALIDATE_EMAIL) ? $e : array_push($errors, 'E-mail Inválido!');

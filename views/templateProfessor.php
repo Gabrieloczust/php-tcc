@@ -43,7 +43,7 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Projetos -->
-      <li class="nav-item <?php if ($viewName == 'homeProfessor') {
+      <li class="nav-item <?php if ($viewName == 'homeprofessor') {
                             echo 'active';
                           } ?>">
         <a class="nav-link" href="<?= HOME ?>">
@@ -66,10 +66,10 @@
       </li>
 
       <!-- Nav Item - Configurações -->
-      <li class="nav-item <?php if ($viewName == 'configuracoesProfessor') {
+      <li class="nav-item <?php if ($viewName == 'configuracoesprofessor') {
                             echo 'active';
                           } ?>">
-        <a class="nav-link" href="<?= HOME ?>configuracoesProfessor">
+        <a class="nav-link" href="<?= HOME ?>configuracoesprofessor">
           <i class="fas fa-fw fa-cog"></i>
           <span>Configurações</span></a>
       </li>
@@ -249,7 +249,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="<?= HOME ?>configuracoesProfessor">
+                <a class="dropdown-item" href="<?= HOME ?>configuracoesprofessor">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Configurações
                 </a>

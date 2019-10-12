@@ -22,9 +22,9 @@ class Usuario extends Model
             $escola_curso = ucwords(strtolower($escola_curso));
 
             $sql = "INSERT INTO {$tipo} SET nome = ?, email = ?, telefone = ?, senha = ?, ip_cadastro = ?, token = ?";
-            if ($tipo == 'Aluno') {
+            if ($tipo == 'aluno') {
                 $sql .= ", curso = ?";
-            } elseif ($tipo == 'Professor') {
+            } elseif ($tipo == 'professor') {
                 $sql .= ", escola = ?";
             }
             $sql = $this->db->prepare($sql);

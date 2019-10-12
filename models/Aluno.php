@@ -18,7 +18,7 @@ class Aluno extends Usuario
             $this->setEmail($user['email']);
             $this->setTelefone($user['telefone']);
             $this->setSenha($user['senha']);
-            $this->setTipo('Aluno');
+            $this->setTipo('aluno');
             $this->setCurso($user['curso']);
             return true;
         }

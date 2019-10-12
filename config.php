@@ -17,11 +17,11 @@ if (ENVIRONMENT == 'development') {
         'host' => 'localhost'
     ];
 } else {
-    define("HOME", "http://www.meutcc.tk");
+    define("HOME", "https://www.meutcc.tk/");
     $config = [
-        'dbname' => 'bd_tcc',
-        'dbuser' => '',
-        'dbpass' => '',
+        'dbname' => 'meutcc17_tcc',
+        'dbuser' => 'meutcc17_tcc',
+        'dbpass' => 'XDZkc+ppmB39',
         'host' => 'localhost'
     ];
 }
