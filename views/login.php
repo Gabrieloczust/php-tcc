@@ -45,7 +45,7 @@
 			</div>
 			<div class="d-flex justify-content-between align-items-center mt-3">
 				<div class="d-flex flex-column">
-					<a href="" data-toggle="modal" data-target="#exampleModal">Esqueceu a senha?</a>
+					<a href="" data-toggle="modal" data-target="#exampleModal">Esqueci minha senha</a>
 					<a href="cadastro" class="mt-1">Criar conta</a>
 				</div>
 				<div>
