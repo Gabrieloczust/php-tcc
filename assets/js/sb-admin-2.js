@@ -46,6 +46,14 @@
     e.preventDefault();
   });
 
+  // Mascara para o celular
+  $(window).ready(function () {
+    $('.input-number').keyup(function () {
+      $(this).val(this.value.replace(/\D/g, ''));
+      $(this).mask('(##) #####-####');
+    });
+  });
+
   //Autofocus no titulo do Modal novo projeto
   $('#projectModal').on('shown.bs.modal', function () {
     $('#ng-titulo').trigger('focus')

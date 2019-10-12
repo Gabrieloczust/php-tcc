@@ -38,7 +38,7 @@ class homeController extends Controller
 						$projeto->novoProjeto($titulo, $id, $orientador);
 						array_push($successes, "Convite de Orientador enviado para <strong>$orientador</strong>");
 					} else {
-						array_push($warnings, 'Este e-mail não possui cadastro de um professor!');
+						array_push($warnings, 'Este e-mail não possui cadastro como professor!');
 					}
 				} else {
 					array_push($warnings, 'Você já participa de um projeto com este título!');
@@ -98,6 +98,6 @@ class homeController extends Controller
 			'projetos' => $projetos
 		);
 
-		$this->loadTemplate("home{$_SESSION['userType']}", $dados);
+		$this->loadTemplate("home{$this->usuarioLogadoTipo}", $dados);
 	}
 }

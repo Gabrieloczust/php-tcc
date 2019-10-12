@@ -2,6 +2,8 @@
 
 class Controller
 {
+    public $usuarioLogado;
+    public $usuarioLogadoTipo;
 
     public function __construct()
     {
@@ -9,6 +11,9 @@ class Controller
         if ($u->logado() == false) {
             header("Location:" . HOME . "login");
             exit;
+        } else {
+            $this->usuarioLogadoTipo = $_SESSION['userType'];
+            $this->usuarioLogado = new $this->usuarioLogadoTipo($_SESSION['user']);
         }
     }
 
@@ -20,15 +25,12 @@ class Controller
 
     public function loadTemplate($viewName, $viewData = array())
     {
-        $tipoUsuario = $_SESSION['userType'];
-        $usuario = new $tipoUsuario($_SESSION['user']);
 
-        $viewData["nome"] = $usuario->getNome();
-        $viewData["letra"] = substr($usuario->getNome(), 0, 1);
-        $viewData["email"] = $usuario->getEmail();
+        $viewData["nome"] = $this->usuarioLogado->getNome();
+        $viewData["letra"] = substr($this->usuarioLogado->getNome(), 0, 1);
 
         extract($viewData);
-        require "views/template{$tipoUsuario}.php";
+        require "views/template{$this->usuarioLogadoTipo}.php";
     }
 
     public function loadTemplateRegister($viewName, $viewData = array())

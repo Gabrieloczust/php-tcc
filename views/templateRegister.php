@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
+
     <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
     <link href="<?= CSS ?>sb-admin-2.css" rel="stylesheet">
 
     <?= $this->loadCssInTemplate($viewName); ?>
 
-    <title><?= ucwords($viewName) ?></title>
+    <title>MyTCC - <?= ucwords($viewName) ?></title>
 </head>
 
 <body>
@@ -35,14 +35,7 @@
         $(window).ready(function() {
             $('.input-number').keyup(function() {
                 $(this).val(this.value.replace(/\D/g, ''));
-                $(this).val();				
-				$(this).mask('(##) #####-####');
-				var tamanho = $(this).val().length;
-				if(tamanho < 11){
-					$(this).mask('(##) ####-####');
-				} else{
-					$(this).mask('(##) #####-####');
-				}
+                $(this).mask('(##) #####-####');
             });
         });
     </script>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title><?= ucwords($viewName) ?></title>
+  <title>MyTCC - <?= ucwords($viewName) ?></title>
 
   <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
@@ -43,7 +43,9 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Projetos -->
-      <li class="nav-item <?php if($viewName == 'homeProfessor'){echo 'active';} ?>">
+      <li class="nav-item <?php if ($viewName == 'homeProfessor') {
+                            echo 'active';
+                          } ?>">
         <a class="nav-link" href="<?= HOME ?>">
           <i class="fas fa-fw fa-users"></i>
           <span>Turmas</span>
@@ -54,7 +56,9 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Biblioteca Projetos -->
-      <li class="nav-item <?php if($viewName == 'biblioteca'){echo 'active';} ?>">
+      <li class="nav-item <?php if ($viewName == 'biblioteca') {
+                            echo 'active';
+                          } ?>">
         <a class="nav-link" href="<?= HOME ?>biblioteca">
           <i class="fas fa-fw fa-book"></i>
           <span>Biblioteca de Projetos</span>
@@ -62,8 +66,10 @@
       </li>
 
       <!-- Nav Item - Configurações -->
-      <li class="nav-item <?php if($viewName == 'configuracoes'){echo 'active';} ?>">
-        <a class="nav-link" href="<?= HOME ?>configuracoes">
+      <li class="nav-item <?php if ($viewName == 'configuracoesProfessor') {
+                            echo 'active';
+                          } ?>">
+        <a class="nav-link" href="<?= HOME ?>configuracoesProfessor">
           <i class="fas fa-fw fa-cog"></i>
           <span>Configurações</span></a>
       </li>
@@ -243,7 +249,7 @@
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="configuracoes">
+                <a class="dropdown-item" href="<?= HOME ?>configuracoesProfessor">
                   <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
                   Configurações
                 </a>
@@ -275,7 +281,7 @@
 
         </div>
         <!-- End of Main Content -->
-        
+
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
@@ -324,15 +330,19 @@
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="<?= JS ?>sb-admin-2.js"></script>
-
     <!-- Page level plugins -->
     <script src="vendor/datatables/jquery.dataTables.min.js"></script>
     <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="<?= JS ?>demo/datatables-demo.js"></script>
+
+    <!-- Validor Form FrontEnd -->
+    <script src="<?= JS ?>validator.min.js"></script>
+    <script src="<?= JS ?>jquery.mask.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="<?= JS ?>sb-admin-2.js"></script>
 
 </body>
 
