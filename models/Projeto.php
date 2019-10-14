@@ -4,6 +4,9 @@ class Projeto extends Model
 {
 	private $id;
 	private $titulo;
+	private $alunos;
+	private $orientador;
+	private $avaliadores;
 
 	public function setAll($id)
 	{
@@ -67,11 +70,15 @@ class Projeto extends Model
 		$sql2->bindValue(":idProjeto", $idProjeto);
 		$sql2->execute();
 
-		// Se houver apenas uma, remove o projeto 
+		// Se houver apenas uma, remove o projeto e se houver convites deleta
 		if ($sql2->rowCount() < 2) {
 			$sql3 = $this->db->prepare("DELETE FROM projeto WHERE idProjeto = :idProjeto");
 			$sql3->bindValue(":idProjeto", $idProjeto);
 			$sql3->execute();
+
+			$sql4 = $this->db->prepare("DELETE FROM convite WHERE fkProjeto = :idProjeto");
+			$sql4->bindValue(":idProjeto", $idProjeto);
+			$sql4->execute();
 		}
 
 		if ($sql->rowCount() > 0) {
@@ -80,6 +87,7 @@ class Projeto extends Model
 			return false;
 		}
 	}
+
 
 	public function getProjetos($ra)
 	{
@@ -108,6 +116,14 @@ class Projeto extends Model
 		}
 	}
 
+	public function getIdForHash($hash)
+	{
+		$sql = $this->db->prepare("SELECT idProjeto FROM projeto WHERE hashInterno = :hashInterno");
+		$sql->bindValue(":hashInterno", $hash);
+		$sql->execute();
+		return $sql->fetch()['idProjeto'];
+	}
+
 	private function geraHash($titulo)
 	{
 		return password_hash($titulo, PASSWORD_BCRYPT);
@@ -128,5 +144,29 @@ class Projeto extends Model
 	public function setTitulo($t)
 	{
 		$this->titulo = $t;
+	}
+	public function getAlunos()
+	{
+		return $this->alunos;
+	}
+	public function setAlunos($a)
+	{
+		$this->alunos = $a;
+	}
+	public function getOrientador()
+	{
+		return $this->orientador;
+	}
+	public function setOrientador($o)
+	{
+		$this->orientador = $o;
+	}
+	public function getAvaliadores()
+	{
+		return $this->avaliadores;
+	}
+	public function setAvaliadores($a)
+	{
+		$this->avaliadores = $a;
 	}
 }

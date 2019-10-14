@@ -140,7 +140,7 @@ select.form-control {
 
 @media(max-width: 425px) {
 	.login {
-		padding: 10%
+		padding: 12% 10%
 	}
 }
 

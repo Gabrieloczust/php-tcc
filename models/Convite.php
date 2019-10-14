@@ -20,7 +20,57 @@ class Convite extends Model
 			return false;
 		}
 	}
-	
+
+	public function convidaAluno($email, $hashProjeto)
+	{
+		// PEGA O ID DO ALUNO
+		$aluno = new Aluno($email);
+		$idAluno = $aluno->getId();
+		// PEGA O ID DO PROJETO
+		$projeto = new Projeto();
+		$idProjeto = $projeto->getIdForHash($hashProjeto);
+
+		if ($this->possuiConvite($idProjeto, $idAluno) == false) {
+			$sql = $this->db->prepare("INSERT INTO convite SET tipo = 'Aluno', fkProjeto = :idProjeto, fkUsuario = :idAluno");
+			$sql->bindValue(":idProjeto", $idProjeto);
+			$sql->bindValue(":idAluno", $idAluno);
+			$sql->execute();
+			if ($this->alunoEstaNoGrupo($idProjeto, $idAluno) == false) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+
+	private function possuiConvite($idProjeto, $idUsuario)
+	{
+		$sql = $this->db->prepare("SELECT * FROM convite WHERE fkProjeto = :idProjeto && fkUsuario = :idUsuario");
+		$sql->bindValue(":idProjeto", $idProjeto);
+		$sql->bindValue(":idUsuario", $idUsuario);
+		$sql->execute();
+		if ($sql->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private function alunoEstaNoGrupo($idProjeto, $idAluno)
+	{
+		$sql = $this->db->prepare("SELECT * FROM projeto_tem_aluno WHERE fkProjeto = :idProjeto && fkUsuario = :idAluno");
+		$sql->bindValue(":idProjeto", $idProjeto);
+		$sql->bindValue(":idAluno", $idAluno);
+		$sql->execute();
+		if ($sql->rowCount() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	public function getId()
 	{
 		return $this->id;

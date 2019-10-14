@@ -75,11 +75,10 @@ input:checked+.slider:before {
     }
 }
 
-.card-projeto:hover .card-header {
-    background: #4e73df;
+.card-projeto:hover .text-primary{
+    text-decoration: underline;
 }
 
-.card-projeto:hover .text-primary,
-.card-projeto:hover .dropdown-toggle i {
-    color: #fff !important;
+.dropdown-toggle i:hover {
+    transform: scale(1.1);
 }

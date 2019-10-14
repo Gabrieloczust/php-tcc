@@ -75,14 +75,16 @@ class homeController extends Controller
 		if (filter_input(INPUT_POST, 'convidar_aluno') === "convidar_aluno" && !empty($caId)) {
 			$emails = $_POST['ca-aluno'];
 			foreach ($emails as $email) {
-				if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-					if ($aluno->vereficaEmail($email) == true) {
+				if (filter_var($email, FILTER_VALIDATE_EMAIL) && $aluno->vereficaEmail($email) == true) {
+					$convite = new Convite();
+					$enviado = $convite->convidaAluno($email, $caId);
+					if ($enviado == true) {
 						array_push($successes, "Convite enviado para o email <strong>$email</strong>");
 					} else {
-						array_push($warnings, "Nenhum aluno possui cadastro com o email <strong>$email</strong>");
+						array_push($warnings, "Este email <strong>$email</strong> já possui convite!");
 					}
 				} else {
-					array_push($errors, "O e-mail <strong>$email</strong> é inválido!");
+					array_push($errors, "Nenhum aluno possui cadastro com o email <strong>$email</strong>");
 				}
 			}
 		}
