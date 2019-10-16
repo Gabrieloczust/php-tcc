@@ -42,7 +42,7 @@ class Projeto extends Model
 
 		// Convida o Orientador
 		$convite = new Convite();
-		$convite->convidaOrientador($orientador, $this->getId());
+		$convite->convidaOrientador($orientador, $this->getId(), $ra);
 	}
 
 	public function editaTitulo($titulo, $hash, $ra)
@@ -70,15 +70,15 @@ class Projeto extends Model
 		$sql2->bindValue(":idProjeto", $idProjeto);
 		$sql2->execute();
 
-		// Se houver apenas uma, remove o projeto e se houver convites deleta
-		if ($sql2->rowCount() < 2) {
-			$sql3 = $this->db->prepare("DELETE FROM projeto WHERE idProjeto = :idProjeto");
-			$sql3->bindValue(":idProjeto", $idProjeto);
-			$sql3->execute();
-
+		// Se não houver usuario no projeto remove o projeto e se houver convites deleta
+		if ($sql2->rowCount() == 0) {
 			$sql4 = $this->db->prepare("DELETE FROM convite WHERE fkProjeto = :idProjeto");
 			$sql4->bindValue(":idProjeto", $idProjeto);
 			$sql4->execute();
+
+			$sql3 = $this->db->prepare("DELETE FROM projeto WHERE idProjeto = :idProjeto");
+			$sql3->bindValue(":idProjeto", $idProjeto);
+			$sql3->execute();
 		}
 
 		if ($sql->rowCount() > 0) {

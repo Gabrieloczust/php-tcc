@@ -75,10 +75,15 @@ input:checked+.slider:before {
     }
 }
 
-.card-projeto:hover .text-primary{
+.card-projeto:hover .text-primary {
     text-decoration: underline;
 }
 
-.dropdown-toggle i:hover {
+.card-projeto .dropdown-toggle:hover i {
     transform: scale(1.1);
+}
+
+.convite-btns .btn {
+    width: 49%;
+    font-size: 0.6rem;
 }

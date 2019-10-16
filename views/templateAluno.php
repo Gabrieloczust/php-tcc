@@ -183,57 +183,44 @@
               </div>
             </li>
 
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">4+</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Convites
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-success">G</div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Convite para Mapeamento de Rede</div>
-                    <div class="small text-gray-500">Gabriel· 58m</div>
-                  </div>
+            <!-- Nav Item - Convites -->
+            <?php if ($qtd_convites > 0) { ?>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-envelope fa-fw"></i>
+                  <!-- Counter - Messages -->
+                  <span class="badge badge-danger badge-counter"><?= $qtd_convites ?></span>
                 </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-danger">N</div>
+
+                <!-- Dropdown - Convites -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                  <h6 class="dropdown-header">
+                    Convites
+                  </h6>
+
+                  <?php foreach ($convites as $convite) { ?>
+                    <div class="dropdown-item d-flex align-items-center">
+                      <div class="dropdown-list-image mr-3">
+                        <div class="rounded-circle btn-circle btn-primary"><?= substr($convite['nome'], 0, 1) ?></div>
+                      </div>
+                      <div class="font-weight-bold">
+                        <div class="text-truncate">Projeto <?= $convite['titulo'] ?></div>
+                        <div class="small text-gray-500"><?= $convite['nome'] ?></div>
+                        <div class="convite-btns small text-gray-500 d-flex justify-content-between mt-1">
+                          <a class="btn btn-sm btn-danger" href="<?= HOME . 'convite/recusar/' . $convite['hashConvite'] ?>">Recusar</a>
+                          <a class="btn btn-sm btn-success" href="<?= HOME . 'convite/aceitar/' . $convite['hashConvite'] ?>">Aceitar</a>
+                        </div>
+                      </div>
+                    </div>
+                  <?php } ?>
+
+                  <div class="dropdown-item small text-gray-500 d-flex justify-content-between">
+                    <a class="text-danger" href="<?= HOME . 'convite/recusartodos' ?>">Recusar Todos</a>
+                    <a class="text-success" href="<?= HOME . 'convite/aceitartodos' ?>">Aceitar Todos</a>
                   </div>
-                  <div>
-                    <div class="text-truncate">Convite para Calculadora de Orçamentos 2.0</div>
-                    <div class="small text-gray-500">Nicolli · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-warning">M</div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Convite para o MyTCC</div>
-                    <div class="small text-gray-500">Edivaldo · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-success">G</div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Convite para Calculadora de Orçamentos</div>
-                    <div class="small text-gray-500">Gabriel · 4d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Ver Todos</a>
-              </div>
-            </li>
+                </div>
+              </li>
+            <?php } ?>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 

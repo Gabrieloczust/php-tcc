@@ -26,9 +26,14 @@ class Controller
 
     public function loadTemplate($viewName, $viewData = array())
     {
-
+        // Nome do Usuario no menu
         $viewData["nome"] = $this->usuarioLogado->getNome();
         $viewData["letra"] = substr($this->usuarioLogado->getNome(), 0, 1);
+
+        // Lista Convites no menu
+        $c = new Convite();
+        $viewData["convites"] = $c->getConvites($this->usuarioLogado->getId(), $this->usuarioLogadoTipo);
+        $viewData["qtd_convites"] = count($viewData["convites"]);
 
         extract($viewData);
         require "views/template{$this->usuarioLogadoTipo}.php";

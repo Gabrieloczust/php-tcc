@@ -77,7 +77,7 @@ class homeController extends Controller
 			foreach ($emails as $email) {
 				if (filter_var($email, FILTER_VALIDATE_EMAIL) && $aluno->vereficaEmail($email) == true) {
 					$convite = new Convite();
-					$enviado = $convite->convidaAluno($email, $caId);
+					$enviado = $convite->convidaAluno($email, $caId, $id);
 					if ($enviado == true) {
 						array_push($successes, "Convite enviado para o email <strong>$email</strong>");
 					} else {
