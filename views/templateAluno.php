@@ -11,7 +11,7 @@
   <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="<?= VENDOR ?>fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template-->
@@ -19,7 +19,7 @@
   <link href="<?= CSS ?>style.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="<?= VENDOR ?>datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -130,56 +130,6 @@
                     </div>
                   </div>
                 </form>
-              </div>
-            </li>
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">3</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                  Notificações
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-warning">
-                      <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Setembro 20, 2019</div>
-                    <span class="font-weight-bold">O prazo de entrega da Introdução da Calculadora de Orçamentos é
-                      hoje</span>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-success">
-                      <i class="fas fa-check text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Setembro 18, 2019</div>
-                    MyTCC foi aprovado para a Biblioteca de Projetos
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="mr-3">
-                    <div class="icon-circle bg-danger">
-                      <i class="fas fa-times-circle text-white"></i>
-                    </div>
-                  </div>
-                  <div>
-                    <div class="small text-gray-500">Setembro 15, 2019</div>
-                    Kane recusou seu convite para Avaliador da Calculadora de Orçamentos
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Ver Todas</a>
               </div>
             </li>
 
@@ -308,22 +258,22 @@
 
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="<?= JS ?>demo/datatables-demo.js"></script>
+    <script src="<?= VENDOR ?>jquery/jquery.min.js"></script>
+    <script src="<?= VENDOR ?>bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Validor Form FrontEnd -->
     <script src="<?= JS ?>validator.min.js"></script>
     <script src="<?= JS ?>jquery.mask.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="<?= VENDOR ?>jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="<?= VENDOR ?>datatables/jquery.dataTables.min.js"></script>
+    <script src="<?= VENDOR ?>datatables/dataTables.bootstrap4.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="<?= JS ?>demo/datatables-demo.js"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="<?= JS ?>sb-admin-2.js"></script>

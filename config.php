@@ -26,6 +26,7 @@ if (ENVIRONMENT == 'development') {
     ];
 }
 define("ASSETS", HOME . 'assets/');
+define("VENDOR", HOME . 'vendor/');
 define("CSS", ASSETS . 'css/');
 define("JS", ASSETS . 'js/');
 define("IMG", ASSETS . 'images/');

@@ -6,10 +6,6 @@
 	text-transform: lowercase;
 }
 
-.input-capitalize {
-	text-transform: capitalize;
-}
-
 ::placeholder {
 	text-transform: capitalize
 }

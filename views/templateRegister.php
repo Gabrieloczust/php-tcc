@@ -24,8 +24,8 @@
     </main>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<?= VENDOR ?>jquery/jquery.min.js"></script>
+    <script src="<?= VENDOR ?>bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Validor Form FrontEnd -->
     <script src="<?= JS ?>validator.min.js"></script>

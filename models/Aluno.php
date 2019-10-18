@@ -24,6 +24,19 @@ class Aluno extends Usuario
         }
     }
 
+    public function atualizar($update)
+    {
+        extract($update);
+        $sql = $this->db->prepare("UPDATE aluno SET nome = ?, email = ?, telefone = ?, curso = ?, senha = ? WHERE ra = {$this->getId()}");
+        $sql->execute(array($nome, $email, $celular, $curso, $senha));
+        $_SESSION['user'] = $email;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getCurso()
     {
         return $this->curso;
