@@ -54,6 +54,15 @@
     });
   });
 
+  // Toggle password
+  $(".input-olho").mousedown(function () {
+    $(".input-senha").attr("type", "text");
+  });
+
+  $(".input-olho").mouseup(function () {
+    $(".input-senha").attr("type", "password");
+  });
+
   //Autofocus no titulo do Modal novo projeto
   $('#projectModal').on('shown.bs.modal', function () {
     $('#ng-titulo').trigger('focus')

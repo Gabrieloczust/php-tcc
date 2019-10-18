@@ -9,6 +9,8 @@
     <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
     <link href="<?= CSS ?>sb-admin-2.css" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <link href="<?= VENDOR ?>fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <?= $this->loadCssInTemplate($viewName); ?>
 
@@ -30,6 +32,16 @@
     <!-- Validor Form FrontEnd -->
     <script src="<?= JS ?>validator.min.js"></script>
     <script src="<?= JS ?>jquery.mask.min.js"></script>
+
+    <script>
+        $(".input-olho").mousedown(function() {
+            $(".input-senha").attr("type", "text");
+        });
+
+        $(".input-olho").mouseup(function() {
+            $(".input-senha").attr("type", "password");
+        });
+    </script>
 
     <script>
         $(window).ready(function() {

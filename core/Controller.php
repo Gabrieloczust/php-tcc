@@ -14,7 +14,7 @@ class Controller
         } else {
             $this->usuarioLogadoTipo = $_SESSION['userType'];
             $u = ucfirst($this->usuarioLogadoTipo);
-            $this->usuarioLogado = new $u($_SESSION['user']);
+            $this->usuarioLogado = new $u($_SESSION['user']);            
         }
     }
 
@@ -27,6 +27,7 @@ class Controller
     public function loadTemplate($viewName, $viewData = array())
     {
         // Nome do Usuario no menu
+        $viewData["temaDark"] = $this->usuarioLogado->getTemaDark();
         $viewData["nome"] = $this->usuarioLogado->getNome();
         $viewData["letra"] = substr($this->usuarioLogado->getNome(), 0, 1);
 

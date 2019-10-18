@@ -42,11 +42,21 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="passA" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                        <div class="input-group">
+                            <input type="password" class="form-control input-senha" id="passA" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                            <div class="input-group-append">
+                                <span class="input-group-text input-olho" title="Mostrar Senhas"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2" data-match="#passA" data-match-error="Atenção! As senhas não estão iguais." required />
+                        <div class="input-group">
+                            <input type="password" class="form-control input-senha" placeholder="Confirmar Senha *" name="senha2" data-match="#passA" data-match-error="Atenção! As senhas não estão iguais." required />
+                            <div class="input-group-append">
+                                <span class="input-group-text input-olho" title="Mostrar Senhas"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                         <div class="help-block with-errors"></div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Cadastrar" />
@@ -80,11 +90,21 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" id="pass" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                        <div class="input-group">
+                            <input type="password" class="form-control input-senha" id="passC" placeholder="Senha *" name="senha1" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+                            <div class="input-group-append">
+                                <span class="input-group-text input-olho" title="Mostrar Senhas"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" placeholder="Confirmar Senha *" name="senha2" data-match="#pass" data-match-error="Atenção! As senhas não estão iguais." required />
+                        <div class="input-group">
+                            <input type="password" class="form-control input-senha" placeholder="Confirmar Senha *" name="senha2" data-match="#passC" data-match-error="Atenção! As senhas não estão iguais." required />
+                            <div class="input-group-append">
+                                <span class="input-group-text input-olho" title="Mostrar Senhas"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                            </div>
+                        </div>
                         <div class="help-block with-errors"></div>
                     </div>
                     <input type="submit" class="btn btn-success" value="Cadastrar" />

@@ -1,11 +1,3 @@
-.help-block {
-	color: red;
-}
-
-.input-lowercase {
-	text-transform: lowercase;
-}
-
 ::placeholder {
 	text-transform: capitalize
 }

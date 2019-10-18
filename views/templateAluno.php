@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>MyTCC - <?= ucwords($viewName) ?></title>
+  <title>MyTCC</title>
 
   <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="temadark-<?= $temaDark ?>">
 
   <!-- Page Wrapper -->
   <div id="wrapper">

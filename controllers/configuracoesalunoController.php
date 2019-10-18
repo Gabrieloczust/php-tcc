@@ -7,7 +7,7 @@ class configuracoesalunoController extends Controller
         if ($this->usuarioLogadoTipo != 'aluno') {
             header("Location:" . HOME . "notfound");
             exit;
-        } else { }
+        }
     }
 
     public function index()
@@ -26,7 +26,8 @@ class configuracoesalunoController extends Controller
             'nome' => $usuario->getNome(),
             'email' => $usuario->getEmail(),
             'curso' => $usuario->getCurso(),
-            'celular' => $usuario->getTelefone()
+            'celular' => $usuario->getTelefone(),
+            'tema' => $usuario->getTemaDark()
         );
         $this->loadTemplate("configuracoesaluno", $dados);
     }
@@ -82,12 +83,17 @@ class configuracoesalunoController extends Controller
             $update['senha'] = $usuario->getSenha();
         }
 
-        $status = $usuario->atualizar($update);
-        if ($status == true) {
-            // Atualizado
-        } else {
-            // Erro
-        }
+        $usuario->atualizar($update);
+
         header("Location:" . HOME . "configuracoesaluno");
+    }
+
+    public function tema()
+    {
+        $usuario = $this->usuarioLogado;
+
+        $usuario->mudarTema();
+
+        header("Location:" . HOME . 'configuracoesaluno');
     }
 }

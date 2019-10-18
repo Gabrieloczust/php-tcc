@@ -36,11 +36,16 @@
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
-				<input type="email" class="form-control input-lowercase" placeholder="E-mail" name="email" data-error="Por favor, informe um e-mail correto" required />
+				<input type="email" class="form-control input-lowercase" placeholder="Seu e-mail" name="email" data-error="Por favor, informe um e-mail correto" required />
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
-				<input type="password" class="form-control" placeholder="Senha" name="senha" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required />
+				<div class="input-group">
+					<input class="form-control input-senha" type="password" placeholder="Sua senha" name="senha" data-minlength="6" data-error="Mínimo de seis (6) digitos!" required>
+					<div class="input-group-append">
+						<span class="input-group-text input-olho" title="Mostrar Senha"><i class="fa fa-eye" aria-hidden="true"></i></span>
+					</div>
+				</div>
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="d-flex justify-content-between align-items-center mt-3">

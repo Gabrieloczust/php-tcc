@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>MyTCC - <?= ucwords($viewName) ?></title>
+  <title>MyTCC</title>
 
   <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" class="temadark-<?= $temaDark ?>">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -131,62 +131,6 @@
                     </div>
                   </div>
                 </form>
-              </div>
-            </li>
-            
-            <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
-                <span class="badge badge-danger badge-counter">4+</span>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">
-                  Convites
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-danger">A</div>
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div class="font-weight-bold">
-                    <div class="text-truncate">Convite para o Projeto Minha Casa</div>
-                    <div class="small text-gray-500">Ana Maria · 58m</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-info">J</div>
-                    <div class="status-indicator"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Convite para o TCC Curitiba</div>
-                    <div class="small text-gray-500">Jose Marcos · 1d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-success">J</div>
-                    <div class="status-indicator bg-warning"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Convite para o TCC New</div>
-                    <div class="small text-gray-500">João Carlos · 2d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                  <div class="dropdown-list-image mr-3">
-                    <div class="rounded-circle btn-circle btn-warning">D</div>
-                    <div class="status-indicator bg-success"></div>
-                  </div>
-                  <div>
-                    <div class="text-truncate">Convite para o Projeto Dog</div>
-                    <div class="small text-gray-500">Dog · 4d</div>
-                  </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="#">Ver Todos</a>
               </div>
             </li>
 

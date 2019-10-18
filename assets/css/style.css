@@ -1,10 +1,28 @@
-.help-block {
-    color: red;
+.temadark-on .bg-primary,
+.temadark-on .bg-success,
+.temadark-on .bg-gradient-primary,
+.temadark-on .bg-gradient-success,
+.temadark-on input:checked+.slider {
+    background: #000 !important;
 }
 
-.help-block .list-unstyled {
-    margin-top: 5px;
-    margin-bottom: -0.75rem;
+.temadark-on .text-primary,
+.temadark-on .text-success,
+.temadark-on .dropdown-toggle,
+.temadark-on .btn-link {
+    color: #000 !important;
+}
+
+.temadark-on .btn-primary,
+.temadark-on .btn-success,
+.temadark-on .page-item.active .page-link,
+.temadark-on .topbar .dropdown-list .dropdown-header {
+    background: #000 !important;
+    border-color: #000 !important;
+}
+
+.temadark-on .border-left-primary {
+    border-left-color: #000 !important;
 }
 
 .logo {
@@ -95,4 +113,9 @@ input:checked+.slider:before {
 .convite-btns .btn {
     width: 49%;
     font-size: 0.6rem;
+}
+
+.form-config input,
+.form-config input:focus {
+    color: #4e73df;
 }

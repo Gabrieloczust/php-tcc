@@ -8,6 +8,7 @@ class Usuario extends Model
     private $email;
     private $telefone;
     private $senha;
+    protected $temaDark;
     public $tipo;
 
     public function cadastra($nome, $email, $telefone, $escola_curso, $senha)
@@ -18,8 +19,8 @@ class Usuario extends Model
             $ip = $this->getIP();
             $token = $this->geraToken();
 
-            $nome = ucwords(strtolower($nome));
-            $escola_curso = ucwords(strtolower($escola_curso));
+            $nome = strtoupper(strtolower($nome));
+            $escola_curso = strtoupper(strtolower($escola_curso));
 
             $sql = "INSERT INTO {$tipo} SET nome = ?, email = ?, telefone = ?, senha = ?, ip_cadastro = ?, token = ?";
             if ($tipo == 'aluno') {
@@ -130,16 +131,6 @@ class Usuario extends Model
         $this->telefone = $telefone;
     }
 
-    public function getTipo()
-    {
-        return $this->tipo;
-    }
-
-    public function setTipo($tipo)
-    {
-        $this->tipo = $tipo;
-    }
-
     public function getSenha()
     {
         return $this->senha;
@@ -148,5 +139,25 @@ class Usuario extends Model
     public function setSenha($senha)
     {
         $this->senha = $senha;
+    }
+
+    public function getTemaDark()
+    {
+        return $this->temaDark;
+    }
+
+    public function setTemaDark($tema)
+    {
+        $this->temaDark = $tema;
+    }
+
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo)
+    {
+        $this->tipo = $tipo;
     }
 }
