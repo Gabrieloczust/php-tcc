@@ -24,6 +24,19 @@ class Professor extends Usuario
         }
     }
 
+    public function atualizar($update)
+    {
+        extract($update);
+        $sql = $this->db->prepare("UPDATE professor SET nome = ?, email = ?, telefone = ?, escola = ?, senha = ? WHERE rp = {$this->getId()}");
+        $sql->execute(array(strtoupper(strtolower($nome)), strtolower($email), $celular, strtoupper(strtolower($escola)), $senha));
+        $_SESSION['user'] = $email;
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function mudarTema()
     {
         $sql = $this->db->prepare("SELECT temaDark FROM professor WHERE rp = {$this->getId()}");

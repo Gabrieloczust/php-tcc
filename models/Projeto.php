@@ -4,9 +4,7 @@ class Projeto extends Model
 {
 	private $id;
 	private $titulo;
-	private $alunos;
-	private $orientador;
-	private $avaliadores;
+	private $lider;
 
 	public function setAll($id)
 	{
@@ -88,10 +86,9 @@ class Projeto extends Model
 		}
 	}
 
-
 	public function getProjetos($ra)
 	{
-		$sql = $this->db->prepare("SELECT * FROM projeto_tem_aluno INNER JOIN projeto ON(fkProjeto = idProjeto) WHERE fkAluno = $ra ORDER BY idAlunoProjeto DESC");
+		$sql = $this->db->prepare("SELECT * FROM projeto_tem_aluno INNER JOIN projeto ON(fkProjeto = idProjeto) INNER JOIN aluno ON(fkAlunoLider = ra) WHERE fkAluno = $ra ORDER BY idAlunoProjeto DESC");
 		$sql->execute();
 		$projetos = $sql->fetchAll();
 		return $projetos;
@@ -145,28 +142,12 @@ class Projeto extends Model
 	{
 		$this->titulo = $t;
 	}
-	public function getAlunos()
+	public function getLider()
 	{
-		return $this->alunos;
+		return $this->lider;
 	}
-	public function setAlunos($a)
+	public function setLider($l)
 	{
-		$this->alunos = $a;
-	}
-	public function getOrientador()
-	{
-		return $this->orientador;
-	}
-	public function setOrientador($o)
-	{
-		$this->orientador = $o;
-	}
-	public function getAvaliadores()
-	{
-		return $this->avaliadores;
-	}
-	public function setAvaliadores($a)
-	{
-		$this->avaliadores = $a;
+		$this->lider = $l;
 	}
 }

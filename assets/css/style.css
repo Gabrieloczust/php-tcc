@@ -6,15 +6,15 @@
     background: #000 !important;
 }
 
-.temadark-on .text-primary,
-.temadark-on .text-success,
+.temadark-on .text-primary:not(.dark-off),
+.temadark-on .text-success:not(.dark-off),
 .temadark-on .dropdown-toggle,
 .temadark-on .btn-link {
     color: #000 !important;
 }
 
-.temadark-on .btn-primary,
-.temadark-on .btn-success,
+.temadark-on .btn-primary:not(.dark-off),
+.temadark-on .btn-success:not(.dark-off),
 .temadark-on .page-item.active .page-link,
 .temadark-on .topbar .dropdown-list .dropdown-header {
     background: #000 !important;

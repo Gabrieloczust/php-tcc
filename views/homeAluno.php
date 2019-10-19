@@ -63,6 +63,10 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <small>LÍDER: <?= $projeto['nome'] ?></small>
+                    <small><?= date("d/m/y", strtotime($projeto['data_criacao'])) ?></small>
+                </div>
             </div>
         </div>
     <?php } ?>

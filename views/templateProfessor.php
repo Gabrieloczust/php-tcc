@@ -166,7 +166,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
           <!-- Begin Page Content -->
-          <div class="container-fluid">
+          <div id="view" class="container-fluid">
 
             <!-- Page Heading -->
             <?= $this->loadViewInTemplate($viewName, $viewData); ?>
@@ -238,6 +238,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="<?= JS ?>sb-admin-2.js"></script>
+    <script src="<?= JS ?>ajax.js"></script>
 
 </body>
 

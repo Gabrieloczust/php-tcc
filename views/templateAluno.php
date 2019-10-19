@@ -157,16 +157,16 @@
                         <div class="text-truncate">Projeto <?= $convite['titulo'] ?></div>
                         <div class="small text-gray-500"><?= $convite['nome'] ?></div>
                         <div class="convite-btns small text-gray-500 d-flex justify-content-between mt-1">
-                          <a class="btn btn-sm btn-danger" href="<?= HOME . 'convite/recusar/' . $convite['hashConvite'] ?>">Recusar</a>
-                          <a class="btn btn-sm btn-success" href="<?= HOME . 'convite/aceitar/' . $convite['hashConvite'] ?>">Aceitar</a>
+                          <a class="btn dark-off btn-sm btn-danger" href="<?= HOME . 'convite/recusar/' . $convite['hashConvite'] ?>">Recusar</a>
+                          <a class="btn dark-off btn-sm btn-success" href="<?= HOME . 'convite/aceitar/' . $convite['hashConvite'] ?>">Aceitar</a>
                         </div>
                       </div>
                     </div>
                   <?php } ?>
 
                   <div class="dropdown-item small text-gray-500 d-flex justify-content-between">
-                    <a class="text-danger" href="<?= HOME . 'convite/recusartodos' ?>">Recusar Todos</a>
-                    <a class="text-success" href="<?= HOME . 'convite/aceitartodos' ?>">Aceitar Todos</a>
+                    <a class="dark-off text-danger" href="<?= HOME . 'convite/recusartodos' ?>">Recusar Todos</a>
+                    <a class="dark-off text-success" href="<?= HOME . 'convite/aceitartodos' ?>">Aceitar Todos</a>
                   </div>
                 </div>
               </li>
@@ -204,7 +204,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
           <!-- Begin Page Content -->
-          <div class="container-fluid">
+          <div id="view" class="container-fluid">
 
             <!-- Page Heading -->
             <?= $this->loadViewInTemplate($viewName, $viewData); ?>
@@ -261,10 +261,6 @@
     <script src="<?= VENDOR ?>jquery/jquery.min.js"></script>
     <script src="<?= VENDOR ?>bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Validor Form FrontEnd -->
-    <script src="<?= JS ?>validator.min.js"></script>
-    <script src="<?= JS ?>jquery.mask.min.js"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="<?= VENDOR ?>jquery-easing/jquery.easing.min.js"></script>
 
@@ -275,8 +271,13 @@
     <!-- Page level custom scripts -->
     <script src="<?= JS ?>demo/datatables-demo.js"></script>
 
+    <!-- Validor Form FrontEnd -->
+    <script src="<?= JS ?>validator.min.js"></script>
+    <script src="<?= JS ?>jquery.mask.min.js"></script>
+
     <!-- Custom scripts for all pages-->
     <script src="<?= JS ?>sb-admin-2.js"></script>
+    <script src="<?= JS ?>ajax.js"></script>
 
 </body>
 

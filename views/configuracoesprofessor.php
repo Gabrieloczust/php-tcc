@@ -2,11 +2,22 @@
 <h1 class="h3 mb-4 text-gray-800">Configurações</h1>
 
 <div class="row">
+
+    <div class="col-lg-12">
+        <?php
+        foreach ($warnings as $w) {
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">' . $w . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>';
+        }
+        ?>
+    </div>
+
     <div class="col">
 
         <div class="card shadow mb-4">
             <a href="#collapseP" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseP">
-                <h6 class="m-0 font-weight-bold text-primary">Perfil</h6>
+                <h6 class="m-0 font-weight-bold text-success">Perfil</h6>
             </a>
             <div class="collapse show" id="collapseP">
                 <div class="card-body">
@@ -27,8 +38,17 @@
                         <div class="row">
                             <div class="col-md-6 mb-3 form-group">
                                 <label class="text-dark" for="perfil-escola">Escola:</label>
-                                <input class="form-control input-uppercase" type="text" name="perfil-escola" id="perfil-escola" placeholder="<?= $escola ?>">
-                                <div class="help-block with-errors" data-minlength="2" data-error="Por favor, informe um escola"></div>
+                                <select class="form-control" name="perfil-escola" id="perfil-escola">
+                                    <option value="EXATAS" <?php if ($escola == 'EXATAS') {
+                                                                echo "selected";
+                                                            } ?>>Exatas</option>
+                                    <option value="HUMANAS" <?php if ($escola == 'HUMANAS') {
+                                                                echo "selected";
+                                                            } ?>>Humanas</option>
+                                    <option value="BIOLÓGICAS" <?php if ($escola == 'BIOLÓGICAS') {
+                                                                    echo "selected";
+                                                                } ?>>Biológicas</option>
+                                </select>
                             </div>
                             <div class="col-md-6 mb-3 form-group">
                                 <label class="text-dark" for="perfil-celular">Celular:</label>
@@ -58,7 +78,7 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-                        <input type="submit" class="btn btn-primary text-white" value="Salvar Alterações">
+                        <input type="submit" class="btn btn-success text-white" value="Salvar Alterações">
                     </form>
                 </div>
             </div>
@@ -66,20 +86,20 @@
 
         <div class="card shadow mb-4">
             <a href="#collapseF" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseF">
-                <h6 class="m-0 font-weight-bold text-primary">Tema</h6>
+                <h6 class="m-0 font-weight-bold text-success">Tema</h6>
             </a>
             <div class="collapse show" id="collapseF">
                 <div class="card-body">
                     <p>Altere o sistema para o tema que lhe mais agradar:</p>
-                    <form class="d-flex align-items-center my-3" method="POST" action="<?= HOME ?>configuracoesprofessor/tema">
-                        <label class="label-switch" for="f1">Dark</label>
+                    <div class="d-flex align-items-center my-3">
+                        <label class="label-switch" for="muda-tema">Dark</label>
                         <label class="switch">
                             <input <?php if ($tema == 'on') {
                                         echo 'checked';
-                                    } ?> class="check" type="checkbox" name="temadark" id="f1" onChange="this.form.submit()">
+                                    } ?> class="check" type="checkbox" name="temadark" id="muda-tema" data-url="<?= HOME ?>">
                             <span class="slider round"></span>
                         </label>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

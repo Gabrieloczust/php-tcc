@@ -27,7 +27,7 @@
                 <div class="col">
                     <input type="hidden" name="usuario" value="aluno">
                     <div class="form-group">
-                        <input type="text" class="form-control input-capitalize" placeholder="Nome Completo *" name="nome" required />
+                        <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -38,7 +38,7 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="tel" minlength="9" maxlength="16" class="form-control input-number" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
+                        <input type="tel" minlength="14" class="form-control input-number" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -70,15 +70,15 @@
                 <div class="col">
                     <input type="hidden" name="usuario" value="professor">
                     <div class="form-group">
-                        <input type="text" class="form-control input-capitalize" placeholder="Nome Completo *" name="nome" required />
+                        <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="escola" data-error="Selecione uma opção..." required>
                             <option disabled selected>Escola de Atuação:</option>
-                            <option>Exatas</option>
-                            <option>Humanas</option>
-                            <option>Biológicas</option>
+                            <option value="EXATAS">Exatas</option>
+                            <option value="HUMANAS">Humanas</option>
+                            <option value="BIOLÓGICAS">Biológicas</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -86,7 +86,7 @@
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
-                        <input type="tel" minlength="9" maxlength="16" class="form-control input-number" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
+                        <input type="tel" minlength="14" class="form-control input-number" data-error="Por favor, informe um telefone correto" placeholder="Seu Celular" name="telefone" />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">

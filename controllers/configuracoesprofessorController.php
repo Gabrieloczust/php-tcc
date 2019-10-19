@@ -13,16 +13,16 @@ class configuracoesprofessorController extends Controller
     public function index()
     {
         // Arrays para avisos de Validação
-        $errors = array();
         $warnings = array();
-        $successes = array();
+
+        if (isset($_SESSION['avisos'])) {
+            array_push($warnings, $_SESSION['avisos']);
+        }
 
         $usuario = $this->usuarioLogado;
 
         $dados = array(
-            'errors' => $errors,
             'warnings' => $warnings,
-            'successes' => $successes,
             'nome' => $usuario->getNome(),
             'email' => $usuario->getEmail(),
             'escola' => $usuario->getEscola(),
@@ -50,11 +50,18 @@ class configuracoesprofessorController extends Controller
 
         // E-mail
         $verificaEmail1 = filter_input(INPUT_POST, 'perfil-email', FILTER_VALIDATE_EMAIL);
-        $verificaEmail2 = $usuario->vereficaEmail($verificaEmail1);
-        if (!empty($verificaEmail1) && $verificaEmail2 == false) {
-            $update['email'] = $verificaEmail1;
+        if (!empty($verificaEmail1)) {
+            $verificaEmail2 = $usuario->vereficaEmail($verificaEmail1);
+            if ($verificaEmail2 == false) {
+                $update['email'] = $verificaEmail1;
+                unset($_SESSION['avisos']);
+            } else {
+                $update['email'] = $usuario->getEmail();
+                $_SESSION['avisos'] = "Este e-mail ja possui cadastro!";
+            }
         } else {
             $update['email'] = $usuario->getEmail();
+            unset($_SESSION['avisos']);
         }
 
         // Escola
@@ -86,14 +93,5 @@ class configuracoesprofessorController extends Controller
         $usuario->atualizar($update);
 
         header("Location:" . HOME . "configuracoesprofessor");
-    }
-
-    public function tema()
-    {
-        $usuario = $this->usuarioLogado;
-
-        $usuario->mudarTema();
-
-        header("Location:" . HOME . 'configuracoesprofessor');
     }
 }

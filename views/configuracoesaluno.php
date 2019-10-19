@@ -2,6 +2,17 @@
 <h1 class="h3 mb-4 text-gray-800">Configurações</h1>
 
 <div class="row">
+    
+    <div class="col-lg-12">
+        <?php
+        foreach ($warnings as $w) {
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">' . $w . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>';
+        }
+        ?>
+    </div>
+
     <div class="col">
 
         <div class="card shadow mb-4">
@@ -11,7 +22,7 @@
             <div class="collapse show" id="collapseP">
                 <div class="card-body">
                     <p class="text-dark">Altere seus <strong>dados</strong>:</p>
-                    <form class="form-config" data-toggle="validator" method="POST" action="<?= HOME ?>configuracoesaluno/perfil">
+                    <form class="form-config" data-toggle="validator" method="POST" action="<?= HOME ?>/configuracoesaluno/perfil">
                         <div class="row">
                             <div class="col-md-6 mb-3 form-group">
                                 <label class="text-dark" for="perfil-nome">Nome Completo:</label>
@@ -71,15 +82,15 @@
             <div class="collapse show" id="collapseF">
                 <div class="card-body">
                     <p>Altere o sistema para o tema que lhe mais agradar:</p>
-                    <form class="d-flex align-items-center my-3" method="POST" action="<?= HOME ?>configuracoesaluno/tema">
-                        <label class="label-switch" for="f1">Dark</label>
+                    <div class="d-flex align-items-center my-3">
+                        <label class="label-switch" for="muda-tema">Dark</label>
                         <label class="switch">
                             <input <?php if ($tema == 'on') {
                                         echo 'checked';
-                                    } ?> class="check" type="checkbox" name="temadark" id="f1" onChange="this.form.submit()">
+                                    } ?> class="check" type="checkbox" name="temadark" id="muda-tema" data-url="<?= HOME ?>">
                             <span class="slider round"></span>
                         </label>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
