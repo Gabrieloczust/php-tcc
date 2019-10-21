@@ -33,7 +33,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">EM ANDAMENTO</div>
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">PROJETOS EM ANDAMENTO</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtd ?></div>
                     </div>
                     <div class="col-auto">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <small>LÍDER: <?= $projeto['nome'] ?></small>
+                    <small><?= $projeto['alunosParticipantes'] ?></small>
                     <small><?= date("d/m/y", strtotime($projeto['data_criacao'])) ?></small>
                 </div>
             </div>

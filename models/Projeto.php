@@ -90,7 +90,16 @@ class Projeto extends Model
 	{
 		$sql = $this->db->prepare("SELECT * FROM projeto_tem_aluno INNER JOIN projeto ON(fkProjeto = idProjeto) INNER JOIN aluno ON(fkAlunoLider = ra) WHERE fkAluno = $ra ORDER BY idAlunoProjeto DESC");
 		$sql->execute();
-		$projetos = $sql->fetchAll();
+		$results = $sql->fetchAll();
+		$projetos = [];
+
+		// Adiciona o nome dos alunos participantes
+		foreach ($results as $result) {
+			$a = $this->getNomeParticipantes($result['idProjeto']);
+			$b = array_unique($result, SORT_STRING);
+			$c = array_merge($a, $b);
+			array_push($projetos, $c);
+		}
 		return $projetos;
 	}
 
@@ -111,6 +120,14 @@ class Projeto extends Model
 		} else {
 			return false;
 		}
+	}
+
+	private function getNomeParticipantes($idProjeto)
+	{
+		$sql = $this->db->prepare("SELECT GROUP_CONCAT(SUBSTRING_INDEX(SUBSTRING_INDEX(nome, ' ', 1), ' ', -1) SEPARATOR ' - ') as alunosParticipantes FROM `projeto_tem_aluno` INNER JOIN aluno ON(ra = fkAluno) WHERE fkProjeto = ?");
+		$sql->execute(array($idProjeto));
+		$array = $sql->fetch();
+		return array_unique($array, SORT_STRING);
 	}
 
 	public function getIdForHash($hash)
