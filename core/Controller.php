@@ -14,7 +14,7 @@ class Controller
         } else {
             $this->usuarioLogadoTipo = $_SESSION['userType'];
             $u = ucfirst($this->usuarioLogadoTipo);
-            $this->usuarioLogado = new $u($_SESSION['user']);            
+            $this->usuarioLogado = new $u($_SESSION['user']);
         }
     }
 
@@ -35,6 +35,12 @@ class Controller
         $c = new Convite();
         $viewData["convites"] = $c->getConvites($this->usuarioLogado->getId(), $this->usuarioLogadoTipo);
         $viewData["qtd_convites"] = count($viewData["convites"]);
+
+        // Lista turmas no convite para Professor
+        if ($this->usuarioLogadoTipo == 'professor') {
+            $t = new Turma($this->usuarioLogado->getEmail());
+            $viewData["turmas_select"] = $t->getTurmas();
+        }
 
         extract($viewData);
         require "views/template{$this->usuarioLogadoTipo}.php";

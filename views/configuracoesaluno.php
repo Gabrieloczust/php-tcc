@@ -2,7 +2,7 @@
 <h1 class="h3 mb-4 text-gray-800">Configurações</h1>
 
 <div class="row">
-    
+
     <div class="col-lg-12">
         <?php
         foreach ($warnings as $w) {
@@ -83,13 +83,14 @@
                 <div class="card-body">
                     <p>Altere o sistema para o tema que lhe mais agradar:</p>
                     <div class="d-flex align-items-center my-3">
-                        <label class="label-switch" for="muda-tema">Dark</label>
+                        <label class="label-switch" for="muda-tema">Blue</label>
                         <label class="switch">
                             <input <?php if ($tema == 'on') {
                                         echo 'checked';
                                     } ?> class="check" type="checkbox" name="temadark" id="muda-tema" data-url="<?= HOME ?>">
-                            <span class="slider round"></span>
+                            <span class="slider bg-primary round"></span>
                         </label>
+                        <label class="label-switch" for="muda-tema">Dark</label>
                     </div>
                 </div>
             </div>

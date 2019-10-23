@@ -21,7 +21,8 @@
     border-color: #000 !important;
 }
 
-.temadark-on .border-left-primary {
+.temadark-on .border-left-primary,
+.temadark-on .border-left-success {
     border-left-color: #000 !important;
 }
 

@@ -29,7 +29,7 @@
 			<input type="hidden" name="login" value="login">
 			<div class="form-group">
 				<select id="check" class="form-control" name="usuario" data-error="Selecione uma opção..." required>
-					<option selected disabled="">Tipo de Usuario...</option>
+					<option selected disabled value="">Tipo de Usuario...</option>
 					<option value="aluno">Aluno</option>
 					<option value="professor">Professor</option>
 				</select>

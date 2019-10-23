@@ -92,13 +92,14 @@
                 <div class="card-body">
                     <p>Altere o sistema para o tema que lhe mais agradar:</p>
                     <div class="d-flex align-items-center my-3">
-                        <label class="label-switch" for="muda-tema">Dark</label>
+                        <label class="label-switch" for="muda-tema">Green</label>
                         <label class="switch">
                             <input <?php if ($tema == 'on') {
                                         echo 'checked';
                                     } ?> class="check" type="checkbox" name="temadark" id="muda-tema" data-url="<?= HOME ?>">
-                            <span class="slider round"></span>
+                            <span class="slider bg-success round"></span>
                         </label>
+                        <label class="label-switch" for="muda-tema">Dark</label>
                     </div>
                 </div>
             </div>

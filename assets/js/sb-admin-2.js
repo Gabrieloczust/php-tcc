@@ -73,9 +73,19 @@
     $('#et-titulo').trigger('focus')
   })
 
-  //Autofocus no emial do Modal convidar aluno
+  //Autofocus no email do Modal convidar aluno
   $('#alunoModal').on('shown.bs.modal', function () {
     $('#ca-aluno').trigger('focus')
+  })
+
+  //Autofocus no nome do Modal nova turma
+  $('#turmaModal').on('shown.bs.modal', function () {
+    $('#nt-nome').trigger('focus')
+  })
+
+  //Autofocus no nome do Modal editar nome turma
+  $('#editaNomeModal').on('shown.bs.modal', function () {
+    $('#en-nome').trigger('focus')
   })
 
   // Modal editar titulo
@@ -99,7 +109,17 @@
     $('#alunoModal').modal('show')
   })
 
-  // Adiciona nosso input para convidar aluno
+  // Modal editar nome turma
+  $('.btn-editar-nome').click(function () {
+    var id = $(this).attr('rel')
+    var nome = $(this).attr('data-nome').toUpperCase()
+    $('#editaNomeModal').find('.en-id').val(id)
+    $('#editaNomeModal').find('.en-nome-aviso').val(nome)
+    $('#editaNomeModal').find('#en-nome').attr("placeholder", nome)
+    $('#editaNomeModal').modal('show')
+  })
+
+  // Adiciona novo input para convidar aluno
   $(document).ready(function () {
     var max_fields = 10;
     var wrapper_aluno = $("#novos-alunos");
@@ -110,7 +130,7 @@
       e.preventDefault();
       if (x < max_fields) {
         x++;
-        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" class="form-control" placeholder="E-mail do Aluno ' + x + '" name="ca-aluno[]" required/><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
+        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" class="form-control input-lowercase" placeholder="E-mail do Aluno ' + x + '" name="ca-aluno[]" required/><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
       }
       if (x == max_fields) {
         $(add_aluno).toggle()

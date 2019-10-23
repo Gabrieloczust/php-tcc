@@ -95,7 +95,7 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+          <button id="sidebarToggleTop" class="btn btn-link text-success d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
 
@@ -133,6 +133,52 @@
                 </form>
               </div>
             </li>
+
+            <!-- Nav Item - Convites -->
+            <?php if ($qtd_convites > 0) { ?>
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="fas fa-envelope fa-fw"></i>
+                  <!-- Counter - Messages -->
+                  <span class="badge badge-danger badge-counter"><?= $qtd_convites ?></span>
+                </a>
+
+                <!-- Dropdown - Convites -->
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                  <h6 class="dropdown-header bg-success border-success">
+                    Convites
+                  </h6>
+
+                  <?php foreach ($convites as $convite) { ?>
+                    <form class="dropdown-item" method="POST">
+                      <div class="font-weight-bold">
+                        <div class="text-truncate"><?= $convite['titulo'] ?></div>
+                        <div class="small text-gray-500">Tipo: <?= $convite['tipo'] ?></div>
+                        <div class="small text-gray-500">Por: <?= $convite['nome'] ?></div>
+                        <div class="convite-btns small text-gray-500 d-flex flex-column justify-content-between mt-1">
+                          <div class="form-group mb-2">
+                            <select id="" class="form-control form-control-sm" name="turma" required>
+                              <option selected disabled value="">Selecione uma turma...</option>
+                              <?php foreach ($turmas_select as $ts) { ?>
+                                <option><?= $ts['nome'] ?></option>
+                              <?php } ?>
+                            </select>
+                          </div>
+                          <div>
+                            <a class="btn dark-off btn-md btn-danger" href="#">Recusar</a>
+                            <input type="submit" value="Aceitar" class="btn dark-off btn-md btn-success">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  <?php } ?>
+
+                  <div class="dropdown-item small text-gray-500 d-flex justify-content-center">
+                    <a class="dark-off text-danger" href="#">Recusar Todos</a>
+                  </div>
+                </div>
+              </li>
+            <?php } ?>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 

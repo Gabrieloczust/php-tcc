@@ -92,7 +92,7 @@
                 <div class="form-group">
                     <label class="text-primary">Convidar Orientador: </label>
                     <div class="input-group">
-                        <input type="email" id="inviteOrientador" class="form-control" placeholder="E-mail do Professor Orientador *" name="ng-emailProfessor" required />
+                        <input type="email" id="inviteOrientador" class="form-control input-lowercase" placeholder="E-mail do Professor Orientador *" name="ng-emailProfessor" required />
                     </div>
                 </div>
             </div>
@@ -117,43 +117,13 @@
             <div class="modal-body">
                 <input type="hidden" class="ca-id" name="ca-id">
                 <div class="input-group my-3">
-                    <input type="email" class="form-control" name="ca-aluno[]" placeholder="E-mail do aluno 1" required />
+                    <input type="email" class="form-control input-lowercase" name="ca-aluno[]" placeholder="E-mail do aluno 1" required />
                 </div>
                 <div id="novos-alunos"></div>
                 <a class="add-novo-aluno text-info" href="#">Adiconar mais <i class="fas fa-plus"></i></a>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" id="btn-editar-titulo">Enviar Convites</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-<!-- Modal Novo Projeto -->
-<div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLabel" aria-hidden="true">
-    <form class="modal-dialog" role="document" method="POST">
-        <input type="hidden" name="novo_projeto" value="novo_projeto" />
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="projectModalLabel">Novo Projeto</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="ng-titulo" class="text-primary">Título do Projeto: </label>
-                    <input type="text" class="form-control" name="ng-titulo" id="ng-titulo" required />
-                </div>
-                <div class="form-group">
-                    <label class="text-primary">Convidar Orientador: </label>
-                    <div class="input-group">
-                        <input type="email" id="inviteOrientador" class="form-control" placeholder="E-mail do Professor Orientador *" name="ng-emailProfessor" required />
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary">Criar</button>
             </div>
         </div>
     </form>

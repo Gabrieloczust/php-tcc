@@ -75,11 +75,12 @@
                     </div>
                     <div class="form-group">
                         <select class="form-control" name="escola" data-error="Selecione uma opção..." required>
-                            <option disabled selected>Escola de Atuação:</option>
+                            <option disabled selected value="">Escola de Atuação:</option>
                             <option value="EXATAS">Exatas</option>
                             <option value="HUMANAS">Humanas</option>
                             <option value="BIOLÓGICAS">Biológicas</option>
                         </select>
+                        <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
                         <input type="email" class="form-control input-lowercase" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
