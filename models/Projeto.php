@@ -138,6 +138,11 @@ class Projeto extends Model
 		return $sql->fetch()['idProjeto'];
 	}
 
+	public function adicionaProjetoNaTurma($idProjeto, $turma){
+        $sql4 = $this->db->prepare("UPDATE projeto SET fkTurma = ? WHERE idProjeto = ?");
+		$sql4->execute(array($turma, $idProjeto));
+    }
+
 	private function geraHash($titulo)
 	{
 		return password_hash($titulo, PASSWORD_BCRYPT);

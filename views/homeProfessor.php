@@ -28,21 +28,24 @@
         ?>
     </div>
 
+</div>
+<div class="row">
+
     <?php foreach ($turmas as $turma) { ?>
-        <div class="col-lg-4">
-            <div class="card border-left-success shadow py-2 mb-4">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
+        <div class="col-lg-4 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body d-flex">
+                    <div class="row no-gutters w-100 align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">TURMA <?= $turma['nome'] ?></div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">10 PROJETOS</div>
                         </div>
                         <div class="col-auto d-flex align-items-center">
                             <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $turma['id'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $turma['idTurma'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fas fa-ellipsis-v fa fa-fw text-success"></i>
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $turma['id'] ?>">
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $turma['idTurma'] ?>">
                                     <div class="dropdown-header">Ações:</div>
                                     <a class="dropdown-item btn-convidar-avaliador" href="#" rel="<?= $turma['hashInterno'] ?>">Convidar Avaliador</a>
                                     <div class="dropdown-divider"></div>

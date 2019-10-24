@@ -4,7 +4,6 @@ class Turma extends Model
 {
     private $nome;
     private $orientador;
-    private $projetos;
 
     public function __construct($emailOrientador)
     {

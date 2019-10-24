@@ -50,16 +50,16 @@
                 <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
                     <a href="<?= HOME ?>projeto" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
                     <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $projeto['idProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $projeto['fkProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa fa-fw"></i>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['idProjeto'] ?>">
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['fkProjeto'] ?>">
                             <div class="dropdown-header">Ações:</div>
                             <a class="dropdown-item btn-convidar-aluno" href="#" rel="<?= $projeto['hashInterno'] ?>">Convidar Aluno</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item btn-editar-titulo" href="#" rel="<?= $projeto['hashInterno'] ?>">Editar Titulo</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn-sair-projeto" href="#" rel="<?= $projeto['idProjeto'] ?>">Sair do Projeto</a>
+                            <a class="dropdown-item btn-sair-projeto" href="#" rel="<?= $projeto['fkProjeto'] ?>">Sair do Projeto</a>
                         </div>
                     </div>
                 </div>

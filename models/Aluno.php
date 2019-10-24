@@ -49,6 +49,12 @@ class Aluno extends Usuario
         $sql1->execute(array($valor));
     }
 
+    public function adicionaIntegrante($idProjeto)
+    {
+        $sql = $this->db->prepare("INSERT INTO projeto_tem_aluno SET tipoAluno = 'Integrante', fkProjeto = ?, fkAluno = ?");
+        $sql->execute(array($idProjeto, $this->getId()));
+    }
+
     public function getCurso()
     {
         return $this->curso;

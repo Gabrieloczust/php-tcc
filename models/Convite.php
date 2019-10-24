@@ -2,15 +2,15 @@
 
 class Convite extends Model
 {
-	private $id;
-	private $tipo;
-	private $status;
-	private $idProjeto;
+
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
 	public function convidaOrientador($email, $idProjeto, $idRemetente)
 	{
 		$orientador = new Orientador($email);
-		// GERA HASH
 		$hashConvite = $this->geraHash($idProjeto);
 		if (!empty($orientador->getId())) {
 			$sql = $this->db->prepare("INSERT INTO convite SET tipo = 'Orientador', hashConvite = :hashConvite, fkProjeto = :idProjeto, fkUsuario = :idOrientador, fkRemetente = :idRemetente");
@@ -30,6 +30,7 @@ class Convite extends Model
 		// PEGA O ID DO ALUNO
 		$aluno = new Aluno($email);
 		$idAluno = $aluno->getId();
+
 		// PEGA O ID DO PROJETO
 		$projeto = new Projeto();
 		$idProjeto = $projeto->getIdForHash($hashProjeto);
@@ -50,6 +51,122 @@ class Convite extends Model
 		}
 	}
 
+	public function aceitarConviteOrientador($id, $hash, $idTurma, $emailProfessor)
+	{
+
+		// Muda Status de Solicitado para Aceito
+		$this->mudaStatus($id, $hash, "Aceito");
+
+		// Pega o id do Projeto e Destinatario
+		$convite = $this->getConvite($hash, $id, "Aceito");
+		$idProjeto = $convite['fkProjeto'];
+		$idDestinatario = $convite['fkRemetente'];
+
+		// Adiciona o orientador no projeto
+		$orientador = new Orientador($emailProfessor);
+		$orientador->adicionaOrientador($idProjeto);
+
+		// Adiciona Projeto na turma
+		$projeto = new Projeto();
+		$projeto->adicionaProjetoNaTurma($idProjeto, $idTurma);
+
+		// Envia Notificação de convite aceito
+		$notificacao = new Notificacao("aceito");
+		$notificacao->notificacaoConvite($id, "Orientador", $idDestinatario, $emailProfessor, $idProjeto);
+
+		// Exclui o Convite Aceito
+		$this->excluiConvite($id, $hash, "Aceito");
+	}
+
+	public function aceitarConvite($id, $hash, $emailAluno)
+	{
+		// Muda Status de Solicitado para Aceito
+		$this->mudaStatus($id, $hash, "Aceito");
+
+		// Pega o id do Projeto
+		$convite = $this->getConvite($hash, $id, "Aceito");
+		$idProjeto = $convite['fkProjeto'];
+		$idDestinatario = $convite['fkRemetente'];
+
+		// Adiciona o aluno no projeto
+		$aluno = new Aluno($emailAluno);
+		$aluno->adicionaIntegrante($idProjeto);
+
+		// Envia Notificação de convite aceito
+		$notificacao = new Notificacao("aceito");
+		$notificacao->notificacaoConvite($id, "Aluno", $idDestinatario, $emailAluno, $idProjeto);
+
+		// Exclui o Convite Aceito
+		$this->excluiConvite($id, $hash, "Aceito");
+	}
+
+	public function aceitarTodosConvites($id, $emailAluno)
+	{
+		// Muda status de todos convites de Solicitado para Aceito
+		$this->mudaTodosStatus($id, "Aceito");
+
+		// Pega o id dos Projetos
+		$sql1 = $this->db->prepare("SELECT * FROM convite c WHERE fkUsuario = :idUsuario && c.status = 'Aceito'");
+		$sql1->bindValue(":idUsuario", $id);
+		$sql1->execute();
+		$ids = $sql1->fetchAll();
+
+		// Adiciona o aluno nos projetos
+		foreach ($ids as $i) {
+			$sql2 = $this->db->prepare("INSERT INTO projeto_tem_aluno SET tipoAluno = 'Integrante', fkProjeto = :idProjeto, fkAluno = :idAluno");
+			$sql2->bindValue(":idProjeto", $i['fkProjeto']);
+			$sql2->bindValue(":idAluno", $i['fkUsuario']);
+			$sql2->execute();
+
+			// Envia Notificação de convite aceito
+			$notificacao = new Notificacao("aceito");
+			$notificacao->notificacaoConvite($id, "Aluno", $i['fkRemetente'], $emailAluno, $i['fkProjeto']);
+		}
+
+		// Exclui Todos Convites Aceitos
+		$this->excluiTodosConvites($id, "Aceito");
+	}
+
+	public function recusarConvite($id, $hash, $emailUsuario)
+	{
+		// Muda Status de Solicitado para Recusado
+		$this->mudaStatus($id, $hash, "Recusado");
+
+		// Pega o id do Projeto
+		$convite = $this->getConvite($hash, $id, "Recusado");
+		$idProjeto = $convite['fkProjeto'];
+		$idDestinatario = $convite['fkRemetente'];
+		$tipo = $convite['tipo'];
+
+		// Envia Notificação de convite recusado
+		$notificacao = new Notificacao("recusado");
+		$notificacao->notificacaoConvite($id, $tipo, $idDestinatario, $emailUsuario, $idProjeto);
+
+		// Excluir o convite recusado
+		$this->excluiConvite($id, $hash, "Recusado");
+	}
+
+	public function recusarTodosConvites($id, $emailUsuario)
+	{
+		// Muda Status de todos convites de Solicitado para Recusado
+		$this->mudaTodosStatus($id, "Recusado");
+
+		// Pega o id dos Projetos
+		$sql1 = $this->db->prepare("SELECT * FROM convite c WHERE fkUsuario = :idUsuario && c.status = 'Recusado'");
+		$sql1->bindValue(":idUsuario", $id);
+		$sql1->execute();
+		$ids = $sql1->fetchAll();
+
+		// Envia as Notificação de convite recusado
+		foreach ($ids as $i) {
+			$notificacao = new Notificacao("recusado");
+			$notificacao->notificacaoConvite($id, $i['tipo'], $i['fkRemetente'], $emailUsuario, $i['fkProjeto']);
+		}
+
+		// Excluir todos convites recusados
+		$this->excluiTodosConvites($id, "Recusado");
+	}
+
 	public function getConvites($idUsuario, $tipo)
 	{
 		$sql = "SELECT * FROM convite c INNER JOIN aluno a ON(fkRemetente = ra) INNER JOIN projeto p ON(fkProjeto = idProjeto) WHERE c.status = 'Solicitado' && fkUsuario = :idUsuario";
@@ -64,96 +181,36 @@ class Convite extends Model
 		return $sql->fetchAll();
 	}
 
-	public function aceitarConvite($id, $hash)
+	private function getConvite($hashConvite, $idUsuario, $status)
 	{
-		// Muda status de Solicitado para Aceito
-		$sql = $this->db->prepare("UPDATE convite c SET c.status = 'Aceito' WHERE hashConvite = :hashConvite && fkUsuario = :idUsuario");
-		$sql->bindValue(":hashConvite", $hash);
-		$sql->bindValue(":idUsuario", $id);
-		$sql->execute();
-
-		// Pega o id do Projeto e do Convite
-		$sql1 = $this->db->prepare("SELECT * FROM convite c WHERE hashConvite = :hashConvite && fkUsuario = :idUsuario && c.status = 'Aceito'");
-		$sql1->bindValue(":hashConvite", $hash);
-		$sql1->bindValue(":idUsuario", $id);
-		$sql1->execute();
-		$ids = $sql1->fetch();
-		$idProjeto = $ids['fkProjeto'];
-		$idConvite = $ids['idConvite'];
-
-		// Adiciona o usuario no projeto
-		$sql2 = $this->db->prepare("INSERT INTO projeto_tem_aluno SET tipoAluno = 'Integrante', fkProjeto = :idProjeto, fkAluno = :idAluno");
-		$sql2->bindValue(":idProjeto", $idProjeto);
-		$sql2->bindValue(":idAluno", $id);
-		$sql2->execute();
-
-		// Enviar Notificação de Convite Aceito antes de Excluir
-
-		// Exclui Convite
-		$sql3 = $this->db->prepare("DELETE FROM convite WHERE idConvite = :idConvite");
-		$sql3->bindValue(":idConvite", $idConvite);
-		$sql3->execute();
+		$sql = $this->db->prepare("SELECT * FROM convite c WHERE hashConvite = ? && fkUsuario = ? && c.status = ?");
+		$sql->execute(array($hashConvite, $idUsuario, $status));
+		$convite = $sql->fetch();
+		return $convite;
 	}
 
-	public function aceitarTodosConvites($id)
+	private function excluiConvite($idUsuario, $hashConvite, $status)
 	{
-		// Muda status de Solicitado para Aceito
-		$sql = $this->db->prepare("UPDATE convite c SET c.status = 'Aceito' WHERE c.status = 'Solicitado' && fkUsuario = :idUsuario");
-		$sql->bindValue(":idUsuario", $id);
-		$sql->execute();
-
-		// Pega o id do Projeto e do Convite
-		$sql1 = $this->db->prepare("SELECT * FROM convite c WHERE fkUsuario = :idUsuario && c.status = 'Aceito'");
-		$sql1->bindValue(":idUsuario", $id);
-		$sql1->execute();
-		$ids = $sql1->fetchAll();
-		
-		// Adiciona o usuario no projeto
-		foreach ($ids as $i) {
-			$sql2 = $this->db->prepare("INSERT INTO projeto_tem_aluno SET tipoAluno = 'Integrante', fkProjeto = :idProjeto, fkAluno = :idAluno");
-			$sql2->bindValue(":idProjeto", $i['fkProjeto']);
-			$sql2->bindValue(":idAluno", $i['fkUsuario']);
-			$sql2->execute();
-		}
-
-		// Enviar Notificação de Convite Aceito antes de Excluir
-
-		// Exclui Convite
-		$sql3 = $this->db->prepare("DELETE FROM convite WHERE status = 'Aceito' && fkUsuario = :idUsuario");
-		$sql3->bindValue(":idUsuario", $id);
-		$sql3->execute();
+		$sql = $this->db->prepare("DELETE FROM convite WHERE fkUsuario = ? && hashConvite = ? && status = ?");
+		$sql->execute(array($idUsuario, $hashConvite, $status));
 	}
 
-	public function recusarConvite($id, $hash)
+	private function excluiTodosConvites($idUsuario, $status)
 	{
-		// Muda status de Solicitado para Recusado
-		$sql = $this->db->prepare("UPDATE convite c SET c.status = 'Recusado' WHERE hashConvite = :hashConvite && fkUsuario = :idUsuario");
-		$sql->bindValue(":hashConvite", $hash);
-		$sql->bindValue(":idUsuario", $id);
-		$sql->execute();
-
-		// Enviar Notificação de Convite Recusado antes de Excluir
-
-		// Exclui Convite
-		$sql3 = $this->db->prepare("DELETE FROM convite WHERE hashConvite = :hashConvite && fkUsuario = :idUsuario && status = 'Recusado'");
-		$sql3->bindValue(":hashConvite", $hash);
-		$sql3->bindValue(":idUsuario", $id);
-		$sql3->execute();
+		$sql = $this->db->prepare("DELETE FROM convite WHERE fkUsuario = ? && status = ?");
+		$sql->execute(array($idUsuario, $status));
 	}
 
-	public function recusarTodosConvites($id)
+	private function mudaStatus($idUsuario, $hashConvite, $status)
 	{
-		// Muda status de Solicitado para Recusado
-		$sql = $this->db->prepare("UPDATE convite c SET c.status = 'Recusado' WHERE c.status = 'Solicitado' && fkUsuario = :idUsuario");
-		$sql->bindValue(":idUsuario", $id);
-		$sql->execute();
+		$sql = $this->db->prepare("UPDATE convite c SET c.status = ? WHERE hashConvite = ? && fkUsuario = ?");
+		$sql->execute(array($status, $hashConvite, $idUsuario));
+	}
 
-		// Enviar Notificação de Convite Recusado antes de Excluir
-
-		// Exclui Convite
-		$sql3 = $this->db->prepare("DELETE FROM convite WHERE fkUsuario = :idUsuario && status = 'Recusado'");
-		$sql3->bindValue(":idUsuario", $id);
-		$sql3->execute();
+	private function mudaTodosStatus($idUsuario, $status)
+	{
+		$sql = $this->db->prepare("UPDATE convite c SET c.status = ? WHERE c.status = 'Solicitado' && fkUsuario = ?");
+		$sql->execute(array($status, $idUsuario));
 	}
 
 	private function possuiConvite($idProjeto, $idUsuario)
@@ -185,35 +242,5 @@ class Convite extends Model
 	private function geraHash($id)
 	{
 		return sha1($id);
-	}
-
-	public function getId()
-	{
-		return $this->id;
-	}
-
-	public function getTipo()
-	{
-		return $this->tipo;
-	}
-
-	public function setTipo($t)
-	{
-		$this->tipo = $t;
-	}
-
-	public function getStatus()
-	{
-		return $this->status;
-	}
-
-	public function setStatus($s)
-	{
-		$this->status = $s;
-	}
-
-	public function getIdProjeto()
-	{
-		return $this->idProjeto;
 	}
 }
