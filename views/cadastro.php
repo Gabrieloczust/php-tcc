@@ -11,21 +11,20 @@
             <p class="alert alert-warning" role="alert"><?= $erro ?></p>
         <?php } ?>
 
-        <div class="muda-form mb-3">
-            <label class="muda-tipo muda-tipo-professor" for="check">Professor</label>
-            <label class="switch">
-                <input id="check" type="checkbox" checked>
-                <span class="slider round"></span>
-            </label>
-            <label class="muda-tipo muda-tipo-aluno" for="check">Aluno</label>
-        </div>
-
         <div id="aluno" class="forms">
 
             <h4 class="mb-3 titulo-register">Cadastro de Aluno</h4>
             <form class="row" data-toggle="validator" method="POST">
                 <div class="col">
                     <input type="hidden" name="usuario" value="aluno">
+                    <div class="form-group">
+                        <select class="form-control change-form" name="usuario" data-error="Selecione uma opção..." required>
+                            <option selected disabled value="">Tipo de Usuario...</option>
+                            <option value="aluno">Aluno</option>
+                            <option value="professor">Professor</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>
@@ -34,7 +33,7 @@
                         <input type="text" class="form-control" placeholder="Curso" name="curso" />
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control input-lowercase" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" required />
+                        <input type="email" class="form-control input-lowercase" placeholder="Seu E-mail *" name="email" data-error="Por favor, informe um e-mail correto" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
                         <div class="help-block with-errors"></div>
                     </div>
                     <div class="form-group">
@@ -69,6 +68,14 @@
             <form class="row" data-toggle="validator" method="POST">
                 <div class="col">
                     <input type="hidden" name="usuario" value="professor">
+                    <div class="form-group">
+                        <select class="form-control change-form" name="usuario" data-error="Selecione uma opção..." required>
+                            <option disabled value="">Tipo de Usuario...</option>
+                            <option value="aluno">Aluno</option>
+                            <option selected value="professor">Professor</option>
+                        </select>
+                        <div class="help-block with-errors"></div>
+                    </div>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Nome Completo *" name="nome" required />
                         <div class="help-block with-errors"></div>

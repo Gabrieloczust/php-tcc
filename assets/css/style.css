@@ -96,10 +96,27 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
+.btn-new {
+    width: 180px;
+}
+
 @media(max-width: 575px) {
+    .home-head-mobile {
+        margin-bottom: 1rem !important;
+    }
+
     .btn-new {
         width: 100%;
         margin-top: 1rem;
+    }
+
+    .card-mobile {
+        margin-left: 0 !important;
+        margin-top: 1rem
+    }
+
+    .card-projeto {
+        margin-bottom: 1rem !important;
     }
 }
 

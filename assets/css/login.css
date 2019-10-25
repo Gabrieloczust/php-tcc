@@ -3,13 +3,18 @@
 }
 
 .conteudo-central {
-	background-color: #4e73df;
-	background-image: linear-gradient(to bottom, #4e73df, #224abe);
+	background-color: #000;
+	background-image: linear-gradient(to bottom, #000, #000);
 	height: 100vh;
 	width: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+.background-aluno {
+	background-color: #4e73df;
+	background-image: linear-gradient(to bottom, #4e73df, #224abe);
 }
 
 .background-professor {

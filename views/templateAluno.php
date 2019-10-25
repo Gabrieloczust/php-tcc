@@ -61,7 +61,7 @@
                           } ?>">
         <a class="nav-link" href="<?= HOME ?>biblioteca">
           <i class="fas fa-fw fa-book"></i>
-          <span>Biblioteca de Projetos</span>
+          <span>Projetos da Gelera</span>
         </a>
       </li>
 

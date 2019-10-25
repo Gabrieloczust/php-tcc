@@ -34,6 +34,20 @@
     <script src="<?= JS ?>jquery.mask.min.js"></script>
 
     <script>
+        $('.change-form').change(function() {
+            if ($(this).val() == 'aluno') {
+                $("#professor").hide()
+                $("#aluno").show()
+                $(".conteudo-central").removeClass("background-professor")
+                $(".conteudo-central").addClass("background-aluno")
+            } else {
+                $("#aluno").hide()
+                $("#professor").show()
+                $(".conteudo-central").removeClass("background-aluno")
+                $(".conteudo-central").addClass("background-professor")
+            }
+        });
+
         $(".input-olho").mousedown(function() {
             $(".input-senha").attr("type", "text");
         });
@@ -41,9 +55,7 @@
         $(".input-olho").mouseup(function() {
             $(".input-senha").attr("type", "password");
         });
-    </script>
 
-    <script>
         $(window).ready(function() {
             $('.input-number').keyup(function() {
                 $(this).val(this.value.replace(/\D/g, ''));
@@ -51,8 +63,6 @@
             });
         });
     </script>
-
-    <?= $this->loadJsInTemplate($viewName); ?>
 
 </body>
 

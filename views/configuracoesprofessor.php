@@ -22,7 +22,7 @@
             <div class="collapse show" id="collapseP">
                 <div class="card-body">
                     <p class="text-dark">Altere seus <strong>dados</strong>:</p>
-                    <form class="form-config" data-toggle="validator" method="POST" action="<?= HOME ?>configuracoesprofessor/perfil">
+                    <form class="form-config" data-toggle="validator" method="POST" action="<?= HOME ?>configuracoesprofessor/perfil" autocomplete="off">
                         <div class="row">
                             <div class="col-md-6 mb-3 form-group">
                                 <label class="text-dark" for="perfil-nome">Nome Completo:</label>
@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-6 mb-3 form-group">
                                 <label class="text-dark" for="perfil-email">E-mail:</label>
-                                <input class="form-control input-lowercase" type="email" name="perfil-email" id="perfil-email" placeholder="<?= $email ?>" data-error="Por favor, informe um e-mail correto">
+                                <input class="form-control input-lowercase" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="perfil-email" id="perfil-email" placeholder="<?= $email ?>" data-error="Por favor, informe um e-mail correto">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>

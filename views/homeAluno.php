@@ -1,8 +1,25 @@
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Meus Projetos</h1>
-    <a href="#" data-toggle="modal" data-target="#projectModal" class="btn btn-primary shadow-sm btn-new">
-        <i class="fas fa-folder-plus fa-sm pr-1"></i> Novo Projeto
-    </a>
+<div class="home-head-mobile d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-flex flex-column align-items-start">
+        <h1 class="h3 text-gray-800">Meus Projetos</h1>
+        <a href="#" data-toggle="modal" data-target="#projectModal" class="btn btn-primary shadow-sm btn-new">
+            <i class="fas fa-folder-plus fa-sm pr-1"></i> Novo Projeto
+        </a>
+    </div>
+    <div class="card-mobile w-100 ml-5">
+        <div class="card border-left-primary shadow py-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">PROJETOS EM ANDAMENTO</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtd ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-hourglass-start fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Page Body -->
@@ -26,22 +43,6 @@
           </button></div>';
         }
         ?>
-    </div>
-
-    <div class="col-lg-12">
-        <div class="card border-left-primary shadow py-2 mb-4">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">PROJETOS EM ANDAMENTO</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtd ?></div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-hourglass-start fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
     <?php foreach ($projetos as $projeto) { ?>

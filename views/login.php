@@ -28,7 +28,7 @@
 		<div class="col">
 			<input type="hidden" name="login" value="login">
 			<div class="form-group">
-				<select id="check" class="form-control" name="usuario" data-error="Selecione uma opção..." required>
+				<select id="check" class="form-control change-form" name="usuario" data-error="Selecione uma opção..." required>
 					<option selected disabled value="">Tipo de Usuario...</option>
 					<option value="aluno">Aluno</option>
 					<option value="professor">Professor</option>
@@ -36,7 +36,7 @@
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
-				<input type="email" class="form-control input-lowercase" placeholder="Seu e-mail" name="email" data-error="Por favor, informe um e-mail correto" required />
+				<input type="email" class="form-control input-lowercase" placeholder="Seu e-mail" name="email" data-error="Por favor, informe um e-mail correto" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
 				<div class="help-block with-errors"></div>
 			</div>
 			<div class="form-group">
