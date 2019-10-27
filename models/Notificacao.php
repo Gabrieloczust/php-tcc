@@ -29,6 +29,27 @@ class Notificacao extends Model
         $sql->execute(array($this->getTipo(), $mensagem, $idRemetente, $idDestinatario, $tipoDestinatario));
     }
 
+    public function orientadorSaiu($idOrientador, $nomeOrientador, $idProjeto)
+    {
+        // Pega o id dos alunos que receberam esta notificacao
+        $sql = $this->db->prepare("SELECT fkAluno FROM projeto_tem_aluno WHERE fkProjeto = ?");
+        $sql->execute(array($idProjeto));
+        $ids = $sql->fetchAll();
+
+        // Pega o nome do projeto
+        $this->projeto->setAll($idProjeto);
+        $nomeProjeto = $this->projeto->getTitulo();
+
+        // Monta a mensagem
+        $mensagem = "O Orientador <b>$nomeOrientador</b> saiu do projeto <b>$nomeProjeto</b>!";
+
+        // Envia a notifacao para todos alunos
+        foreach ($ids as $id) :
+            $sql2 = $this->db->prepare("INSERT INTO notificacao SET tipo = 'recusado', mensagem = ?, fkRemetente = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
+            $sql2->execute(array($mensagem, $idOrientador, $id['fkAluno']));
+        endforeach;
+    }
+
     public function getTipo()
     {
         return $this->tipo;

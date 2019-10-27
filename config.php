@@ -34,6 +34,8 @@ define("IMG", ASSETS . 'images/');
 try {
     global $db;
     $db = new PDO("mysql:dbname=" . $config['dbname'] . ";host=" . $config['host'] . ";charset=utf8", $config['dbuser'], $config['dbpass']);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch (PDOException $error) {
     echo "ERRO: " . $error->getMessage();
     exit();

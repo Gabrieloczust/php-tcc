@@ -118,13 +118,13 @@
             <div class="modal-body">
                 <input type="hidden" class="ca-id" name="ca-id">
                 <div class="input-group my-3">
-                    <input type="email" class="form-control input-lowercase" name="ca-aluno[]" placeholder="E-mail do aluno 1" required />
+                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control input-lowercase" name="ca-aluno[]" placeholder="E-mail do aluno 1" title="Digite um e-mail válido" required />
                 </div>
                 <div id="novos-alunos"></div>
-                <a class="add-novo-aluno text-info" href="#">Adiconar mais <i class="fas fa-plus"></i></a>
+                <a class="add-novo-aluno btn btn-info" href="#">Adiconar <i class="fas fa-sm fa-plus"></i></a>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" id="btn-editar-titulo">Enviar Convites</button>
+                <button class="btn btn-primary">Enviar</button>
             </div>
         </div>
     </form>

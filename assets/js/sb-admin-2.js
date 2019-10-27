@@ -88,6 +88,11 @@
     $('#en-nome').trigger('focus')
   })
 
+  //Autofocus no nome do Modal editar nome turma
+  $('#avaliadorModal').on('shown.bs.modal', function () {
+    $('#ca-email').trigger('focus')
+  })
+
   // Modal editar titulo
   $('.btn-editar-titulo').click(function () {
     var id = $(this).attr('rel')
@@ -114,9 +119,28 @@
     var id = $(this).attr('rel')
     var nome = $(this).attr('data-nome').toUpperCase()
     $('#editaNomeModal').find('.en-id').val(id)
+    $('#editaNomeModal').find('.nome-turma').text(nome)
     $('#editaNomeModal').find('.en-nome-aviso').val(nome)
     $('#editaNomeModal').find('#en-nome').attr("placeholder", nome)
     $('#editaNomeModal').modal('show')
+  })
+
+  // Modal convidar avaliador
+  $('.btn-convidar-avaliador').click(function () {
+    var id7 = $(this).attr('rel')
+    var nomeTurma = $(this).attr('data-nome')
+    $('#avaliadorModal').find('.nome-turma').text(nomeTurma)
+    $('#avaliadorModal').find('.ca-id').val(id7)
+    $('#avaliadorModal').modal('show')
+  })
+
+  // Modal apagar turma
+  $('.btn-apagar-turma').click(function () {
+    var id9 = $(this).attr('rel')
+    var nomeTurma = $(this).attr('data-nome')
+    $('#apagarTurmaModal').find('.nome-turma').text(nomeTurma)
+    $('#apagarTurmaModal').find('.at-id').val(id9)
+    $('#apagarTurmaModal').modal('show')
   })
 
   // Adiciona novo input para convidar aluno
@@ -130,7 +154,7 @@
       e.preventDefault();
       if (x < max_fields) {
         x++;
-        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" class="form-control input-lowercase" placeholder="E-mail do Aluno ' + x + '" name="ca-aluno[]" required/><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
+        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control input-lowercase" placeholder="E-mail do Aluno ' + x + '" name="ca-aluno[]" required/><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
       }
       if (x == max_fields) {
         $(add_aluno).toggle()

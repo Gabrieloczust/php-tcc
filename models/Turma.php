@@ -2,13 +2,22 @@
 
 class Turma extends Model
 {
+    private $id;
     private $nome;
     private $orientador;
 
-    public function __construct($emailOrientador)
+    public function __construct($emailOrientador, $idTurma = NULL)
     {
         parent::__construct();
         $this->orientador = new Orientador($emailOrientador);
+
+        if (!empty($idTurma)) :
+            $sql01 = $this->db->prepare("SELECT * FROM turma WHERE idTurma = ?");
+            $sql01->execute(array($idTurma));
+            $t = $sql01->fetch();
+            $this->setId($t['idTurma']);
+            $this->setNome($t['nome']);
+        endif;
     }
 
     public function novaTurma($nome)
@@ -30,14 +39,6 @@ class Turma extends Model
         }
     }
 
-    public function getTurmas()
-    {
-        $id = $this->orientador->getId();
-        $sql = $this->db->prepare("SELECT * FROM turma WHERE fkOrientador = ?");
-        $sql->execute(array($id));
-        return $sql->fetchAll();
-    }
-
     public function editaNome($novoNome, $hashInterno)
     {
         if ($this->existeNome($novoNome) == false) {
@@ -49,6 +50,72 @@ class Turma extends Model
         } else {
             return false;
         }
+    }
+
+    public function getTurma($slug)
+    {
+        $idOrientador = $this->orientador->getId();
+        $sql = $this->db->prepare("SELECT * FROM turma WHERE fkOrientador = ? AND slug = ?");
+        $sql->execute(array($idOrientador, $slug));
+        if ($sql->rowCount() == 1) :
+            return $sql->fetch();
+        else :
+            return array();
+        endif;
+    }
+
+    public function getTurmas()
+    {
+        $id = $this->orientador->getId();
+        $sql = $this->db->prepare("SELECT * FROM turma WHERE fkOrientador = ? ORDER BY idTurma DESC");
+        $sql->execute(array($id));
+
+        $results = $sql->fetchAll();
+        $turmas = [];
+
+        // Adiciona a qtd de projetos por turma
+        foreach ($results as $result) {
+            $a = $this->getQtdProjetoTurma($result['idTurma']);
+            $a['qtdProjetoTurma'] = $a['qtdProjetoTurma'] == 1 ? $a['qtdProjetoTurma'] . " PROJETO" : $a['qtdProjetoTurma'] . " PROJETOS";
+            array_push($turmas, array_merge($a, $result));
+        }
+        return $turmas;
+    }
+
+    public function apagarTurma()
+    {
+        $idTurma = $this->getId();
+        $notificacao = new Notificacao("recusado");
+        $idOrientador = $this->orientador->getId();
+        $nomeOrientador = $this->orientador->getNome();
+
+        $sql2 = $this->db->prepare("SELECT * FROM projeto_tem_professor INNER JOIN projeto ON(fkProjeto = idProjeto) WHERE fkProfessor = ? AND fkTurma = ?");
+        $sql2->execute(array($idOrientador, $idTurma));
+        if ($sql2->rowCount() > 0) {
+            // Remover orientador dos projetos relacionados a essa turma
+            foreach ($sql2->fetchAll() as $projeto) {
+                // Enviar notificacao para os alunos que o orientador saiu do projeto
+                $notificacao->orientadorSaiu($idOrientador, $nomeOrientador, $projeto['idProjeto']);
+
+                $sql3 = $this->db->prepare("DELETE FROM projeto_tem_professor WHERE idProfProjeto = ?");
+                $sql3->execute(array($projeto['idProfProjeto']));
+            }
+
+            $sql = $this->db->prepare("DELETE FROM turma WHERE idTurma = ?");
+            $sql->execute(array($idTurma));
+            if ($sql->rowCount() == 1) :
+                return true;
+            endif;
+        }
+        return false;
+    }
+
+    private function getQtdProjetoTurma($idTurma)
+    {
+        $sql = $this->db->prepare("SELECT count(*) as qtdProjetoTurma FROM projeto WHERE fkTurma = ?");
+        $sql->execute(array($idTurma));
+        $array = $sql->fetch();
+        return $array;
     }
 
     private function existeNome($nome)
@@ -76,6 +143,15 @@ class Turma extends Model
         while ($i > 0) $str = str_replace('--', '-', $str, $i);
         if (substr($str, -1) == '-') $str = substr($str, 0, -1);
         return $str;
+    }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     public function getNome()

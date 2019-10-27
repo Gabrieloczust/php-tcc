@@ -19,10 +19,12 @@ class Projeto extends Model
 	public function novoProjeto($titulo, $ra, $orientador)
 	{
 		$hashInterno = $this->geraHash($titulo);
+		$slug = $this->slug($titulo);
 
 		//Cria o projeto na tabela projeto
-		$sql = $this->db->prepare("INSERT INTO projeto SET titulo = :titulo, fkAlunoLider = :lider, hashInterno = :hashInterno");
+		$sql = $this->db->prepare("INSERT INTO projeto SET titulo = :titulo, slug = :slug, fkAlunoLider = :lider, hashInterno = :hashInterno");
 		$sql->bindValue(":titulo", $titulo);
+		$sql->bindValue(":slug", $slug);
 		$sql->bindValue(":lider", $ra);
 		$sql->bindValue(":hashInterno", $hashInterno);
 		$sql->execute();
@@ -46,8 +48,10 @@ class Projeto extends Model
 	public function editaTitulo($titulo, $hash, $ra)
 	{
 		if ($this->existeEsseTitulo($titulo, $ra) == 0) {
-			$sql = $this->db->prepare("UPDATE projeto SET titulo = :titulo WHERE hashInterno = :hashInterno");
+			$slug = $this->slug($titulo);
+			$sql = $this->db->prepare("UPDATE projeto SET titulo = :titulo, slug = :slug WHERE hashInterno = :hashInterno");
 			$sql->bindValue(":titulo", $titulo);
+			$sql->bindValue(":slug", $slug);
 			$sql->bindValue(":hashInterno", $hash);
 			$sql->execute();
 			return true;
@@ -138,10 +142,22 @@ class Projeto extends Model
 		return $sql->fetch()['idProjeto'];
 	}
 
-	public function adicionaProjetoNaTurma($idProjeto, $turma){
-        $sql4 = $this->db->prepare("UPDATE projeto SET fkTurma = ? WHERE idProjeto = ?");
+	public function adicionaProjetoNaTurma($idProjeto, $turma)
+	{
+		$sql4 = $this->db->prepare("UPDATE projeto SET fkTurma = ? WHERE idProjeto = ?");
 		$sql4->execute(array($turma, $idProjeto));
-    }
+	}
+
+	private function slug($string)
+	{
+		$str = strtolower(utf8_decode($string));
+		$i = 1;
+		$str = strtr($str, utf8_decode('àáâãäåæçèéêëìíîïñòóôõöøùúûüýýÿ'), 'aaaaaaaceeeeiiiinoooooouuuuyyy');
+		$str = preg_replace("/([^a-z0-9])/", '-', utf8_encode($str));
+		while ($i > 0) $str = str_replace('--', '-', $str, $i);
+		if (substr($str, -1) == '-') $str = substr($str, 0, -1);
+		return $str;
+	}
 
 	private function geraHash($titulo)
 	{

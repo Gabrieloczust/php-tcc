@@ -46,6 +46,18 @@ class professorController extends Controller
             }
         }
 
+        // Apagar turma //
+        $atId = filter_input(INPUT_POST, 'at-id');
+        if (filter_input(INPUT_POST, 'apagar_turma') === "apagar_turma" && !empty($atId)) {
+            $t = new Turma($email, $atId);
+            $apagado = $t->apagarTurma($atId);
+            if ($apagado == true) {
+                array_push($successes, "Turma <strong>{$t->getNome()}</strong> apagada com sucesso!");
+            } else {
+                array_push($errors, "Erro ao apagar turma!");
+            }
+        }
+
         $turmas = $turma->getTurmas();
 
         $dados = array(
@@ -56,5 +68,28 @@ class professorController extends Controller
         );
 
         $this->loadTemplate("homeprofessor", $dados);
+    }
+
+    public function turma($slug)
+    {
+        // Arrays para avisos de Validação
+        $errors = array();
+        $warnings = array();
+        $successes = array();
+
+        $prof = new Professor($_SESSION['user']);
+        $email = $prof->getEmail();
+
+        $t = new Turma($email);
+        $turma = $t->getTurma($slug);
+
+        $dados = array(
+            'errors' => $errors,
+            'warnings' => $warnings,
+            'successes' => $successes,
+            'turma' => $turma
+        );
+
+        $this->loadTemplate("turma", $dados);
     }
 }

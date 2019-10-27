@@ -46,6 +46,11 @@ class Usuario extends Model
             if (password_verify($senha, $hash)) {
                 $_SESSION['user'] = $email;
                 $_SESSION['userType'] = $this->getTipo();
+
+                // UPADATE DA DATA E DO IP DO ULTIMO ACESSO
+                $ip = $this->getIP();
+                $sql2 = $this->db->prepare("UPDATE {$this->getTipo()} SET data_ultimo_acesso = CURRENT_TIMESTAMP, ip_ultimo_acesso = ? WHERE email = ?");
+                $sql2->execute(array($ip, $email));
                 return true;
             }
         } else {

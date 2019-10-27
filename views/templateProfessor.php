@@ -149,33 +149,42 @@
                     Convites
                   </h6>
 
-                  <?php foreach ($convites as $convite) { ?>
-                    <form class="dropdown-item" method="POST" action="<?= HOME ?>convite/aceitarorientador/<?= $convite['hashConvite'] ?>">
-                      <div class="font-weight-bold">
-                        <div class="text-truncate"><?= $convite['titulo'] ?></div>
-                        <div class="small text-gray-500">Tipo: <?= $convite['tipo'] ?></div>
-                        <div class="small text-gray-500">Por: <?= $convite['nome'] ?></div>
-                        <div class="convite-btns small text-gray-500 d-flex flex-column justify-content-between mt-1">
-                          <div class="form-group mb-2">
-                            <select id="" class="form-control form-control-sm" name="turma" required>
-                              <option selected disabled value="">Selecione uma turma...</option>
-                              <?php foreach ($turmas_select as $ts) { ?>
-                                <option  value="<?= $ts['idTurma'] ?>"><?= $ts['nome'] ?></option>
-                              <?php } ?>
-                            </select>
-                          </div>
-                          <div>
-                            <a class="btn dark-off btn-md btn-danger" href="<?= HOME ?>convite/recusar/<?= $convite['hashConvite'] ?>">Recusar</a>
-                            <input type="submit" value="Aceitar" class="btn dark-off btn-md btn-success">
+                  <?php
+                    if (count($turmas_select) > 0) :
+                      foreach ($convites as $convite) : ?>
+                      <form class="dropdown-item" method="POST" action="<?= HOME ?>convite/aceitarorientador/<?= $convite['hashConvite'] ?>">
+                        <div class="font-weight-bold">
+                          <div class="text-truncate"><?= $convite['titulo'] ?></div>
+                          <div class="small text-gray-500">Tipo: <?= $convite['tipo'] ?></div>
+                          <div class="small text-gray-500">Por: <?= $convite['nome'] ?></div>
+                          <div class="convite-btns small text-gray-500 d-flex flex-column justify-content-between mt-1">
+                            <div class="form-group mb-2">
+                              <select id="" class="form-control form-control-sm" name="turma" required>
+                                <option selected disabled value="">Selecione uma turma...</option>
+                                <?php foreach ($turmas_select as $ts) { ?>
+                                  <option value="<?= $ts['idTurma'] ?>"><?= $ts['nome'] ?></option>
+                                <?php } ?>
+                              </select>
+                            </div>
+                            <div>
+                              <a class="btn dark-off btn-md btn-danger" href="<?= HOME ?>convite/recusar/<?= $convite['hashConvite'] ?>">Recusar</a>
+                              <input type="submit" value="Aceitar" class="btn dark-off btn-md btn-success">
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </form>
-                  <?php } ?>
+                      </form>
+                    <?php endforeach; ?>
 
-                  <div class="dropdown-item small text-gray-500 d-flex justify-content-center">
-                    <a class="dark-off text-danger" href="<?= HOME . 'convite/recusartodos' ?>">Recusar Todos</a>
-                  </div>
+                    <div class="dropdown-item small text-gray-500 d-flex justify-content-center">
+                      <a class="dark-off text-danger" href="<?= HOME . 'convite/recusartodos' ?>">Recusar Todos</a>
+                    </div>
+                  <?php else : ?>
+                    <div class="alert alert-warning text-center m-0 rounded-0">
+                      Antes de visualizar seus convites crie uma turma para aceitar novos projetos
+                    </div>
+                  <?php
+                    endif;
+                    ?>
                 </div>
               </li>
             <?php } ?>
