@@ -105,7 +105,7 @@ input:checked+.slider:before {
 }
 
 .hover-turma:hover .text-uppercase {
-    color: #000 !important;
+    color: #929292 !important;
 }
 
 @media(max-width: 575px) {
@@ -144,4 +144,14 @@ input:checked+.slider:before {
 .form-config input,
 .form-config input:focus {
     color: #4e73df;
+}
+
+.notificacoes-green .dropdown-header {
+    background-color: #1cc88a !important;
+    border-color: #1cc88a !important;
+}
+
+.stop-ajax .dropdown-list {
+    max-height: 336px;
+    overflow-y: auto !important;
 }

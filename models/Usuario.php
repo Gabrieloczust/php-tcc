@@ -69,8 +69,7 @@ class Usuario extends Model
 
     public function vereficaEmail($email)
     {
-        $sql = "SELECT * FROM {$this->getTipo()} WHERE email = ?";
-        $sql = $this->db->prepare($sql);
+        $sql = $this->db->prepare("SELECT * FROM {$this->getTipo()} WHERE email = ?");
         $sql->execute(array($email));
         if ($sql->rowCount() > 0) {
             return true;

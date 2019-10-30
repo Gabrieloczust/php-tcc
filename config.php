@@ -11,7 +11,7 @@ if (ENVIRONMENT == 'development') {
     ini_set("display_errors", "On");
     define("HOME", "http://localhost/tcc/");
     $config = [
-        'dbname' => 'bd_tcc',
+        'dbname' => 'meutcc17_tcc',
         'dbuser' => 'root',
         'dbpass' => '',
         'host' => 'localhost'

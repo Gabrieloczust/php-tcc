@@ -125,15 +125,6 @@
     $('#editaNomeModal').modal('show')
   })
 
-  // Modal convidar avaliador
-  $('.btn-convidar-avaliador').click(function () {
-    var id7 = $(this).attr('rel')
-    var nomeTurma = $(this).attr('data-nome')
-    $('#avaliadorModal').find('.nome-turma').text(nomeTurma)
-    $('#avaliadorModal').find('.ca-id').val(id7)
-    $('#avaliadorModal').modal('show')
-  })
-
   // Modal apagar turma
   $('.btn-apagar-turma').click(function () {
     var id9 = $(this).attr('rel')

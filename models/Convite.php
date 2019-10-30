@@ -38,7 +38,7 @@ class Convite extends Model
 		// GERA HASH
 		$hashConvite = $this->geraHash($idProjeto);
 
-		if (($this->possuiConvite($idProjeto, $idAluno) == false) && ($this->alunoEstaNoGrupo($idProjeto, $idAluno) == false)) {
+		if (($this->possuiConvite($idProjeto, $idAluno, 'Aluno') == false) && ($this->alunoEstaNoGrupo($idProjeto, $idAluno) == false)) {
 			$sql = $this->db->prepare("INSERT INTO convite SET tipo = 'Aluno', hashConvite = :hashConvite, fkProjeto = :idProjeto, fkUsuario = :idAluno, fkRemetente = :idRemetente");
 			$sql->bindValue(":hashConvite", $hashConvite);
 			$sql->bindValue(":idProjeto", $idProjeto);
@@ -213,11 +213,12 @@ class Convite extends Model
 		$sql->execute(array($status, $idUsuario));
 	}
 
-	private function possuiConvite($idProjeto, $idUsuario)
+	private function possuiConvite($idProjeto, $idUsuario, $tipo)
 	{
-		$sql = $this->db->prepare("SELECT * FROM convite WHERE fkProjeto = :idProjeto && fkUsuario = :idUsuario");
+		$sql = $this->db->prepare("SELECT * FROM convite WHERE fkProjeto = :idProjeto && fkUsuario = :idUsuario && tipo = :tipo");
 		$sql->bindValue(":idProjeto", $idProjeto);
 		$sql->bindValue(":idUsuario", $idUsuario);
+		$sql->bindValue(":tipo", $tipo);
 		$sql->execute();
 		if ($sql->rowCount() > 0) {
 			return true;

@@ -50,8 +50,6 @@
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $turma['idTurma'] ?>">
                                         <div class="dropdown-header">Ações:</div>
-                                        <a class="dropdown-item btn-convidar-avaliador" href="#" rel="<?= $turma['hashInterno'] ?>" data-nome="<?= $turma['nome'] ?>">Convidar Avaliador</a>
-                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item btn-editar-nome" href="#" rel="<?= $turma['hashInterno'] ?>" data-nome="<?= $turma['nome'] ?>">Editar nome</a>
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item btn-apagar-turma" href="#" rel="<?= $turma['idTurma'] ?>" data-nome="<?= $turma['nome'] ?>">Apagar turma</a>
@@ -101,38 +99,13 @@
     </form>
 </div>
 
-<!-- Modal Convidar Avaliador -->
-<div class="modal fade" id="avaliadorModal" tabindex="-1" role="dialog" aria-labelledby="avaliadorModalLabel" aria-hidden="true">
-    <form class="modal-dialog" role="document" method="POST">
-        <input type="hidden" name="convidar_avaliador" value="convidar_avaliador" />
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="avaliadorModalLabel">Convidar Avaliador - Turma <span class="nome-turma"></span></h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" class="ca-id" name="ca-id">
-                <div class="form-group">
-                    <label for="ca-email">E-mail do professor: </label>
-                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control input-lowercase" name="ca-email" id="ca-email" title="Digite um e-mail válido" required />
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-success">Enviar</button>
-            </div>
-        </div>
-    </form>
-</div>
-
 <!-- Modal Editar Nome -->
 <div class="modal fade" id="editaNomeModal" tabindex="-1" role="dialog" aria-labelledby="editaNomeModalLabel" aria-hidden="true">
     <form class="modal-dialog" role="document" method="POST">
         <input type="hidden" name="edita_nome" value="edita_nome" />
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-success" id="editaNomeModalLabel">Editar Nome - Turma <span class="nome-turma"></span></h5>
+                <h5 class="modal-title text-success" id="editaNomeModalLabel">EDITAR NOME</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -145,7 +118,8 @@
                     <input type="text" class="form-control input-uppercase" name="en-nome" id="en-nome" required />
                 </div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-between">
+                <small>TURMA <span class="nome-turma"></span></small>
                 <button class="btn btn-success" id="btn-editar-nome">Salvar</button>
             </div>
         </div>

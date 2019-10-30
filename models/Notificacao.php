@@ -26,7 +26,7 @@ class Notificacao extends Model
         $mensagem = "Convite de $tipoDestinatario para o projeto $tituloProjeto " . $this->getTipo() . " por $nomeDestinario";
 
         $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkRemetente = ?, fkDestinatario = ?, tipoDestinatario = ?");
-        $sql->execute(array($this->getTipo(), $mensagem, $idRemetente, $idDestinatario, $tipoDestinatario));
+        $sql->execute(array($this->getTipo(), $mensagem, $idRemetente, $idDestinatario, 'Aluno'));
     }
 
     public function orientadorSaiu($idOrientador, $nomeOrientador, $idProjeto)
@@ -41,13 +41,33 @@ class Notificacao extends Model
         $nomeProjeto = $this->projeto->getTitulo();
 
         // Monta a mensagem
-        $mensagem = "O Orientador <b>$nomeOrientador</b> saiu do projeto <b>$nomeProjeto</b>!";
+        $mensagem = "O Orientador $nomeOrientador saiu do projeto $nomeProjeto!";
 
         // Envia a notifacao para todos alunos
         foreach ($ids as $id) :
             $sql2 = $this->db->prepare("INSERT INTO notificacao SET tipo = 'recusado', mensagem = ?, fkRemetente = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
             $sql2->execute(array($mensagem, $idOrientador, $id['fkAluno']));
         endforeach;
+    }
+
+    public function getNoficacoes($idUsuario)
+    {
+        $sql = $this->db->prepare("SELECT * FROM notificacao WHERE tipoDestinatario = ? AND fkDestinatario = ? ORDER BY idNotificacao DESC");
+        $sql->execute(array($this->getTipo(), $idUsuario));
+        return $sql->fetchAll();
+    }
+
+    public function qtdNaoLidas($idUsuario)
+    {
+        $sql = $this->db->prepare("SELECT count(*) as qtdNaoLidas FROM notificacao WHERE tipoDestinatario = ? AND fkDestinatario = ? AND lida = 'false'");
+        $sql->execute(array($this->getTipo(), $idUsuario));
+        return $sql->fetch()['qtdNaoLidas'];
+    }
+
+    public function changeLidas($idUsuario)
+    {
+        $sql = $this->db->prepare("UPDATE notificacao SET lida = 'true' WHERE tipoDestinatario = ? AND fkDestinatario = ? AND lida = 'false'");
+        $sql->execute(array($this->getTipo(), $idUsuario));
     }
 
     public function getTipo()

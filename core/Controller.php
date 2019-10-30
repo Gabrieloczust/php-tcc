@@ -31,17 +31,6 @@ class Controller
         $viewData["nome"] = $this->usuarioLogado->getNome();
         $viewData["letra"] = substr($this->usuarioLogado->getNome(), 0, 1);
 
-        // Lista Convites no menu
-        $c = new Convite();
-        $viewData["convites"] = $c->getConvites($this->usuarioLogado->getId(), $this->usuarioLogadoTipo);
-        $viewData["qtd_convites"] = count($viewData["convites"]);
-
-        // Lista turmas no convite para Professor
-        if ($this->usuarioLogadoTipo == 'professor') {
-            $t = new Turma($this->usuarioLogado->getEmail());
-            $viewData["turmas_select"] = $t->getTurmas();
-        }
-
         extract($viewData);
         require "views/template{$this->usuarioLogadoTipo}.php";
     }
