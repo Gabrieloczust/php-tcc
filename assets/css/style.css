@@ -26,13 +26,18 @@
     border-left-color: #000 !important;
 }
 
+.temadark-on .dropdown-itens::-webkit-scrollbar-thumb {
+    background: #000;
+}
+
 .logo {
     height: 40px;
 }
 
 .input-add-colega,
 .form-group-avaliador,
-.remove_field {
+.remove_field,
+.pointer {
     cursor: pointer;
 }
 
@@ -151,7 +156,32 @@ input:checked+.slider:before {
     border-color: #1cc88a !important;
 }
 
-.stop-ajax .dropdown-list {
-    max-height: 336px;
+.dropdown-itens {
+    max-height: 300px;
     overflow-y: auto !important;
+}
+
+.text-notificacao {
+    line-height: 1.1;
+    flex: 1;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+    background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background: #ccc;
+}
+
+.dropdown-itens::-webkit-scrollbar {
+    width: 10px;
+    background-color: #c1c1c1;
+}
+
+.dropdown-itens::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #4e73df;
 }

@@ -54,4 +54,10 @@ class ajaxController extends Controller
 
         $this->loadView("convitesProfessor", $dados);
     }
+
+    public function apagaNotificacao($id)
+    {
+        $n = new Notificacao(NULL);
+        $n->apagar($id);
+    }
 }

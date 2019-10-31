@@ -23,7 +23,7 @@ class Notificacao extends Model
         $nomeDestinario = $destinatario->getNome();
 
         // Monta a mensagem da notificação
-        $mensagem = "Convite de $tipoDestinatario para o projeto $tituloProjeto " . $this->getTipo() . " por $nomeDestinario";
+        $mensagem = "Convite de $tipoDestinatario para o projeto <b>$tituloProjeto</b> " . $this->getTipo() . " por <b>$nomeDestinario</b>";
 
         $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkRemetente = ?, fkDestinatario = ?, tipoDestinatario = ?");
         $sql->execute(array($this->getTipo(), $mensagem, $idRemetente, $idDestinatario, 'Aluno'));
@@ -41,7 +41,7 @@ class Notificacao extends Model
         $nomeProjeto = $this->projeto->getTitulo();
 
         // Monta a mensagem
-        $mensagem = "O Orientador $nomeOrientador saiu do projeto $nomeProjeto!";
+        $mensagem = "O Orientador <b>$nomeOrientador</b> saiu do projeto <b>$nomeProjeto</b>!";
 
         // Envia a notifacao para todos alunos
         foreach ($ids as $id) :
@@ -52,9 +52,19 @@ class Notificacao extends Model
 
     public function getNoficacoes($idUsuario)
     {
-        $sql = $this->db->prepare("SELECT * FROM notificacao WHERE tipoDestinatario = ? AND fkDestinatario = ? ORDER BY idNotificacao DESC");
+        $sql = $this->db->prepare("SELECT *, TIMESTAMPDIFF(MINUTE,data_enviada,NOW()) as tempo FROM notificacao WHERE tipoDestinatario = ? AND fkDestinatario = ? ORDER BY tempo");
         $sql->execute(array($this->getTipo(), $idUsuario));
-        return $sql->fetchAll();
+        $results = $sql->fetchAll();
+        foreach ($results as $key => $result) :
+            if ($result['tempo'] > 59 && $result['tempo'] < 1440) :
+                $results[$key]['tempo'] = floor($result['tempo'] /= 60) . " h";
+            elseif ($result['tempo'] > 1439) :
+                $results[$key]['tempo'] = floor($result['tempo'] /= 1440) . " d";
+            else :
+                $results[$key]['tempo'] = $result['tempo'] . " m";
+            endif;
+        endforeach;
+        return $results;
     }
 
     public function qtdNaoLidas($idUsuario)
@@ -68,6 +78,12 @@ class Notificacao extends Model
     {
         $sql = $this->db->prepare("UPDATE notificacao SET lida = 'true' WHERE tipoDestinatario = ? AND fkDestinatario = ? AND lida = 'false'");
         $sql->execute(array($this->getTipo(), $idUsuario));
+    }
+
+    public function apagar($idNotificacao)
+    {
+        $sql = $this->db->prepare("DELETE FROM notificacao WHERE idNotificacao = ?");
+        $sql->execute(array($idNotificacao));
     }
 
     public function getTipo()

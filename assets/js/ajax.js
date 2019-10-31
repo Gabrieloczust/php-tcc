@@ -18,6 +18,7 @@ reloadNotifications();
 // Muda as notificacoes de nao lidas para lidas
 $('#notificacoes').on('click', function () {
     var home = $(this).attr('data-url')
+    $('#qtd-notificacoes').hide()
     $('#qtd-notificacoes').load(home + "ajax/notificacoesLidas")
 })
 
