@@ -56,6 +56,9 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['fkProjeto'] ?>">
                             <div class="dropdown-header">Ações:</div>
+                            <?php if ($projeto['temOrientador'] == false) : ?>
+                                <a class="dropdown-item btn-convidar-orientador" href="#" rel="<?= $projeto['fkProjeto'] ?>">Convidar Orientador</a>
+                            <?php endif; ?>
                             <a class="dropdown-item btn-convidar-aluno" href="#" rel="<?= $projeto['hashInterno'] ?>">Convidar Aluno</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item btn-editar-titulo" href="#" rel="<?= $projeto['hashInterno'] ?>">Editar Titulo</a>
@@ -122,6 +125,30 @@
                 </div>
                 <div id="novos-alunos"></div>
                 <a class="add-novo-aluno btn btn-info" href="#">Adiconar <i class="fas fa-sm fa-plus"></i></a>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Convidar Orientador -->
+<div class="modal fade" id="orientadorModal" tabindex="-1" role="dialog" aria-labelledby="orientadorModalLabel" aria-hidden="true">
+    <form class="modal-dialog" role="document" method="POST">
+        <input type="hidden" name="convidar_orientador" value="convidar_orientador" />
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orientadorModalLabel">Convidar Orientador</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" class="om-id" name="om-id">
+                <div class="input-group my-3">
+                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control input-lowercase" name="om-email" id="om-email" placeholder="E-mail do professor" title="Digite um e-mail válido" required />
+                </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary">Enviar</button>

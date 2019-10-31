@@ -89,6 +89,20 @@ class alunoController extends Controller
             }
         }
 
+        // Convida o Orientador //
+        $omId = filter_input(INPUT_POST, 'om-id');
+        if (filter_input(INPUT_POST, 'convidar_orientador') === "convidar_orientador" && !empty($omId)) {
+            // Pega o E-mail do Orientador
+            $orientador = filter_input(INPUT_POST, 'om-email', FILTER_VALIDATE_EMAIL);
+            $convite = new Convite();
+            $existeOrientador = $convite->convidaOrientador($orientador, $omId, $id);
+            if ($existeOrientador == true) {
+                array_push($successes, "Convite de Orientador enviado para <strong>$orientador</strong>");
+            } else {
+                array_push($warnings, 'Este e-mail não possui cadastro como professor!');
+            }
+        }
+
         $qtdProjetos = $projeto->qtdProjetos($id);
         $projetos = $projeto->getProjetos($id);
 

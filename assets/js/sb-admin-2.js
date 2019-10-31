@@ -73,6 +73,11 @@
     $('#et-titulo').trigger('focus')
   })
 
+  //Autofocus no email do Modal convidar orientador
+  $('#orientadorModal').on('shown.bs.modal', function () {
+    $('#om-email').trigger('focus')
+  })
+
   //Autofocus no email do Modal convidar aluno
   $('#alunoModal').on('shown.bs.modal', function () {
     $('#ca-aluno').trigger('focus')
@@ -112,6 +117,13 @@
     var id3 = $(this).attr('rel')
     $('#alunoModal').find('.ca-id').val(id3)
     $('#alunoModal').modal('show')
+  })
+
+  // Modal convidar orientador
+  $('.btn-convidar-orientador').click(function () {
+    var id = $(this).attr('rel')
+    $('#orientadorModal').find('.om-id').val(id)
+    $('#orientadorModal').modal('show')
   })
 
   // Modal editar nome turma
