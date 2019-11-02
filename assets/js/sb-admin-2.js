@@ -157,7 +157,7 @@
       e.preventDefault();
       if (x < max_fields) {
         x++;
-        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control input-lowercase" placeholder="E-mail do Aluno ' + x + '" name="ca-aluno[]" required/><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
+        $(wrapper_aluno).append('<div class="input-group my-3"><input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" class="form-control input-lowercase" placeholder="E-mail do Aluno ' + x + '" name="ca-aluno[]" required/><div class="input-group-append"><a class="remove_field input-group-text text-white bg-danger border-0" title="Remover">x</a></div></div>');
       }
       if (x == max_fields) {
         $(add_aluno).toggle()

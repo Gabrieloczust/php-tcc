@@ -10,7 +10,7 @@
         <h6 class="dropdown-header">
             Convites
         </h6>
-        <div class="dropdown-itens">
+        <div class="dropdown-itens dropdown-itens-primary">
             <?php foreach ($convites as $convite) : ?>
                 <div class="dropdown-item d-flex align-items-center">
                     <div class="dropdown-list-image mr-3">

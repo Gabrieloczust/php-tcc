@@ -9,9 +9,9 @@ class homeController extends Controller
 	public function index()
 	{
 		if ($this->usuarioLogadoTipo == 'aluno') {
-			header('Location:' . HOME . 'aluno');
+			header('Location:' . HOME . 'projetos');
 		} else {
-			header('Location:' . HOME . 'professor');
+			header('Location:' . HOME . 'turmas');
 		}
 	}
 }

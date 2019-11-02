@@ -12,7 +12,7 @@
         <h6 class="dropdown-header">
             Notificações
         </h6>
-        <form class="dropdown-itens">
+        <form class="dropdown-itens dropdown-itens-primary">
             <?php
                 foreach ($notificacoes as $notificacao) :
                     if ($notificacao['tipo'] == 'aceito') :
@@ -23,7 +23,7 @@
                         $fa = "fa-exclamation-triangle";
                     endif;
                     ?>
-                <div class="dropdown-item align-items-center" style="display: flex">
+                <div class="dropdown-item align-items-center position-relative" style="display: flex">
                     <div class="dropdown-list-image d-flex align-items-center mr-2">
                         <div class="rounded-circle btn-circle btn-sm <?= $classe ?> dark-off">
                             <i class="fas <?= $fa ?>"></i>
@@ -36,7 +36,7 @@
                                 <i class="fa fa-clock text-dark mr-1"></i><?= $notificacao['tempo'] ?>
                             </small>
                             <a data-url="<?= HOME ?>ajax/apagaNotificacao/<?= $notificacao['idNotificacao'] ?>" class="apaga-mensagem pointer" title="Apagar">
-                                <i class="text-danger fa fa-trash fa-sm"></i>
+                                <i class="text-danger fa fa-times-circle fa-sm"></i>
                             </a>
                         </div>
                     </div>

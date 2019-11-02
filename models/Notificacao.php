@@ -41,13 +41,56 @@ class Notificacao extends Model
         $nomeProjeto = $this->projeto->getTitulo();
 
         // Monta a mensagem
-        $mensagem = "O Orientador <b>$nomeOrientador</b> saiu do projeto <b>$nomeProjeto</b>!";
+        $mensagem = "O Orientador <b>$nomeOrientador</b> saiu do projeto <b>$nomeProjeto</b>";
 
         // Envia a notifacao para todos alunos
         foreach ($ids as $id) :
             $sql2 = $this->db->prepare("INSERT INTO notificacao SET tipo = 'recusado', mensagem = ?, fkRemetente = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
             $sql2->execute(array($mensagem, $idOrientador, $id['fkAluno']));
         endforeach;
+    }
+
+    public function alunoSaiu($idProjeto, $ra)
+    {
+        // Pega o titulo do Projeto
+        $this->projeto->setAll($idProjeto);
+        $titulo = $this->projeto->getTitulo();
+
+        // Pega o nome do aluno
+        $sql = $this->db->prepare("SELECT nome FROM aluno WHERE ra = ?");
+        $sql->execute(array($ra));
+        $nome = $sql->fetch()['nome'];
+
+        // Pega o id dos alunos que receberam esta notificacao
+        $sql1 = $this->db->prepare("SELECT fkAluno FROM projeto_tem_aluno WHERE fkProjeto = ? AND fkAluno != ?");
+        $sql1->execute(array($idProjeto, $ra));
+        $ids = $sql1->fetchAll();
+
+        // Monta mensagem
+        $mensagem = "O aluno <b>$nome</b> saiu do projeto <b>$titulo</b>";
+
+        // Envia a notifacao para os alunos do projeto
+        foreach ($ids as $id) :
+            $sql2 = $this->db->prepare("INSERT INTO notificacao SET tipo = 'recusado', mensagem = ?, fkRemetente = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
+            $sql2->execute(array($mensagem, $ra, $id['fkAluno']));
+        endforeach;
+    }
+
+    public function projetoApagado($idProjeto, $ra)
+    {
+        // Pega o id da turma, id do orientador e nome do Projeto
+        $this->projeto->setAll($idProjeto);
+        $tituloProjeto = $this->projeto->getTitulo();
+        $idOrientador = $this->projeto->getOrientador();
+        $idTurma = $this->projeto->getTurma();
+        $turma = new Turma(NULL, $idTurma);
+        $nomeTurma = $turma->getNome();
+
+        // Monta mensagem
+        $mensagem = "O projeto <b>$tituloProjeto</b> não existe mais, foi apagado da turma <b>$nomeTurma</b> automaticamente";
+
+        $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkRemetente = ?, fkDestinatario = ?, tipoDestinatario = ?");
+        $sql->execute(array($this->getTipo(), $mensagem, $ra, $idOrientador, 'Orientador'));
     }
 
     public function getNoficacoes($idUsuario)
@@ -61,7 +104,7 @@ class Notificacao extends Model
             elseif ($result['tempo'] > 1439) :
                 $results[$key]['tempo'] = floor($result['tempo'] /= 1440) . " d";
             else :
-                $results[$key]['tempo'] = $result['tempo'] . " m";
+                $results[$key]['tempo'] = $result['tempo'] . " min";
             endif;
         endforeach;
         return $results;

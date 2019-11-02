@@ -1,9 +1,13 @@
 <?php
-class alunoController extends Controller
+class projetosController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
+        if ($this->usuarioLogadoTipo != 'aluno') {
+            header("Location:" . HOME);
+            exit;
+        }
     }
 
     public function index()
@@ -114,12 +118,6 @@ class alunoController extends Controller
             'projetos' => $projetos
         );
 
-        $this->loadTemplate("homealuno", $dados);
-    }
-
-    public function projeto($slug)
-    {
-        $dados = [];
-        $this->loadTemplate("projetoaluno", $dados);
+        $this->loadTemplate("projetos", $dados);
     }
 }

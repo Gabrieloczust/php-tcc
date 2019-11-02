@@ -5,15 +5,19 @@ class Projeto extends Model
 	private $id;
 	private $titulo;
 	private $lider;
+	private $turma;
+	private $orientador;
 
 	public function setAll($id)
 	{
-		$sql = $this->db->prepare("SELECT * FROM projeto WHERE idProjeto = :id");
+		$sql = $this->db->prepare("SELECT * FROM projeto LEFT JOIN projeto_tem_professor ON(idProjeto = fkProjeto) WHERE idProjeto = :id");
 		$sql->bindValue(":id", $id);
 		$sql->execute();
 		$projeto = $sql->fetch();
 		$this->setId($id);
 		$this->setTitulo($projeto['titulo']);
+		$this->setTurma($projeto['fkTurma']);
+		$this->setOrientador($projeto['fkProfessor']);
 	}
 
 	public function novoProjeto($titulo, $ra, $orientador)
@@ -74,6 +78,10 @@ class Projeto extends Model
 
 		// Se não houver usuario no projeto remove o projeto e se houver convites deleta
 		if ($sql2->rowCount() == 0) {
+			// Notificacao ao orientador do projeto
+			$notificacao = new Notificacao("recusado");
+			$notificacao->projetoApagado($idProjeto, $ra);
+
 			$sql4 = $this->db->prepare("DELETE FROM convite WHERE fkProjeto = :idProjeto");
 			$sql4->bindValue(":idProjeto", $idProjeto);
 			$sql4->execute();
@@ -81,6 +89,10 @@ class Projeto extends Model
 			$sql3 = $this->db->prepare("DELETE FROM projeto WHERE idProjeto = :idProjeto");
 			$sql3->bindValue(":idProjeto", $idProjeto);
 			$sql3->execute();
+		} else {
+			// Notificacao aos alunos do projeto
+			$notificacao = new Notificacao("recusado");
+			$notificacao->alunoSaiu($idProjeto, $ra);
 		}
 
 		if ($sql->rowCount() > 0) {
@@ -195,5 +207,21 @@ class Projeto extends Model
 	public function setLider($l)
 	{
 		$this->lider = $l;
+	}
+	public function getTurma()
+	{
+		return $this->turma;
+	}
+	public function setTurma($t)
+	{
+		$this->turma = $t;
+	}
+	public function getOrientador()
+	{
+		return $this->orientador;
+	}
+	public function setOrientador($o)
+	{
+		$this->orientador = $o;
 	}
 }

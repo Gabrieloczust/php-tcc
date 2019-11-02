@@ -156,8 +156,14 @@ input:checked+.slider:before {
     border-color: #1cc88a !important;
 }
 
+.apaga-mensagem {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}
+
 .dropdown-itens {
-    max-height: 300px;
+    max-height: 442px;
     overflow-y: auto !important;
 }
 
@@ -183,5 +189,12 @@ input:checked+.slider:before {
 
 .dropdown-itens::-webkit-scrollbar-thumb {
     border-radius: 10px;
+}
+
+.dropdown-itens-primary::-webkit-scrollbar-thumb {
     background: #4e73df;
+}
+
+.dropdown-itens-success::-webkit-scrollbar-thumb {
+    background: #1cc88a;
 }

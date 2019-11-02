@@ -39,7 +39,7 @@
                 <div class="card border-left-success shadow h-100 py-2">
                     <div class="card-body d-flex">
                         <div class="row no-gutters w-100 align-items-center">
-                            <a class="hover-turma col mr-2" href="<?= HOME ?>professor/turma/<?= $turma['slug'] ?>" title="TURMA <?= $turma['nome'] ?>">
+                            <a class="hover-turma col mr-2" href="<?= HOME ?>turmas/turma/<?= $turma['slug'] ?>" title="TURMA <?= $turma['nome'] ?>">
                                 <div class="h5 font-weight-bold text-success text-uppercase mb-1">TURMA <?= $turma['nome'] ?></div>
                                 <div class="text-xs mb-0 font-weight-bold text-gray-800"><?= $turma['qtdProjetoTurma'] ?></div>
                             </a>

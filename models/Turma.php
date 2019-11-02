@@ -6,11 +6,12 @@ class Turma extends Model
     private $nome;
     private $orientador;
 
-    public function __construct($emailOrientador, $idTurma = NULL)
+    public function __construct($emailOrientador = NULL, $idTurma = NULL)
     {
         parent::__construct();
-        $this->orientador = new Orientador($emailOrientador);
-
+        if (!empty($emailOrientador)) :
+            $this->orientador = new Orientador($emailOrientador);
+        endif;
         if (!empty($idTurma)) :
             $sql01 = $this->db->prepare("SELECT * FROM turma WHERE idTurma = ?");
             $sql01->execute(array($idTurma));

@@ -49,7 +49,7 @@
         <div class="col-lg-6">
             <div class="card card-projeto shadow mb-4">
                 <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
-                    <a href="<?= HOME . 'aluno/projeto/' . $projeto['slug'] ?>" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
+                    <a href="<?= HOME . 'projetos/projeto/' . $projeto['slug'] ?>" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $projeto['fkProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa fa-fw"></i>
@@ -96,7 +96,7 @@
                 <div class="form-group">
                     <label class="text-primary">Convidar Orientador: </label>
                     <div class="input-group">
-                        <input type="email" id="inviteOrientador" class="form-control input-lowercase" placeholder="E-mail do Professor Orientador *" name="ng-emailProfessor" required />
+                        <input type="email" id="inviteOrientador" class="form-control input-lowercase" placeholder="E-mail do Professor Orientador *" name="ng-emailProfessor" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" required />
                     </div>
                 </div>
             </div>
@@ -121,7 +121,7 @@
             <div class="modal-body">
                 <input type="hidden" class="ca-id" name="ca-id">
                 <div class="input-group my-3">
-                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control input-lowercase" name="ca-aluno[]" placeholder="E-mail do aluno 1" title="Digite um e-mail válido" required />
+                    <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" class="form-control input-lowercase" name="ca-aluno[]" placeholder="E-mail do aluno 1" title="Digite um e-mail válido" required />
                 </div>
                 <div id="novos-alunos"></div>
                 <a class="add-novo-aluno btn btn-info" href="#">Adiconar <i class="fas fa-sm fa-plus"></i></a>
@@ -147,7 +147,7 @@
             <div class="modal-body">
                 <input type="hidden" class="om-id" name="om-id">
                 <div class="input-group my-3">
-                    <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control input-lowercase" name="om-email" id="om-email" placeholder="E-mail do professor" title="Digite um e-mail válido" required />
+                    <input type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" class="form-control input-lowercase" name="om-email" id="om-email" placeholder="E-mail do professor" title="Digite um e-mail válido" required />
                 </div>
             </div>
             <div class="modal-footer">

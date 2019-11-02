@@ -31,7 +31,7 @@
                             </div>
                             <div class="col-md-6 mb-3 form-group">
                                 <label class="text-dark" for="perfil-email">E-mail:</label>
-                                <input class="form-control input-lowercase" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="perfil-email" id="perfil-email" placeholder="<?= $email ?>" data-error="Por favor, informe um e-mail correto">
+                                <input class="form-control input-lowercase" type="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$" name="perfil-email" id="perfil-email" placeholder="<?= $email ?>" data-error="Por favor, informe um e-mail correto">
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>

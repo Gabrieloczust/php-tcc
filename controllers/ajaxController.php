@@ -15,7 +15,11 @@ class ajaxController extends Controller
     public function notificacoesLidas()
     {
         $usuario = $this->usuarioLogado;
-        $notificacao = new Notificacao($this->usuarioLogadoTipo);
+        if ($this->usuarioLogadoTipo == 'professor') {
+            $notificacao = new Notificacao('Orientador');
+        } else {
+            $notificacao = new Notificacao('Aluno');
+        }
         $notificacao->changeLidas($usuario->getId());
         echo $notificacao->qtdNaoLidas($usuario->getId());
     }

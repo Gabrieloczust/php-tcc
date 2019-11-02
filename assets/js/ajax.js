@@ -23,7 +23,7 @@ $('#notificacoes').on('click', function () {
 
 // Atualiza convites e notifacoes a cada 5s
 reloadNotifications();
-var timeout = setInterval(reloadNotifications, 5000);
+var timeout = setInterval(reloadNotifications, 3000);
 
 function reloadNotifications() {
     var home = $('#notificacoes').attr('data-url');

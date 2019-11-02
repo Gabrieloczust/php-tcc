@@ -1,9 +1,13 @@
 <?php
-class professorController extends Controller
+class turmasController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
+        if ($this->usuarioLogadoTipo != 'professor') {
+            header("Location:" . HOME);
+            exit;
+        }
     }
 
     public function index()
@@ -67,10 +71,10 @@ class professorController extends Controller
             'turmas' => $turmas
         );
 
-        $this->loadTemplate("homeprofessor", $dados);
+        $this->loadTemplate("turmas", $dados);
     }
 
-    public function turma($slug)
+    public function turma($slug = NULL)
     {
         // Arrays para avisos de Validação
         $errors = array();
@@ -94,11 +98,5 @@ class professorController extends Controller
         );
 
         $this->loadTemplate("turma", $dados);
-    }
-
-    public function projeto($slug)
-    {
-        $dados = [];
-        $this->loadTemplate("projetoprofessor", $dados);
     }
 }
