@@ -55,10 +55,10 @@ class Turma extends Model
     public function getTurma($slug)
     {
         $idOrientador = $this->orientador->getId();
-        $sql = $this->db->prepare("SELECT * FROM turma WHERE fkOrientador = ? AND slug = ?");
+        $sql = $this->db->prepare("SELECT * FROM turma as t INNER JOIN projeto as p ON(idTurma = fkTurma) WHERE fkOrientador = ? AND t.slug = ?");
         $sql->execute(array($idOrientador, $slug));
-        if ($sql->rowCount() == 1) :
-            return $sql->fetch();
+        if ($sql->rowCount() > 0) :
+            return $sql->fetchAll();
         else :
             return array();
         endif;

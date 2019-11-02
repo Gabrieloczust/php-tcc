@@ -43,9 +43,8 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Projetos -->
-      <li class="nav-item <?php if ($viewName == 'homeprofessor') {
-                            echo 'active';
-                          } ?>">
+      <li class="nav-item <?php if ($viewName == 'homeprofessor' || 'turma') : echo 'active';
+                          endif; ?>">
         <a class="nav-link" href="<?= HOME ?>">
           <i class="fas fa-fw fa-users"></i>
           <span>Turmas</span>
@@ -56,9 +55,8 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Biblioteca Projetos -->
-      <li class="nav-item <?php if ($viewName == 'biblioteca') {
-                            echo 'active';
-                          } ?>">
+      <li class="nav-item <?php if ($viewName == 'biblioteca') : echo 'active';
+                          endif; ?>">
         <a class="nav-link" href="<?= HOME ?>biblioteca">
           <i class="fas fa-fw fa-book"></i>
           <span>Projetos da Gelera</span>
@@ -66,9 +64,8 @@
       </li>
 
       <!-- Nav Item - Configurações -->
-      <li class="nav-item <?php if ($viewName == 'configuracoesprofessor') {
-                            echo 'active';
-                          } ?>">
+      <li class="nav-item <?php if ($viewName == 'configuracoesprofessor') : echo 'active';
+                          endif; ?>">
         <a class="nav-link" href="<?= HOME ?>configuracoesprofessor">
           <i class="fas fa-fw fa-cog"></i>
           <span>Configurações</span></a>

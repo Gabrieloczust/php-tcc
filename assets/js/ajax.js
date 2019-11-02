@@ -13,8 +13,6 @@ $('#muda-tema').on('click', function () {
     $(this).load(home + "ajax/mudatema")
 });
 
-reloadNotifications();
-
 // Muda as notificacoes de nao lidas para lidas
 $('#notificacoes').on('click', function () {
     var home = $(this).attr('data-url')
@@ -22,17 +20,17 @@ $('#notificacoes').on('click', function () {
     $('#qtd-notificacoes').load(home + "ajax/notificacoesLidas")
 })
 
+
 // Atualiza convites e notifacoes a cada 5s
+reloadNotifications();
 var timeout = setInterval(reloadNotifications, 5000);
 
 function reloadNotifications() {
     var home = $('#notificacoes').attr('data-url');
-    $('#notificacoes').load(home + "ajax/notificacoes");
-    $('#convites').load(home + "ajax/convites");
-    $('#convitesProfessor').load(home + "ajax/convitesProfessor");
+    var open = $('.stop-ajax').hasClass('show')
+    if (open == false) {
+        $('#notificacoes').load(home + "ajax/notificacoes");
+        $('#convites').load(home + "ajax/convites");
+        $('#convitesProfessor').load(home + "ajax/convitesProfessor");
+    }
 }
-
-// Se abrir convites ou notificacoes para de atualizar
-$('.stop-ajax').on('click', function () {
-    clearInterval(timeout);
-});

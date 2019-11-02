@@ -116,4 +116,10 @@ class alunoController extends Controller
 
         $this->loadTemplate("homealuno", $dados);
     }
+
+    public function projeto($slug)
+    {
+        $dados = [];
+        $this->loadTemplate("projetoaluno", $dados);
+    }
 }

@@ -100,8 +100,7 @@ class Projeto extends Model
 		// Adiciona o nome dos alunos participantes
 		foreach ($results as $result) {
 			$participantes = $this->getNomeParticipantes($result['idProjeto']);
-			$array = array_unique($result, SORT_STRING);
-			$array = array_merge($participantes, $array);
+			$array = array_merge($participantes, $result);
 			// Verifica se possui orientador
 			$sql1 = $this->db->prepare("SELECT fkProjeto FROM projeto_tem_professor WHERE fkProjeto = ? UNION SELECT fkProjeto FROM convite WHERE fkProjeto = ?");
 			$sql1->execute(array($result['idProjeto'], $result['idProjeto']));

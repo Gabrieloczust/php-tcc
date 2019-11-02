@@ -82,6 +82,9 @@ class professorController extends Controller
 
         $t = new Turma($email);
         $turma = $t->getTurma($slug);
+        if (empty($turma)) {
+            array_push($errors, "Está turma não possui nenhum projeto!");
+        }
 
         $dados = array(
             'errors' => $errors,
@@ -91,5 +94,11 @@ class professorController extends Controller
         );
 
         $this->loadTemplate("turma", $dados);
+    }
+
+    public function projeto($slug)
+    {
+        $dados = [];
+        $this->loadTemplate("projetoprofessor", $dados);
     }
 }

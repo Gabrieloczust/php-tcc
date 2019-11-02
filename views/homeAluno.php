@@ -49,7 +49,7 @@
         <div class="col-lg-6">
             <div class="card card-projeto shadow mb-4">
                 <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
-                    <a href="<?= HOME ?>projeto" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
+                    <a href="<?= HOME . 'aluno/projeto/' . $projeto['slug'] ?>" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $projeto['fkProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa fa-fw"></i>
