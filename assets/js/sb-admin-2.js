@@ -54,6 +54,13 @@
     });
   });
 
+  // Data minima dia de hoje
+  $(function () {
+    $('[type="date"]').prop('min', function () {
+      return new Date().toJSON().split('T')[0];
+    });
+  });
+
   // Toggle password
   $(".input-olho").mousedown(function () {
     $(".input-senha").attr("type", "text");
@@ -93,10 +100,21 @@
     $('#en-nome').trigger('focus')
   })
 
+  //Autofocus no select de Alterar Turma
+  $('#alterarTurmaModal').on('shown.bs.modal', function () {
+    $('#at-turma').trigger('focus')
+  })
+
   //Autofocus no nome do Modal editar nome turma
   $('#avaliadorModal').on('shown.bs.modal', function () {
     $('#ca-email').trigger('focus')
   })
+
+  //Autofocus no titulo do Modal Solicitar entrega
+  $('#solicitarEntregaModal').on('shown.bs.modal', function () {
+    $('#se-titulo').trigger('focus')
+  })
+
 
   // Modal editar titulo
   $('.btn-editar-titulo').click(function () {
@@ -146,6 +164,31 @@
     $('#apagarTurmaModal').modal('show')
   })
 
+  // Modal remover projeto
+  $('.btn-remover-projeto').click(function () {
+    var id = $(this).attr('rel')
+    var turma = $(this).attr('data-turma')
+    var projeto = $(this).attr('data-projeto')
+    $('#removerProjetoModal').find('b.nome-projeto').text(projeto)
+    $('#removerProjetoModal').find('input.nome-turma').val(turma)
+    $('#removerProjetoModal').find('input.nome-projeto').val(projeto)
+    $('#removerProjetoModal').find('.rp-id').val(id)
+    $('#removerProjetoModal').modal('show')
+  })
+
+  // Modal Alterar turma
+  $('.btn-alterar-turma').click(function () {
+    var id = $(this).attr('rel')
+    var turma = $(this).attr('data-turma')
+    var projeto = $(this).attr('data-projeto')
+    $('#alterarTurmaModal').find('.at-id').val(id)
+    $('#alterarTurmaModal').find('span.nome-turma').text(turma)
+    $('#alterarTurmaModal').find('span.nome-projeto').text(projeto)
+    $('#alterarTurmaModal').find('input.nome-turma').val(turma)
+    $('#alterarTurmaModal').find('input.nome-projeto').val(projeto)
+    $('#alterarTurmaModal').modal('show')
+  })
+
   // Adiciona novo input para convidar aluno
   $(document).ready(function () {
     var max_fields = 10;
@@ -173,6 +216,22 @@
         $(add_aluno).toggle()
       }
     })
+  });
+
+  // Sortable
+  Sortable.create(demo1, {
+    animation: 100,
+    group: 'list-1',
+    draggable: '.list-group-item',
+    handle: '.list-group-item',
+    sort: true,
+    filter: '.sortable-disabled',
+    chosenClass: 'active'
+  });
+
+  Sortable.create(demo2, {
+    group: 'list-1',
+    handle: '.list-group-item'
   });
 
 })(jQuery); // End of use strict

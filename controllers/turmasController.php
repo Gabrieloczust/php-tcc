@@ -25,7 +25,7 @@ class turmasController extends Controller
         // Cadastro de Nova Turma //
         if (filter_input(INPUT_POST, 'nova_turma') === "nova_turma") {
             // Pega o nome da turma
-            $nome = strtoupper(filter_input(INPUT_POST, 'nt-nome', FILTER_SANITIZE_SPECIAL_CHARS));
+            $nome = mb_strtoupper(filter_input(INPUT_POST, 'nt-nome', FILTER_SANITIZE_SPECIAL_CHARS));
             if (!empty($nome)) {
                 if ($turma->novaTurma($nome) == true) {
                     array_push($successes, "Turma <b>$nome</b> criada com sucesso!");
@@ -40,7 +40,7 @@ class turmasController extends Controller
         // Editar Nome //
         $hashTurma = filter_input(INPUT_POST, 'en-id');
         if (filter_input(INPUT_POST, 'edita_nome') === "edita_nome" && !empty($hashTurma)) {
-            $novoNome = strtoupper(filter_input(INPUT_POST, 'en-nome', FILTER_SANITIZE_SPECIAL_CHARS));
+            $novoNome = mb_strtoupper(filter_input(INPUT_POST, 'en-nome', FILTER_SANITIZE_SPECIAL_CHARS));
             $nomeAntigo = $_POST['en-nome-aviso'];
             $validaNome = $turma->editaNome($novoNome, $hashTurma);
             if ($validaNome == false) {
@@ -85,16 +85,47 @@ class turmasController extends Controller
         $email = $prof->getEmail();
 
         $t = new Turma($email);
+
+        // Alterar turma //
+        $atId = filter_input(INPUT_POST, 'at-id');
+        if (filter_input(INPUT_POST, 'alterar_turma') === "alterar_turma" && !empty($atId)) {
+            $atTurma = $_POST['at-turma'];
+            $nomeTurma = $_POST['nome-turma'];
+            $nomeProjeto = $_POST['nome-projeto'];
+            $novaTurma = $t->alterarTurma($atId, $atTurma);
+            if ($novaTurma != false) {
+                array_push($successes, "Projeto <b>$nomeProjeto</b> passou da turma <b>$nomeTurma</b> para a turma <a href='" . HOME . "turmas/turma/" . $t->getSlug() . "'><b>$novaTurma</b></a>");
+            } else {
+                array_push($errors, "Erro ao mudar a turma do projeto <b>$nomeProjeto</b>");
+            }
+        }
+
+        // Remover Projeto //
+        $rpId = filter_input(INPUT_POST, 'rp-id');
+        if (filter_input(INPUT_POST, 'remover_projeto') === "remover_projeto" && !empty($rpId)) {
+            $t = new Turma($email, $rpId);
+            $nomeTurma = $_POST['nome-turma'];
+            $nomeProjeto = $_POST['nome-projeto'];
+            $removido = $t->removerProjeto($rpId);
+            if ($removido == true) {
+                array_push($successes, "Projeto <b>" . $nomeProjeto . "</b> removido da turma <b>" . $nomeTurma . "</b> com sucesso!");
+            } else {
+                array_push($errors, "Erro ao remover projeto!");
+            }
+        }
+
         $turma = $t->getTurma($slug);
         if (empty($turma)) {
-            array_push($errors, "Está turma não possui nenhum projeto!");
+            array_push($warnings, "Está turma não possui nenhum projeto!");
         }
+        $turmas = $t->getTurmas();
 
         $dados = array(
             'errors' => $errors,
             'warnings' => $warnings,
             'successes' => $successes,
-            'turma' => $turma
+            'turma' => $turma,
+            'turmas' => $turmas
         );
 
         $this->loadTemplate("turma", $dados);

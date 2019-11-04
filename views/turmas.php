@@ -1,7 +1,7 @@
 <!-- Page Heading -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Turmas</h1>
-    <a href="#" data-toggle="modal" data-target="#turmaModal" class="btn btn-success shadow-sm btn-new">
+<div class="d-sm-flex flex-column mb-4">
+    <h1 class="h3 mb-2 text-gray-800">Turmas</h1>
+    <a data-toggle="modal" data-target="#turmaModal" class="btn btn-success shadow-sm btn-new text-white pointer">
         <i class="fas fa-folder-plus fa-sm pr-1"></i> Nova Turma
     </a>
 </div>

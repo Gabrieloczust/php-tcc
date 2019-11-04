@@ -5,6 +5,7 @@ class Turma extends Model
     private $id;
     private $nome;
     private $orientador;
+    private $slug;
 
     public function __construct($emailOrientador = NULL, $idTurma = NULL)
     {
@@ -13,11 +14,7 @@ class Turma extends Model
             $this->orientador = new Orientador($emailOrientador);
         endif;
         if (!empty($idTurma)) :
-            $sql01 = $this->db->prepare("SELECT * FROM turma WHERE idTurma = ?");
-            $sql01->execute(array($idTurma));
-            $t = $sql01->fetch();
-            $this->setId($t['idTurma']);
-            $this->setNome($t['nome']);
+            $this->setAll($idTurma);
         endif;
     }
 
@@ -48,6 +45,18 @@ class Turma extends Model
             $sql = $this->db->prepare("UPDATE turma SET nome = ?, slug = ? WHERE hashInterno = ? AND fkOrientador = ?");
             $sql->execute(array($novoNome, $slug, $hashInterno, $id));
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function alterarTurma($idProjeto, $idTurma)
+    {
+        $sql = $this->db->prepare("UPDATE projeto SET fkTurma = ? WHERE idProjeto = ?");
+        $sql->execute(array($idTurma, $idProjeto));
+        if ($sql->rowCount() > 0) {
+            $this->setAll($idTurma);
+            return $this->getNome();
         } else {
             return false;
         }
@@ -111,6 +120,36 @@ class Turma extends Model
         return false;
     }
 
+    public function removerProjeto($idProjeto)
+    {
+        $sql = $this->db->prepare("UPDATE projeto SET fkTurma = NULL WHERE idProjeto = ?");
+        $sql->execute(array($idProjeto));
+        if ($sql->rowCount() > 0) {
+            // Enviar notificacao para os alunos que o orientador saiu do projeto
+            $notificacao = new Notificacao("recusado");
+            $idOrientador = $this->orientador->getId();
+            $nomeOrientador = $this->orientador->getNome();
+            $notificacao->orientadorSaiu($idOrientador, $nomeOrientador, $idProjeto);
+
+            // Remover orientador do projeto
+            $sql2 = $this->db->prepare("DELETE FROM projeto_tem_professor WHERE fkProjeto = ?");
+            $sql2->execute(array($idProjeto));
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function setAll($idTurma)
+    {
+        $sql01 = $this->db->prepare("SELECT * FROM turma WHERE idTurma = ?");
+        $sql01->execute(array($idTurma));
+        $t = $sql01->fetch();
+        $this->setId($t['idTurma']);
+        $this->setNome($t['nome']);
+        $this->setSlug($t['slug']);
+    }
+
     private function getQtdProjetoTurma($idTurma)
     {
         $sql = $this->db->prepare("SELECT count(*) as qtdProjetoTurma FROM projeto WHERE fkTurma = ?");
@@ -162,5 +201,14 @@ class Turma extends Model
     public function setNome($n)
     {
         $this->nome = $n;
+    }
+
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
     }
 }

@@ -234,6 +234,7 @@
 
     <!-- Page level custom scripts -->
     <script src="<?= JS ?>demo/datatables-demo.js"></script>
+    <script src="<?= JS ?>Sortable.min.js"></script>
 
     <!-- Validor Form FrontEnd -->
     <script src="<?= JS ?>validator.min.js"></script>
