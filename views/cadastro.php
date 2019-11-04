@@ -13,7 +13,7 @@
 
         <div id="aluno" class="forms">
 
-            <h4 class="mb-3 titulo-register">Cadastro de Aluno</h4>
+            <h4 class="mb-3 titulo-register">Cadastro</h4>
             <form class="row" data-toggle="validator" method="POST">
                 <div class="col">
                     <input type="hidden" name="usuario" value="aluno">
@@ -64,7 +64,7 @@
         </div>
 
         <div id="professor" class="forms">
-            <h4 class="mb-3 titulo-register">Cadastro de Professor</h4>
+            <h4 class="mb-3 titulo-register">Cadastro</h4>
             <form class="row" data-toggle="validator" method="POST">
                 <div class="col">
                     <input type="hidden" name="usuario" value="professor">

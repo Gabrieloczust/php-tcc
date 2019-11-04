@@ -8,7 +8,7 @@
             <i class="fas fa-file-medical fa-sm pr-1"></i> Nova Entrega
         </a>
     <?php else : ?>
-        <a href="<?= HOME ?>turmas" class="btn btn-warning" title="Voltar">Voltar</a>
+        <a href="<?= HOME ?>turmas" class="btn btn-new btn-warning" title="Voltar">Voltar</a>
     <?php endif; ?>
 </div>
 
@@ -124,7 +124,7 @@
 
 <!-- Modal Solciitar Entrega -->
 <div class="modal fade" id="solicitarEntregaModal" tabindex="-1" role="dialog" aria-labelledby="solicitarEntregaModalLabel" aria-hidden="true">
-    <form class="modal-dialog modal-lg" role="document" method="POST">
+    <form class="modal-dialog modal-lg" role="document" method="POST" id="form-entrega">
         <input type="hidden" name="solicitar_entrega" value="solicitar_entrega" />
         <div class="modal-content">
             <div class="modal-header">
@@ -153,14 +153,11 @@
                     <div class="col-lg-6">
                         <span class="d-block text-center text-success my-2 dark-off">Receber</span>
                         <ul class="list-group list-group-sortable list-group-sortable-success" id="demo1">
-                            <li class="list-group-item">Projeto 1</li>
-                            <li class="list-group-item">Projeto 2</li>
-                            <li class="list-group-item">Projeto 3</li>
-                            <li class="list-group-item">Projeto 4</li>
-                            <li class="list-group-item">Projeto 5</li>
-                            <li class="list-group-item">Projeto 6</li>
-                            <li class="list-group-item">Projeto 7</li>
-                            <li class="list-group-item">Projeto 8</li>
+                            <?php foreach ($turma as $projeto) : ?>
+                                <li class="list-group-item" rel="<?= $projeto['idProjeto'] ?>">
+                                    <?= $projeto['titulo'] ?>
+                                </li>
+                            <?php endforeach; ?>
                         </ul>
                     </div>
                     <div class="col-lg-6">
@@ -171,6 +168,7 @@
             </div>
             <div class="modal-footer">
                 <input type="hidden" class="se-id" name="se-id">
+                <input type="hidden" id="se-projetos" name="se-projetos">
                 <input type="submit" class="btn btn-success" value="Solicitar">
             </div>
         </div>

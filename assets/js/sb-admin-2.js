@@ -234,4 +234,13 @@
     handle: '.list-group-item'
   });
 
+  // Projetos que não receberam a entrega
+  $('#form-entrega').submit(function (e) {
+    var ids = new Array();
+    $('#demo2 .list-group-item').each(function () {
+      ids.push($(this).attr('rel'));
+    })
+    $('#se-projetos').val(ids)
+  });
+
 })(jQuery); // End of use strict
