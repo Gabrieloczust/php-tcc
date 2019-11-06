@@ -241,7 +241,7 @@
     <script src="<?= JS ?>jquery.mask.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="<?= JS ?>sb-admin-2.js"></script>
+    <script src="<?= JS ?>frontend.js"></script>
     <script src="<?= JS ?>ajax.js"></script>
 
 </body>

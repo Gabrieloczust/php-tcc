@@ -15,6 +15,7 @@
 
 .temadark-on .btn-primary:not(.dark-off),
 .temadark-on .btn-success:not(.dark-off),
+.temadark-on .btn-info:not(.dark-off),
 .temadark-on .page-item.active .page-link,
 .temadark-on .topbar .dropdown-list .dropdown-header {
     background: #000 !important;

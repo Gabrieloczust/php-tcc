@@ -4,6 +4,7 @@ class Projeto extends Model
 {
 	private $id;
 	private $titulo;
+	private $slug;
 	private $lider;
 	private $turma;
 	private $orientador;
@@ -16,6 +17,7 @@ class Projeto extends Model
 		$projeto = $sql->fetch();
 		$this->setId($id);
 		$this->setTitulo($projeto['titulo']);
+		$this->setSlug($projeto['slug']);
 		$this->setTurma($projeto['fkTurma']);
 		$this->setOrientador($projeto['fkProfessor']);
 	}
@@ -199,6 +201,14 @@ class Projeto extends Model
 	public function setTitulo($t)
 	{
 		$this->titulo = $t;
+	}
+	public function getSlug()
+	{
+		return $this->slug;
+	}
+	public function setSlug($s)
+	{
+		$this->slug = $s;
 	}
 	public function getLider()
 	{

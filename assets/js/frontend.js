@@ -234,6 +234,9 @@
     handle: '.list-group-item'
   });
 
+  // Nova Entrega
+  
+
   // Projetos que não receberam a entrega
   $('#form-entrega').submit(function (e) {
     var ids = new Array();

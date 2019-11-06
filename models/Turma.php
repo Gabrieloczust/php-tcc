@@ -67,8 +67,10 @@ class Turma extends Model
         $idOrientador = $this->orientador->getId();
         $sql = $this->db->prepare("SELECT * FROM turma as t INNER JOIN projeto as p ON(idTurma = fkTurma) WHERE fkOrientador = ? AND t.slug = ?");
         $sql->execute(array($idOrientador, $slug));
+        $result = $sql->fetchAll();
         if ($sql->rowCount() > 0) :
-            return $sql->fetchAll();
+            $this->setAll($result[0]['idTurma']);
+            return $result;
         else :
             return array();
         endif;

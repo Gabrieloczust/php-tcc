@@ -1,4 +1,3 @@
-<!-- Page Heading -->
 <div class="d-sm-flex flex-column mb-4">
     <?php if (!empty($turma)) : ?>
         <h1 class="h3 mb-2 text-gray-800">
@@ -13,7 +12,7 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col">
         <?php
         foreach ($successes as $s) {
             echo '<div class="alert alert-success alert-dismissible fade show" role="alert">' . $s . '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -32,27 +31,79 @@
         }
         ?>
     </div>
+</div>
 
-    <?php foreach ($turma as $projeto) { ?>
-        <div class="col-lg-6">
-            <div class="card card-projeto shadow mb-4">
+<div class="row mb-4">
+
+    <div class="col-lg-8">
+        <div class="card border-left-success shadow py-2 mb-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ENTREGAS</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtdEntregas ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php foreach ($entregas as $entrega) { ?>
+            <div class="card border-left-info shadow py-2 mb-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2 mb-2">
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <?= $entrega['titulo'] ?>
+                            </div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase">DATA DE ENTREGA: <?= date("d/m/y", strtotime($entrega['data_entrega'])) ?></div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-file fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php } ?>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card border-left-dark shadow py-2 mb-2">
+            <div class="card-body">
+                <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">PROJETOS</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtdProjetos ?></div>
+                    </div>
+                    <div class="col-auto">
+                        <i class="fas fa-paste fa-2x text-gray-300"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php foreach ($turma as $projeto) : ?>
+            <div class="card shadow mb-2">
                 <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
-                    <a href="<?= HOME . 'turmas/projeto/' . $projeto['slug'] ?>" class="m-0 py-3 font-weight-bold text-success">Projeto <?= $projeto['titulo'] ?></a>
+                    <a href="<?= HOME . 'turmas/projeto/' . $projeto['slug'] ?>" class="m-0 py-2 font-weight-bold text-dark"><?= $projeto['titulo'] ?></a>
                     <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle p-3 text-success" href="#" role="button" id="dropdownMenuLink<?= $projeto['idProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="dropdown-toggle p-3 text-dark" href="#" role="button" id="dropdownMenuLink<?= $projeto['idProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa fa-fw"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['idProjeto'] ?>">
                             <div class="dropdown-header">Ações:</div>
-                            <a class="dropdown-item btn-alterar-turma" href="#" rel="<?= $projeto['idProjeto'] ?>" data-turma="<?= $projeto['nome'] ?>" data-projeto="<?= $projeto['titulo'] ?>">Alterar Turma</a>
-                            <div class="dropdown-divider"></div>
+                            <?php if ($qtdTurmas > 1 && $qtdEntregas < 1) : ?>
+                                <a class="dropdown-item btn-alterar-turma" href="#" rel="<?= $projeto['idProjeto'] ?>" data-turma="<?= $projeto['nome'] ?>" data-projeto="<?= $projeto['titulo'] ?>">Alterar Turma</a>
+                                <div class="dropdown-divider"></div>
+                            <?php endif; ?>
                             <a class="dropdown-item btn-remover-projeto" href="#" rel="<?= $projeto['idProjeto'] ?>" data-turma="<?= $projeto['nome'] ?>" data-projeto="<?= $projeto['titulo'] ?>">Remover Projeto</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php } ?>
+        <?php endforeach; ?>
+    </div>
+
 </div>
 
 <!-- Modal Alterar Turma -->
@@ -148,7 +199,7 @@
                 </div>
                 <div class="row">
                     <span class="col-lg-12 mb-2 text-dark text-center">
-                        Arraste para lista a <span class="text-danger">Não Receber</span> se deseja que algum projeto não receba esta entrega!
+                        Arraste para a lista <span class="text-danger">Não Receber</span> se deseja que algum projeto não receba esta entrega!
                     </span>
                     <div class="col-lg-6">
                         <span class="d-block text-center text-success my-2 dark-off">Receber</span>
@@ -167,7 +218,6 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <input type="hidden" class="se-id" name="se-id">
                 <input type="hidden" id="se-projetos" name="se-projetos">
                 <input type="submit" class="btn btn-success" value="Solicitar">
             </div>
