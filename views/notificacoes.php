@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="text-dark text-notificacao">
-                        <small class="d-block"><?= $notificacao['mensagem'] ?></small>
+                        <span class="d-block"><?= $notificacao['mensagem'] ?></span>
                         <div class="d-flex align-items-center justify-content-between mt-2">
                             <small class="">
                                 <i class="fa fa-clock text-dark mr-1"></i><?= $notificacao['tempo'] ?>

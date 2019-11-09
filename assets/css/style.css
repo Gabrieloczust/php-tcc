@@ -230,3 +230,9 @@ input:checked+.slider:before {
     border-bottom: none;
     border-radius: 0;
 }
+
+.card-entrega:hover {
+    text-decoration: none;
+    color: inherit;
+    background: #f7f7f7
+}

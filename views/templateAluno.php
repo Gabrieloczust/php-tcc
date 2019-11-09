@@ -43,7 +43,7 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Meus Projetos -->
-      <li class="nav-item <?php if ($viewName == 'projetos') {
+      <li class="nav-item <?php if ($viewName == 'projetos' || $viewName == 'projeto') {
                             echo 'active';
                           } ?>">
         <a class="nav-link" href="<?= HOME ?>">

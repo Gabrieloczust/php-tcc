@@ -46,8 +46,8 @@
     </div>
 
     <?php foreach ($projetos as $projeto) { ?>
-        <div class="col-lg-6">
-            <div class="card card-projeto shadow mb-4">
+        <div class="col-lg-6 mb-2">
+            <div class="card card-projeto shadow">
                 <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
                     <a href="<?= HOME . 'projetos/projeto/' . $projeto['slug'] ?>" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
                     <div class="dropdown no-arrow">
@@ -66,10 +66,6 @@
                             <a class="dropdown-item btn-sair-projeto" href="#" rel="<?= $projeto['fkProjeto'] ?>">Sair do Projeto</a>
                         </div>
                     </div>
-                </div>
-                <div class="card-footer d-flex align-items-center justify-content-between">
-                    <small><?= $projeto['alunosParticipantes'] ?></small>
-                    <small><?= date("d/m/y", strtotime($projeto['data_criacao'])) ?></small>
                 </div>
             </div>
         </div>
@@ -91,7 +87,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="ng-titulo" class="text-primary">Título do Projeto: </label>
-                    <input type="text" class="form-control" name="ng-titulo" id="ng-titulo" required />
+                    <input type="text" class="form-control text-uppercase" name="ng-titulo" id="ng-titulo" required />
                 </div>
                 <div class="form-group">
                     <label class="text-primary">Convidar Orientador: </label>

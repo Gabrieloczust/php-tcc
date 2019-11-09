@@ -62,12 +62,13 @@
   });
 
   // Toggle password
-  $(".input-olho").mousedown(function () {
-    $(".input-senha").attr("type", "text");
-  });
-
-  $(".input-olho").mouseup(function () {
-    $(".input-senha").attr("type", "password");
+  $(".input-olho").on('click', function () {
+    var senha = $(".input-senha")
+    if (senha.attr('type') == 'password') {
+      senha.attr("type", "text");
+    } else {
+      senha.attr("type", "password");
+    }
   });
 
   //Autofocus no titulo do Modal novo projeto
@@ -189,6 +190,23 @@
     $('#alterarTurmaModal').modal('show')
   })
 
+  // Modal entrega
+  $('.card-entrega').click(function () {
+    var id = $(this).attr('rel')
+    var titulo = $(this).attr('data-titulo')
+    var descricao = $(this).attr('data-descricao')
+    $('#entregaModal').find('.e-id').val(id)
+    $('#entregaModal').find('#entregaModalLabel').text(titulo)
+    $('#entregaModal').find('#entregaModalDescricao').text(descricao)
+    $('#entregaModal').modal('show')
+  })
+
+  // Add the following code if you want the name of the file appear on select
+  $(".custom-file-input").on("change", function () {
+    var fileName = $(this).val().split("\\").pop();
+    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+  });
+
   // Adiciona novo input para convidar aluno
   $(document).ready(function () {
     var max_fields = 10;
@@ -233,9 +251,6 @@
     group: 'list-1',
     handle: '.list-group-item'
   });
-
-  // Nova Entrega
-  
 
   // Projetos que não receberam a entrega
   $('#form-entrega').submit(function (e) {

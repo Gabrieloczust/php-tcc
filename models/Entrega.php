@@ -17,7 +17,7 @@ class Entrega extends Model
         // Cadastra a entrega
         $slug = $this->slug($titulo);
         $sql = $this->db->prepare("INSERT INTO entrega SET titulo = ?, slug = ?, descricao = ?, data_entrega = ?, fkTurma = ?");
-        $sql->execute(array($titulo, $slug, $descricao, $data, $idTurma));
+        $sql->execute(array(mb_strtoupper($titulo), $slug, $descricao, $data, $idTurma));
 
         // Pega o id da entrega cadastrada
         $idEntrega = $this->db->query("SELECT idEntrega FROM entrega ORDER BY idEntrega DESC LIMIT 1");
@@ -45,8 +45,19 @@ class Entrega extends Model
 
     public function getEntregas($idTurma)
     {
-        $sql = $this->db->prepare("SELECT * FROM entrega WHERE fkTurma = ? ORDER BY data_entrega DESC");
+        $sql = $this->db->prepare("SELECT * FROM entrega WHERE fkTurma = ? ORDER BY data_entrega");
         $sql->execute(array($idTurma));
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll();
+        } else {
+            return [];
+        }
+    }
+
+    public function getEntregasProjeto($idProjeto)
+    {
+        $sql = $this->db->prepare("SELECT * FROM projeto_tem_entrega INNER JOIN entrega ON(fkEntrega = idEntrega) WHERE fkProjeto = ? ORDER BY data_entrega");
+        $sql->execute(array($idProjeto));
         if ($sql->rowCount() > 0) {
             return $sql->fetchAll();
         } else {

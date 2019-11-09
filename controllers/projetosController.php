@@ -120,4 +120,38 @@ class projetosController extends Controller
 
         $this->loadTemplate("projetos", $dados);
     }
+
+    public function projeto($slug)
+    {
+        // Arrays para avisos de Validação
+        $errors = array();
+        $warnings = array();
+        $successes = array();
+
+        $aluno = new Aluno($_SESSION['user']);
+
+        $projeto = new Projeto();
+        $p = $projeto->getProjeto($aluno->getId(), $slug);
+
+        $entrega = new Entrega();
+        $entregas = $entrega->getEntregasProjeto($projeto->getId());
+
+        // ENTREGA //
+        $e_id = filter_input(INPUT_POST, 'e-id');
+        if (filter_input(INPUT_POST, 'entrega') === "entrega" && !empty($e_id)) :
+            print_r($_FILES);
+        //exit;
+        //$entrega->realizarEntrega($e_id, $_POST['documento']);
+        endif;
+
+        $dados = array(
+            'errors' => $errors,
+            'warnings' => $warnings,
+            'successes' => $successes,
+            'entregas' => $entregas,
+            'projeto' => $p[0]
+        );
+
+        $this->loadTemplate("projeto", $dados);
+    }
 }

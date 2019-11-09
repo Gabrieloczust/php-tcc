@@ -29,7 +29,7 @@ class Projeto extends Model
 
 		//Cria o projeto na tabela projeto
 		$sql = $this->db->prepare("INSERT INTO projeto SET titulo = :titulo, slug = :slug, fkAlunoLider = :lider, hashInterno = :hashInterno");
-		$sql->bindValue(":titulo", $titulo);
+		$sql->bindValue(":titulo", mb_strtoupper($titulo));
 		$sql->bindValue(":slug", $slug);
 		$sql->bindValue(":lider", $ra);
 		$sql->bindValue(":hashInterno", $hashInterno);
@@ -56,7 +56,7 @@ class Projeto extends Model
 		if ($this->existeEsseTitulo($titulo, $ra) == 0) {
 			$slug = $this->slug($titulo);
 			$sql = $this->db->prepare("UPDATE projeto SET titulo = :titulo, slug = :slug WHERE hashInterno = :hashInterno");
-			$sql->bindValue(":titulo", $titulo);
+			$sql->bindValue(":titulo", mb_strtoupper($titulo));
 			$sql->bindValue(":slug", $slug);
 			$sql->bindValue(":hashInterno", $hash);
 			$sql->execute();
@@ -101,6 +101,27 @@ class Projeto extends Model
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	public function getProjeto($ra, $slug)
+	{
+		$sql = $this->db->prepare("SELECT * FROM projeto p LEFT JOIN projeto_tem_aluno a ON(p.idProjeto = a.FkProjeto) LEFT JOIN projeto_tem_professor pp ON(p.IdProjeto = pp.fkProjeto) LEFT join professor pf ON(pp.fkProfessor = pf.rp) WHERE fkAluno = ? AND slug = ?");
+		$sql->execute(array($ra, $slug));
+
+		$result = $sql->fetch();
+		if (!empty($result)) {
+			$this->setAll($result['idProjeto']);
+			$projeto = [];
+
+			// Adiciona o nome dos alunos participantes
+			$participantes = $this->getNomeParticipantes($result['idProjeto']);
+			$array = array_merge($participantes, $result);
+			array_push($projeto, $array);
+
+			return $projeto;
+		} else {
+			return [];
 		}
 	}
 

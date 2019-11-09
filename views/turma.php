@@ -187,7 +187,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label for="se-titulo">Titulo:</label>
-                    <input type="text" name="se-titulo" id="se-titulo" class="form-control" required>
+                    <input type="text" name="se-titulo" id="se-titulo" class="form-control text-uppercase" required>
                 </div>
                 <div class="form-group">
                     <label for="se-descricao">Descrição:</label>

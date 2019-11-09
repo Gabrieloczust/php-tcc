@@ -48,12 +48,14 @@
             }
         });
 
-        $(".input-olho").mousedown(function() {
-            $(".input-senha").attr("type", "text");
-        });
-
-        $(".input-olho").mouseup(function() {
-            $(".input-senha").attr("type", "password");
+        // Toggle password
+        $(".input-olho").on('click', function() {
+            var senha = $(".input-senha")
+            if (senha.attr('type') == 'password') {
+                senha.attr("type", "text");
+            } else {
+                senha.attr("type", "password");
+            }
         });
 
         $(window).ready(function() {
