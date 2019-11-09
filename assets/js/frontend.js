@@ -196,6 +196,7 @@
     var titulo = $(this).attr('data-titulo')
     var descricao = $(this).attr('data-descricao')
     $('#entregaModal').find('.e-id').val(id)
+    $('#entregaModal').find('#entregaModalNome').val(titulo)
     $('#entregaModal').find('#entregaModalLabel').text(titulo)
     $('#entregaModal').find('#entregaModalDescricao').text(descricao)
     $('#entregaModal').modal('show')

@@ -110,13 +110,35 @@ class Notificacao extends Model
         $sql1->execute(array($idProjeto));
         $ids = $sql1->fetchAll();
 
-        $mensagem = "<a href='" . HOME . "projeto/$slugProjeto'>Nova entrega: <b>$tituloEntrega</b><br> Projeto: <b>$tituloProjeto</b><br> Data de entrega: <b>$dataEntrega</b></a>";
+        $mensagem = "<a href='" . HOME . "projetos/projeto/$slugProjeto'>Nova entrega: <b>$tituloEntrega</b><br> Projeto: <b>$tituloProjeto</b><br> Data de entrega: <b>$dataEntrega</b></a>";
 
         // Envia a notifacao para todos os alunos de todos projetos participantes da turma
         foreach ($ids as $id) :
             $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
             $sql->execute(array($this->getTipo(), $mensagem, $id['fkAluno']));
         endforeach;
+    }
+
+    public function entregaRealizada($idProjetoEentrega)
+    {
+        $sql = $this->db->prepare("SELECT *, t.slug as slugTurma FROM projeto_tem_entrega pe INNER JOIN entrega e ON(pe.fkEntrega = e.idEntrega) INNER JOIN turma t ON(e.fkTurma = t.idTurma) WHERE idProjetoEntrega = ?");
+        $sql->execute(array($idProjetoEentrega));
+        $result = $sql->fetch();
+
+        $idProjeto = $result['fkProjeto'];
+        $projeto = new Projeto();
+        $projeto->setAll($idProjeto);
+        $projetoTitulo = $projeto->getTitulo();
+
+        $idOrientador = $result['fkOrientador'];
+        $entrega = $result['titulo'];
+        $slugTurma = $result['slugTurma'];
+
+        $link = HOME . 'turmas/turma/' . $slugTurma;
+
+        $mensagem = "<a href='$link'>Projeto <b>$projetoTitulo</b>  realizou a entrega <b>$entrega</b></a>";
+        $sql1 = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkDestinatario = ?, tipoDestinatario = 'Orientador'");
+        $sql1->execute(array($this->getTipo(), $mensagem, $idOrientador));
     }
 
     public function getNoficacoes($idUsuario)

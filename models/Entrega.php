@@ -7,6 +7,7 @@ class Entrega extends Model
     public function __construct($idEntrega = NULL)
     {
         parent::__construct();
+        $this->documento = new Documento();
         if (!empty($idEntrega)) :
             $this->setAll($idEntrega);
         endif;
@@ -43,6 +44,21 @@ class Entrega extends Model
         endforeach;
     }
 
+    public function realizarEntrega($id, $file, $idAluno)
+    {
+        $documento = new Documento();
+        $documento->mover($id, $file);
+        $sql = $this->db->prepare("UPDATE projeto_tem_entrega SET documento = ?, status = ?, data = now(), fkAluno = ? WHERE idProjetoEntrega = ?");
+        $sql->execute(array($file['name'], "entregue", $idAluno, $id));
+        if ($sql->rowCount() > 0) :
+            $notificacao = new Notificacao("aceito");
+            $notificacao->entregaRealizada($id);
+            return true;
+        else :
+            return false;
+        endif;
+    }
+
     public function getEntregas($idTurma)
     {
         $sql = $this->db->prepare("SELECT * FROM entrega WHERE fkTurma = ? ORDER BY data_entrega");
@@ -54,10 +70,10 @@ class Entrega extends Model
         }
     }
 
-    public function getEntregasProjeto($idProjeto)
+    public function getEntregasProjeto($idProjeto, $status)
     {
-        $sql = $this->db->prepare("SELECT * FROM projeto_tem_entrega INNER JOIN entrega ON(fkEntrega = idEntrega) WHERE fkProjeto = ? ORDER BY data_entrega");
-        $sql->execute(array($idProjeto));
+        $sql = $this->db->prepare("SELECT * FROM projeto_tem_entrega INNER JOIN entrega ON(fkEntrega = idEntrega) WHERE status = ? AND fkProjeto = ? ORDER BY data_entrega");
+        $sql->execute(array($status, $idProjeto));
         if ($sql->rowCount() > 0) {
             return $sql->fetchAll();
         } else {

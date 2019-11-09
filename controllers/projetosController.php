@@ -129,27 +129,32 @@ class projetosController extends Controller
         $successes = array();
 
         $aluno = new Aluno($_SESSION['user']);
-
         $projeto = new Projeto();
-        $p = $projeto->getProjeto($aluno->getId(), $slug);
-
         $entrega = new Entrega();
-        $entregas = $entrega->getEntregasProjeto($projeto->getId());
 
         // ENTREGA //
         $e_id = filter_input(INPUT_POST, 'e-id');
         if (filter_input(INPUT_POST, 'entrega') === "entrega" && !empty($e_id)) :
-            print_r($_FILES);
-        //exit;
-        //$entrega->realizarEntrega($e_id, $_POST['documento']);
+            $e_nome = filter_input(INPUT_POST, 'e-nome');
+            $verifica = $entrega->realizarEntrega($e_id, $_FILES['fileToUpload'], $aluno->getId());
+            if ($verifica == TRUE) {
+                array_push($successes, "Entrega <b>$e_nome</b> realizada com sucesso!");
+            } else {
+                array_push($errors, "Erro ao realizar a entrega <b>$e_nome</b>! Por favor, tente novamente.");
+            }
         endif;
+
+        $p = $projeto->getProjeto($aluno->getId(), $slug);
+        $realizadas = $entrega->getEntregasProjeto($projeto->getId(), 'entregue');
+        $pendentes = $entrega->getEntregasProjeto($projeto->getId(), 'pendente');
 
         $dados = array(
             'errors' => $errors,
             'warnings' => $warnings,
             'successes' => $successes,
-            'entregas' => $entregas,
-            'projeto' => $p[0]
+            'projeto' => $p[0],
+            'realizadas' => $realizadas,
+            'pendentes' => $pendentes
         );
 
         $this->loadTemplate("projeto", $dados);
