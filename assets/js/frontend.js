@@ -202,6 +202,22 @@
     $('#entregaModal').modal('show')
   })
 
+  // Modal editar entrega
+  $('.btn-editar-turma').click(function () {
+    var id = $(this).attr('rel')
+    var titulo = $(this).attr('data-titulo')
+    var descricao = $(this).attr('data-descricao')
+    var data = $(this).attr('data-data')
+    $('#editarEntregaModal').find('#ee-id').val(id)
+    $('#editarEntregaModal').find('#ee-titulo').val(titulo)
+    $('#editarEntregaModal').find('.ee-titulo').text(titulo)
+    $('#editarEntregaModal').find('#ee-descricao').val(descricao)
+    $('#editarEntregaModal').find('#ee-data').val(data)
+    $('#editarEntregaModal').modal('show')
+    console.log(data)
+  })
+
+
   // Add the following code if you want the name of the file appear on select
   $(".custom-file-input").on("change", function () {
     var fileName = $(this).val().split("\\").pop();

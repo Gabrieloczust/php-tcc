@@ -124,7 +124,25 @@ class turmasController extends Controller
 			$seDescricao = filter_input(INPUT_POST, 'se-descricao');
 			$seData = filter_input(INPUT_POST, 'se-data');
 			$seNaoReceber = filter_input(INPUT_POST, 'se-projetos');
-			$entrega->novaEntrega($seTitulo, $seDescricao, $seData, $seNaoReceber, $idTurma);
+			$statusEntrega = $entrega->novaEntrega($seTitulo, $seDescricao, $seData, $seNaoReceber, $idTurma);
+			if ($statusEntrega === true) :
+				array_push($successes, "Entrega <b>" . mb_strtoupper($seTitulo) . "</b> solicitada com sucesso!");
+			else :
+				array_push($errors, $statusEntrega);
+			endif;
+		}
+
+		// Editar data da Entrega //
+		if (filter_input(INPUT_POST, 'editar_entrega') === "editar_entrega") {
+			$eeId = filter_input(INPUT_POST, 'ee-id');
+			$eeTitulo = filter_input(INPUT_POST, 'ee-titulo');
+			$eeData = filter_input(INPUT_POST, 'ee-data');
+			$statusEntrega = $entrega->editarDataEntrega($eeId, $eeData);
+			if ($statusEntrega === true) :
+				array_push($successes, "Data da entrega <b>" . mb_strtoupper($eeTitulo) . "</b> alterada com sucesso!");
+			else :
+				array_push($errors, $statusEntrega);
+			endif;
 		}
 
 		// Turmas para listagem no modal Solicitar Entrega

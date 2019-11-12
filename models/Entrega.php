@@ -2,7 +2,7 @@
 
 class Entrega extends Model
 {
-    private $id, $titulo, $slug, $descricao, $nota, $data_solicitado, $data_entrega;
+    private $id, $titulo, $slug, $descricao, $nota, $data_solicitado, $data_entrega, $turma;
 
     public function __construct($idEntrega = NULL)
     {
@@ -15,33 +15,40 @@ class Entrega extends Model
 
     public function novaEntrega($titulo, $descricao, $data, $naoReceber, $idTurma)
     {
-        // Cadastra a entrega
-        $slug = $this->slug($titulo);
-        $sql = $this->db->prepare("INSERT INTO entrega SET titulo = ?, slug = ?, descricao = ?, data_entrega = ?, fkTurma = ?");
-        $sql->execute(array(mb_strtoupper($titulo), $slug, $descricao, $data, $idTurma));
+        $titulo = mb_strtoupper($titulo);
+        if ($this->existeTitulo($titulo) == false) :
+            // Cadastra a entrega
+            $slug = $this->slug($titulo);
+            $sql = $this->db->prepare("INSERT INTO entrega SET titulo = ?, slug = ?, descricao = ?, data_entrega = ?, fkTurma = ?");
+            $sql->execute(array($titulo, $slug, $descricao, $data, $idTurma));
 
-        // Pega o id da entrega cadastrada
-        $idEntrega = $this->db->query("SELECT idEntrega FROM entrega ORDER BY idEntrega DESC LIMIT 1");
-        $idEntrega = $idEntrega->fetch()[0];
+            // Pega o id da entrega cadastrada
+            $idEntrega = $this->db->query("SELECT idEntrega FROM entrega ORDER BY idEntrega DESC LIMIT 1");
+            $idEntrega = $idEntrega->fetch()[0];
 
-        // Monta o WHERE se houver algum projeto na lista Nao Receber
-        $whereTurma = str_replace(",", " AND idProjeto != ", $naoReceber);
-        $whereTurma = empty($whereTurma) ? " idProjeto IS NOT NULL" : "idProjeto != " . $whereTurma;
+            // Monta o WHERE se houver algum projeto na lista Nao Receber
+            $whereTurma = str_replace(",", " AND idProjeto != ", $naoReceber);
+            $whereTurma = empty($whereTurma) ? " idProjeto IS NOT NULL" : "idProjeto != " . $whereTurma;
 
-        // Pega o id dos projetos que vao receber
-        $sql1 = $this->db->prepare("SELECT GROUP_CONCAT(idProjeto) as ids FROM projeto WHERE fkTurma = ? AND $whereTurma");
-        $sql1->execute(array($idTurma));
-        $receber = $sql1->fetch()['ids'];
-        $projetoIds = explode(",", $receber);
+            // Pega o id dos projetos que vao receber
+            $sql1 = $this->db->prepare("SELECT GROUP_CONCAT(idProjeto) as ids FROM projeto WHERE fkTurma = ? AND $whereTurma");
+            $sql1->execute(array($idTurma));
+            $receber = $sql1->fetch()['ids'];
+            $projetoIds = explode(",", $receber);
 
-        // Associa a entrega a cada projeto que faz parte da turma
-        foreach ($projetoIds as $projetoId) :
-            $sql2 = $this->db->prepare("INSERT INTO projeto_tem_entrega SET fkProjeto = ?, fkEntrega = ?");
-            $sql2->execute(array($projetoId, $idEntrega));
-            // Envia notificação de nova entrega
-            $notificacao = new Notificacao("recusado");
-            $notificacao->novaEntrega($idEntrega, $projetoId);
-        endforeach;
+            // Associa a entrega a cada projeto que faz parte da turma
+            foreach ($projetoIds as $projetoId) :
+                $sql2 = $this->db->prepare("INSERT INTO projeto_tem_entrega SET fkProjeto = ?, fkEntrega = ?");
+                $sql2->execute(array($projetoId, $idEntrega));
+                // Envia notificação de nova entrega
+                $notificacao = new Notificacao("recusado");
+                $notificacao->novaEntrega($idEntrega, $projetoId);
+            endforeach;
+
+            return $sql->rowCount() > 0 ?: 'Erro inesperado, por favor tente novamente!';
+        else :
+            return "Você já possui um projeto com o título <b>$titulo</b>";
+        endif;
     }
 
     public function realizarEntrega($id, $file, $idAluno)
@@ -59,9 +66,23 @@ class Entrega extends Model
         endif;
     }
 
+    public function editarDataEntrega($id, $data)
+    {
+        $sql = $this->db->prepare("UPDATE entrega SET data_entrega = ? WHERE idEntrega = ?");
+        $sql->execute(array($data, $id));
+        if ($sql->rowCount() > 0) :
+            $this->setAll($id);
+            $notificacao = new Notificacao("aceito");
+            //$notificacao->dataEntrega($data, $id);
+            return true;
+        else :
+            return 'Erro inesperado, por favor tente novamente!';
+        endif;
+    }
+
     public function getEntregas($idTurma)
     {
-        $sql = $this->db->prepare("SELECT * FROM entrega WHERE fkTurma = ? ORDER BY data_entrega");
+        $sql = $this->db->prepare("SELECT * FROM entrega WHERE fkTurma = ? ORDER BY data_entrega, idEntrega DESC");
         $sql->execute(array($idTurma));
         if ($sql->rowCount() > 0) {
             return $sql->fetchAll();
@@ -72,10 +93,20 @@ class Entrega extends Model
 
     public function getEntregasProjeto($idProjeto, $status)
     {
-        $sql = $this->db->prepare("SELECT * FROM projeto_tem_entrega INNER JOIN entrega ON(fkEntrega = idEntrega) WHERE status = ? AND fkProjeto = ? ORDER BY data_entrega");
+        $sql = $this->db->prepare("SELECT * FROM projeto_tem_entrega INNER JOIN entrega ON(fkEntrega = idEntrega) LEFT JOIN aluno ON(fkAluno = ra) WHERE status = ? AND fkProjeto = ? ORDER BY data_entrega, idEntrega DESC");
         $sql->execute(array($status, $idProjeto));
+        $results = $sql->fetchAll();
+
+        // Adiciona status de avaliação - avaliado ou nao
+        $results2 = [];
+        foreach ($results as $result) :
+            $array['notaStatus'] = empty($result['nota']) ? "AGUARDANDO AVALIAÇÃO" : "NOTA: " . $result['nota'];
+            $result2 = array_merge($array, $result);
+            array_push($results2, $result2);
+        endforeach;
+
         if ($sql->rowCount() > 0) {
-            return $sql->fetchAll();
+            return $results2;
         } else {
             return [];
         }
@@ -92,6 +123,18 @@ class Entrega extends Model
         $this->setDescricao($entrega['descricao']);
         $this->setDataSolicitado($entrega['data_solicitado']);
         $this->setDataEntrega($entrega['data_entrega']);
+        $this->setTurma($entrega['fkTurma']);
+    }
+
+    private function existeTitulo($titulo)
+    {
+        $sql = $this->db->prepare("SELECT * FROM entrega WHERE titulo = ? OR slug = ?");
+        $sql->execute(array($titulo, $this->slug($titulo)));
+        if ($sql->rowCount() > 0) :
+            return true;
+        else :
+            return false;
+        endif;
     }
 
     private function slug($string)
@@ -160,5 +203,13 @@ class Entrega extends Model
     public function setDataEntrega($x)
     {
         $this->data_entrega = date("d/m/y", strtotime($x));
+    }
+    public function getTurma()
+    {
+        return $this->turma;
+    }
+    public function setTurma($x)
+    {
+        $this->turma = $x;
     }
 }

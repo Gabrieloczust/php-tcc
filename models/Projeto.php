@@ -84,10 +84,6 @@ class Projeto extends Model
 			$notificacao = new Notificacao("recusado");
 			$notificacao->projetoApagado($idProjeto, $ra);
 
-			$sql4 = $this->db->prepare("DELETE FROM convite WHERE fkProjeto = :idProjeto");
-			$sql4->bindValue(":idProjeto", $idProjeto);
-			$sql4->execute();
-
 			$sql3 = $this->db->prepare("DELETE FROM projeto WHERE idProjeto = :idProjeto");
 			$sql3->bindValue(":idProjeto", $idProjeto);
 			$sql3->execute();

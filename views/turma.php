@@ -53,14 +53,22 @@
             <div class="card border-left-info shadow py-2 mb-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <div class="col mr-2 mb-2">
+                        <div class="col">
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?= $entrega['titulo'] ?>
                             </div>
                             <div class="text-xs font-weight-bold text-info text-uppercase">DATA DE ENTREGA: <?= date("d/m/y", strtotime($entrega['data_entrega'])) ?></div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-file fa-2x text-gray-300"></i>
+                        <div class="col-auto d-flex align-items-center">
+                            <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle p-3" href="#" role="button" id="dropTurma<?= $entrega['idEntrega'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v fa fa-fw text-info"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropTurma<?= $entrega['idEntrega'] ?>">
+                                    <div class="dropdown-header">Ações:</div>
+                                    <a class="dropdown-item btn-editar-turma" href="#" rel="<?= $entrega['idEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-data="<?= date("Y-m-d", strtotime($entrega['data_entrega'])) ?>">Editar data de entrega</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -220,6 +228,32 @@
             <div class="modal-footer">
                 <input type="hidden" id="se-projetos" name="se-projetos">
                 <input type="submit" class="btn btn-success" value="Solicitar">
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal Editar Entrega -->
+<div class="modal fade" id="editarEntregaModal" tabindex="-1" role="dialog" aria-labelledby="editarEntregaModalLabel" aria-hidden="true">
+    <form class="modal-dialog modal-lg" role="document" method="POST">
+        <input type="hidden" name="editar_entrega" value="editar_entrega" />
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-success" id="editarEntregaModalLabel">EDITAR ENTREGA <span class="ee-titulo"></span></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="ee-id" id="ee-id" />
+                <input type="hidden" name="ee-titulo" id="ee-titulo" />
+                <div class="form-group">
+                    <label for="ee-data">Data de Entrega:</label>
+                    <input type="date" name="ee-data" id="ee-data" class="form-control" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success">Salvar</button>
             </div>
         </div>
     </form>

@@ -5,9 +5,9 @@
         <div class="row no-gutters align-items-center">
           <div class="col mr-2">
             <div class="h5 mb-0 font-weight-bold text-primary text-uppercase mb-1">PROJETO: <?= $projeto['titulo'] ?></div>
-            <div class="text-xs font-weight-bold text-uppercase">ORIENTADOR: <?= $projeto['nome'] ?></div>
-            <div class="text-xs font-weight-bold text-uppercase">ALUNO(S): <?= $projeto['alunosParticipantes'] ?></div>
-            <div class="text-xs font-weight-bold text-uppercase">INÍCIO: <?= date("d/m/y", strtotime($projeto['data_criacao'])) ?></div>
+            <div class="text-xs font-weight-bold text-uppercase">ORIENTADOR: <b><?= $projeto['nome'] ?></b></div>
+            <div class="text-xs font-weight-bold text-uppercase">ALUNO(S): <b><?= $projeto['alunosParticipantes'] ?></b></div>
+            <div class="text-xs font-weight-bold text-uppercase">INÍCIO: <b><?= date("d/m/y", strtotime($projeto['data_criacao'])) ?></b></div>
           </div>
           <div class="col-auto">
             <i class="fas fa-clipboard fa-2x text-gray-300"></i>
@@ -56,11 +56,11 @@
   <div id="collapseOne" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
     <?php if (count($pendentes) > 0) : foreach ($pendentes as $entrega) : ?>
         <div class="col-12">
-          <div class="card card-entrega border-left-warning shadow py-2 pointer mb-3" rel="<?= $entrega['idProjetoEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-descricao="<?= $entrega['descricao'] ?>">
+          <div class="card card-entrega border-left-warning shadow py-2 pointer mb-3" rel="<?= $entrega['idProjetoEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-descricao="<?= $entrega['descricao'] ?>" title="Enviar Documento">
             <div class=" card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col d-flex align-items-center">
-                  <i class="fas fa-exclamation-circle fa-2x text-warning mr-2"></i>
+                  <i class="fas fa-exclamation-circle fa-2x text-warning mr-3"></i>
                   <div>
                     <div class="h5 mb-0 font-weight-bold text-uppercase text-warning">
                       <?= $entrega['titulo'] ?>
@@ -69,6 +69,9 @@
                       DATA DE ENTREGA: <?= date("d/m/y", strtotime($entrega['data_entrega'])) ?>
                     </div>
                   </div>
+                </div>
+                <div class="col-auto text-center text-warning">
+                  <i class="fas fa-upload fa-2x"></i>
                 </div>
               </div>
             </div>
@@ -85,23 +88,29 @@
   <div id="collapseTwo" class="row collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
     <?php if (count($realizadas) > 0) : foreach ($realizadas as $entrega) : ?>
         <div class="col-12">
-          <div class="card border-left-success dark-off shadow py-2 mb-3">
+          <a class="card card-entrega border-left-success dark-off shadow py-2 mb-3" href="<?= HOME ?>assets/uploads/<?= $entrega['idProjetoEntrega'] . '/' . $entrega['documento'] ?>" title="Baixa Documento">
             <div class=" card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col d-flex align-items-center">
-                  <i class="fas fa-check-circle fa-2x text-success mr-2 dark-off"></i>
+                  <i class="fas fa-check-circle fa-2x text-success mr-3 dark-off"></i>
                   <div>
                     <div class="h5 mb-0 font-weight-bold text-uppercase text-success dark-off">
                       <?= $entrega['titulo'] ?>
                     </div>
                     <div class="text-xs font-weight-bold text-gray-800 text-uppercase">
-                      ENTREGUE POR <b><?= $entrega['fkAluno'] ?></b> NO DIA <b><?= date("d/m/y", strtotime($entrega['data'])) ?></b>
+                      ENTREGUE POR <b><?= $entrega['nome'] ?></b> NO DIA <b><?= date("d/m/y", strtotime($entrega['data'])) ?></b>
+                    </div>
+                    <div class="text-xs font-weight-bold text-info text-uppercase">
+                      <?= $entrega['notaStatus'] ?>
                     </div>
                   </div>
                 </div>
+                <div class="col-auto text-center text-success">
+                  <i class="fas fa-download fa-2x"></i>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       <?php endforeach;
       else : ?>

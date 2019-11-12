@@ -23,7 +23,7 @@
 </div>
 
 <!-- Page Body -->
-<div class="row">
+<div class="row mb-2">
 
     <div class="col-lg-12">
         <?php
