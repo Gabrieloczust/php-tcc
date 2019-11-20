@@ -114,6 +114,16 @@ input:checked+.slider:before {
     color: #929292 !important;
 }
 
+.hover-success:hover {
+    text-decoration: none;
+}
+
+
+.hover-success:hover .h5 {
+    color: #36b9cc !important;
+    text-decoration: underline;
+}
+
 @media(max-width: 575px) {
     .home-head-mobile {
         margin-bottom: 1rem !important;

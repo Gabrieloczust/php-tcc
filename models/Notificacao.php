@@ -143,22 +143,47 @@ class Notificacao extends Model
         $sql1->execute(array($this->getTipo(), $mensagem, $idOrientador));
     }
 
-    /*public function dataEntrega($data, $idEntrega, $idProjeto)
+    public function dataEntrega($data, $idEntrega)
     {
-
-
-        $mensagem = "A data da entrega <b>" . $nomeEntrega . "</b> foi alterada para <b>$data</b>";
+        $sql1 = $this->db->prepare("SELECT p.idProjeto, e.titulo as tituloEntrega, p.titulo as tituloProjeto FROM entrega e INNER JOIN projeto p ON(e.fkTurma = p.fkTurma) WHERE idEntrega = ?");
+        $sql1->execute(array($idEntrega));
+        $idsProjetos = $sql1->fetchAll();
 
         // Envia a notifacao para todos os alunos de todos projetos participantes da turma
-        foreach ($ids as $id) :
-            $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
-            $sql->execute(array($this->getTipo(), $mensagem, $id['fkAluno']));
+        foreach ($idsProjetos as $idProjeto) :
+            $mensagem = "A data da entrega <b>" . $idProjeto['tituloEntrega'] . "</b> do projeto <b>" . $idProjeto['tituloProjeto'] . "</b> foi alterada para <b>" . date("d/m/Y", strtotime($data)) . "</b>";
+            $sql2 = $this->db->prepare("SELECT * FROM projeto_tem_aluno WHERE fkProjeto = ?");
+            $sql2->execute(array($idProjeto['idProjeto']));
+            $ids = $sql2->fetchAll();
+            foreach ($ids as $id) :
+                $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
+                $sql->execute(array($this->getTipo(), $mensagem, $id['fkAluno']));
+            endforeach;
         endforeach;
-    }*/
+    }
+
+    public function apagarEntrega($idEntrega)
+    {
+        $sql1 = $this->db->prepare("SELECT p.idProjeto, e.titulo as tituloEntrega, p.titulo as tituloProjeto FROM entrega e INNER JOIN projeto p ON(e.fkTurma = p.fkTurma) WHERE idEntrega = ?");
+        $sql1->execute(array($idEntrega));
+        $idsProjetos = $sql1->fetchAll();
+
+        // Envia a notifacao para todos os alunos de todos projetos participantes da turma
+        foreach ($idsProjetos as $idProjeto) :
+            $mensagem = "A entrega <b>" . $idProjeto['tituloEntrega'] . "</b> do projeto <b>" . $idProjeto['tituloProjeto'] . "</b> foi apagada";
+            $sql2 = $this->db->prepare("SELECT * FROM projeto_tem_aluno WHERE fkProjeto = ?");
+            $sql2->execute(array($idProjeto['idProjeto']));
+            $ids = $sql2->fetchAll();
+            foreach ($ids as $id) :
+                $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
+                $sql->execute(array($this->getTipo(), $mensagem, $id['fkAluno']));
+            endforeach;
+        endforeach;
+    }
 
     public function getNoficacoes($idUsuario)
     {
-        $sql = $this->db->prepare("SELECT *, TIMESTAMPDIFF(MINUTE,data_enviada,NOW()) as tempo FROM notificacao WHERE tipoDestinatario = ? AND fkDestinatario = ? ORDER BY tempo ASC");
+        $sql = $this->db->prepare("SELECT *, TIMESTAMPDIFF(MINUTE,data_enviada,NOW()) as tempo FROM notificacao WHERE tipoDestinatario = ? AND fkDestinatario = ? ORDER BY idNotificacao DESC");
         $sql->execute(array($this->getTipo(), $idUsuario));
         $results = $sql->fetchAll();
         foreach ($results as $key => $result) :

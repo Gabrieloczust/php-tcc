@@ -112,14 +112,14 @@ class Turma extends Model
                 $sql3 = $this->db->prepare("DELETE FROM projeto_tem_professor WHERE idProfProjeto = ?");
                 $sql3->execute(array($projeto['idProfProjeto']));
             }
-
-            $sql = $this->db->prepare("DELETE FROM turma WHERE idTurma = ?");
-            $sql->execute(array($idTurma));
-            if ($sql->rowCount() == 1) :
-                return true;
-            endif;
         }
-        return false;
+        $sql = $this->db->prepare("DELETE FROM turma WHERE idTurma = ?");
+        $sql->execute(array($idTurma));
+        if ($sql->rowCount() == 1) :
+            return true;
+        else :
+            return false;
+        endif;
     }
 
     public function removerProjeto($idProjeto)

@@ -47,7 +47,7 @@ class Entrega extends Model
 
             return $sql->rowCount() > 0 ?: 'Erro inesperado, por favor tente novamente!';
         else :
-            return "Você já possui um projeto com o título <b>$titulo</b>";
+            return "Você já possui uma entrega com o título <b>$titulo</b>";
         endif;
     }
 
@@ -73,7 +73,22 @@ class Entrega extends Model
         if ($sql->rowCount() > 0) :
             $this->setAll($id);
             $notificacao = new Notificacao("aceito");
-            //$notificacao->dataEntrega($data, $id);
+            $notificacao->dataEntrega($data, $id);
+            return true;
+        else :
+            return 'Erro inesperado, por favor tente novamente!';
+        endif;
+    }
+
+    public function apagarEntrega($id)
+    {
+        $this->setAll($id);
+
+        if (!empty($this->getId())) :
+            $notificacao = new Notificacao("recusado");
+            $notificacao->apagarEntrega($id);
+            $sql = $this->db->prepare("DELETE FROM entrega WHERE idEntrega = ?");
+            $sql->execute(array($id));
             return true;
         else :
             return 'Erro inesperado, por favor tente novamente!';

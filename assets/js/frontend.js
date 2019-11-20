@@ -191,7 +191,7 @@
   })
 
   // Modal entrega
-  $('.card-entrega').click(function () {
+  $('.entrega-modal').click(function () {
     var id = $(this).attr('rel')
     var titulo = $(this).attr('data-titulo')
     var descricao = $(this).attr('data-descricao')
@@ -214,9 +214,14 @@
     $('#editarEntregaModal').find('#ee-descricao').val(descricao)
     $('#editarEntregaModal').find('#ee-data').val(data)
     $('#editarEntregaModal').modal('show')
-    console.log(data)
   })
 
+  // Modal remover entrega
+  $('.btn-apagar-entrega').click(function () {
+    var id = $(this).attr('rel')
+    $('#removerEntrega').find('#re-id').val(id)
+    $('#removerEntrega').modal('show')
+  })
 
   // Add the following code if you want the name of the file appear on select
   $(".custom-file-input").on("change", function () {

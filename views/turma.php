@@ -40,7 +40,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ENTREGAS</div>
+                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ENTREGAS SOLICITADAS</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtdEntregas ?></div>
                     </div>
                     <div class="col-auto">
@@ -53,12 +53,12 @@
             <div class="card border-left-info shadow py-2 mb-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <div class="col">
+                        <a href="<?= HOME ?>turmas/entrega/<?= $entrega['slug'] ?>" title="Abrir Entrega" class="col hover-success">
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?= $entrega['titulo'] ?>
                             </div>
                             <div class="text-xs font-weight-bold text-info text-uppercase">DATA DE ENTREGA: <?= date("d/m/y", strtotime($entrega['data_entrega'])) ?></div>
-                        </div>
+                        </a>
                         <div class="col-auto d-flex align-items-center">
                             <div class="dropdown no-arrow">
                                 <a class="dropdown-toggle p-3" href="#" role="button" id="dropTurma<?= $entrega['idEntrega'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,7 +66,9 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropTurma<?= $entrega['idEntrega'] ?>">
                                     <div class="dropdown-header">Ações:</div>
-                                    <a class="dropdown-item btn-editar-turma" href="#" rel="<?= $entrega['idEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-data="<?= date("Y-m-d", strtotime($entrega['data_entrega'])) ?>">Editar data de entrega</a>
+                                    <a class="dropdown-item btn-editar-turma" href="#" rel="<?= $entrega['idEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-data="<?= date("Y-m-d", strtotime($entrega['data_entrega'])) ?>">Alterar a data de entrega</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item btn-apagar-entrega" href="#" rel="<?= $entrega['idEntrega'] ?>">Apagar entrega</a>
                                 </div>
                             </div>
                         </div>
@@ -81,7 +83,7 @@
             <div class="card-body">
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">PROJETOS</div>
+                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">PROJETOS PARTICIPANTES</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtdProjetos ?></div>
                     </div>
                     <div class="col-auto">
@@ -174,6 +176,31 @@
                 <input type="hidden" class="rp-id" name="rp-id">
                 <input type="hidden" name="nome-projeto" class="nome-projeto" />
                 <input type="hidden" name="nome-turma" class="nome-turma" />
+                <a class="btn btn-danger mr-2" href="#" data-dismiss="modal">Cancelar</a>
+                <input type="submit" class="btn btn-success" value="Apagar">
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- Modal remover entrega -->
+<div class="modal fade" id="removerEntrega" tabindex="-1" role="dialog" aria-labelledby="removerEntregaLabel" aria-hidden="true">
+    <form class="modal-dialog" role="document" method="POST">
+        <input type="hidden" name="remover_entrega" value="remover_entrega" />
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removerEntregaLabel">Tem certeza?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <span>
+                    Será enviado um aviso para todos projetos desta turma que esta entrega foi cancelada.
+                </span>
+            </div>
+            <div class="modal-footer d-flex align-items-center justify-content-center">
+                <input type="hidden" id="re-id" name="re-id">
                 <a class="btn btn-danger mr-2" href="#" data-dismiss="modal">Cancelar</a>
                 <input type="submit" class="btn btn-success" value="Apagar">
             </div>

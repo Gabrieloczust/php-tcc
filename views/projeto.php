@@ -56,7 +56,7 @@
   <div id="collapseOne" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
     <?php if (count($pendentes) > 0) : foreach ($pendentes as $entrega) : ?>
         <div class="col-12">
-          <div class="card card-entrega border-left-warning shadow py-2 pointer mb-3" rel="<?= $entrega['idProjetoEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-descricao="<?= $entrega['descricao'] ?>" title="Enviar Documento">
+          <div class="card card-entrega entrega-modal border-left-warning shadow py-2 pointer mb-3" rel="<?= $entrega['idProjetoEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-descricao="<?= $entrega['descricao'] ?>" title="Enviar Documento">
             <div class=" card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col d-flex align-items-center">
@@ -88,7 +88,7 @@
   <div id="collapseTwo" class="row collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
     <?php if (count($realizadas) > 0) : foreach ($realizadas as $entrega) : ?>
         <div class="col-12">
-          <a class="card card-entrega border-left-success dark-off shadow py-2 mb-3" href="<?= HOME ?>assets/uploads/<?= $entrega['idProjetoEntrega'] . '/' . $entrega['documento'] ?>" title="Baixa Documento">
+          <a class="card card-entrega border-left-success dark-off shadow py-2 mb-3" download href="<?= HOME ?>assets/uploads/<?= $entrega['idProjetoEntrega'] . '/' . $entrega['documento'] ?>" title="Baixa Documento">
             <div class=" card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col d-flex align-items-center">

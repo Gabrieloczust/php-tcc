@@ -145,6 +145,17 @@ class turmasController extends Controller
 			endif;
 		}
 
+		// Apagar Entrega //
+		if (filter_input(INPUT_POST, 'remover_entrega') === "remover_entrega") {
+			$reId = filter_input(INPUT_POST, 're-id');
+			$statusEntrega = $entrega->apagarEntrega($reId);
+			if ($statusEntrega === true) :
+				array_push($successes, "Entrega apagada com sucesso!");
+			else :
+				array_push($errors, $statusEntrega);
+			endif;
+		}
+
 		// Turmas para listagem no modal Solicitar Entrega
 		$turmas = $t->getTurmas();
 		$qtdTurmas = count($turmas);
@@ -172,5 +183,43 @@ class turmasController extends Controller
 		);
 
 		$this->loadTemplate("turma", $dados);
+	}
+
+	public function entrega($slug = NULL)
+	{
+		// Arrays para avisos de Validação
+		$errors = array();
+		$warnings = array();
+		$successes = array();
+
+		$prof = new Professor($_SESSION['user']);
+		$entrega = new Entrega();
+
+		$dados = array(
+			'errors' => $errors,
+			'warnings' => $warnings,
+			'successes' => $successes
+		);
+
+		$this->loadTemplate("entregaProjetos", $dados);
+	}
+
+	public function projeto($slug = NULL)
+	{
+		// Arrays para avisos de Validação
+		$errors = array();
+		$warnings = array();
+		$successes = array();
+
+		$prof = new Professor($_SESSION['user']);
+		$entrega = new Entrega();
+
+		$dados = array(
+			'errors' => $errors,
+			'warnings' => $warnings,
+			'successes' => $successes
+		);
+
+		$this->loadTemplate("projetoEntregas", $dados);
 	}
 }
