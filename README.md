@@ -1,7 +1,7 @@
 - Editar entrega OK
 - Apagar Entrega OK
+- Visualizar quem entregou OK
 
-- Visualizar quem entregou
 - Avaliar entrega
 - Finalizar Turma
 - Listar na biblioteca
@@ -9,3 +9,4 @@
 - remover aluno do projeto
 - Apagar documetos ao apagar projeto/turma
 - notificacao com link
+- titulo das paginas

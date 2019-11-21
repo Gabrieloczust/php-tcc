@@ -270,6 +270,11 @@ input:checked+.slider:before {
     color: #fff;
 }
 
+.accordion-menu-primary[aria-expanded="true"] {
+    background: #4e73df !important;
+    color: #fff;
+}
+
 .accordion-menu[aria-expanded="true"] .badge {
     background: #fff;
 }
@@ -280,4 +285,8 @@ input:checked+.slider:before {
 
 .accordion-menu-success[aria-expanded="true"] .badge {
     color: #1cc88a;
+}
+
+.accordion-menu-primary[aria-expanded="true"] .badge {
+    color: #4e73df;
 }

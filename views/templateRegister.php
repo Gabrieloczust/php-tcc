@@ -14,7 +14,7 @@
 
     <?= $this->loadCssInTemplate($viewName); ?>
 
-    <title>MyTCC - <?= ucwords($viewName) ?></title>
+    <title>MeuTCC - <?= ucwords($viewName) ?></title>
 </head>
 
 <body>

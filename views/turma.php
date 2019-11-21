@@ -1,7 +1,7 @@
 <div class="d-sm-flex flex-column mb-4">
     <?php if (!empty($turma)) : ?>
         <h1 class="h3 mb-2 text-gray-800">
-            <a class="text-success" href="<?= HOME ?>turmas">Turmas</a> - Turma <?= @$turma[0]['nome'] ?>
+            <a class="text-success" href="<?= HOME ?>turmas">TURMAS</a> - TURMA <?= @$turma[0]['nome'] ?>
         </h1>
         <a data-toggle="modal" data-target="#solicitarEntregaModal" class="btn btn-success shadow-sm btn-new text-white pointer">
             <i class="fas fa-file-medical fa-sm pr-1"></i> Nova Entrega
@@ -53,7 +53,7 @@
             <div class="card border-left-info shadow py-2 mb-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
-                        <a href="<?= HOME ?>turmas/entrega/<?= $entrega['slug'] ?>" title="Abrir Entrega" class="col hover-success">
+                        <a href="<?= HOME ?>turmas/entrega/<?= $entrega['idEntrega'] ?>" title="Abrir Entrega" class="col hover-success">
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?= $entrega['titulo'] ?>
                             </div>
@@ -95,7 +95,7 @@
         <?php foreach ($turma as $projeto) : ?>
             <div class="card shadow mb-2">
                 <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
-                    <a href="<?= HOME . 'turmas/projeto/' . $projeto['slug'] ?>" class="m-0 py-2 font-weight-bold text-dark"><?= $projeto['titulo'] ?></a>
+                    <a href="<?= HOME . 'turmas/projeto/' . $projeto['idProjeto'] ?>" class="m-0 py-2 font-weight-bold text-dark"><?= $projeto['titulo'] ?></a>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle p-3 text-dark" href="#" role="button" id="dropdownMenuLink<?= $projeto['idProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa fa-fw"></i>

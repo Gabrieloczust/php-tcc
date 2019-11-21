@@ -127,6 +127,22 @@ class Entrega extends Model
         }
     }
 
+    public function getEntregasTurma()
+    {
+        $sql = $this->db->prepare("SELECT *, t.slug slugTurma FROM projeto_tem_entrega pe INNER JOIN entrega e ON(pe.fkEntrega = e.idEntrega) INNER JOIN turma t ON(e.fkTurma = t.idTurma) WHERE fkEntrega = ?");
+        $sql->execute(array($this->getId()));
+        return $sql->fetchAll();
+    }
+
+    public function getEntregaTipo($status)
+    {
+        $sql = $this->db->prepare("SELECT * FROM projeto_tem_entrega pe INNER JOIN projeto p ON(pe.fkProjeto = p.idProjeto) WHERE fkEntrega = ? AND status = ?");
+        $sql->execute(array($this->getId(), $status));
+        return $sql->fetchAll();
+    }
+
+    public function avaliar(){}
+
     public function setAll($idEntrega)
     {
         $sql = $this->db->prepare("SELECT * FROM entrega WHERE idEntrega = ?");

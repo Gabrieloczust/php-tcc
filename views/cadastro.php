@@ -1,6 +1,6 @@
 <section class="register-left text-center text-white p-3">
     <img src="<?= IMG ?>login.png" alt="login" class="mb-3" />
-    <p class="h2">Bem-Vindo</p>
+    <p class="h2">Bem-Vindo ao MeuTCC</p>
     <p>Você está a 1 minuto de iniciar seu <br>primeiro projeto.</p>
     <a href="login" class="btn btn-outline-light mt-3">Login</a>
 </section>

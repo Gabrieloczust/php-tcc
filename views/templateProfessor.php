@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>MyTCC</title>
+  <title>MeuTCC</title>
 
   <link rel="shortcut icon" href="<?= IMG ?>favicon.png" />
 
@@ -36,7 +36,7 @@
         <div class="sidebar-brand-icon">
           <img src="<?= IMG ?>logo.png" alt="Logo" class="logo">
         </div>
-        <div class="sidebar-brand-text mx-3">MyTCC</div>
+        <div class="sidebar-brand-text mx-3">MeuTCC</div>
       </a>
 
       <!-- Divider -->
@@ -185,7 +185,7 @@
         <footer class="sticky-footer bg-white">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright &copy; MyTCC 2019</span>
+              <span>Copyright &copy; MeuTCC 2019</span>
             </div>
           </div>
         </footer>

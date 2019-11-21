@@ -185,26 +185,42 @@ class turmasController extends Controller
 		$this->loadTemplate("turma", $dados);
 	}
 
-	public function entrega($slug = NULL)
+	public function entrega($id)
 	{
 		// Arrays para avisos de Validação
 		$errors = array();
 		$warnings = array();
 		$successes = array();
 
-		$prof = new Professor($_SESSION['user']);
-		$entrega = new Entrega();
+		$entrega = new Entrega($id);
+		$entregas = $entrega->getEntregasTurma();
+
+		$entregues = $entrega->getEntregaTipo('entregue');
+		$avaliados = $entrega->getEntregaTipo('avaliado');
+		$pendentes = $entrega->getEntregaTipo('pendente');
+
+		// AVALIAR //
+		
+
+		// ALTERAR NOTA //
+
+		// ENVIAR LEMBRETE //
+
 
 		$dados = array(
 			'errors' => $errors,
 			'warnings' => $warnings,
-			'successes' => $successes
+			'successes' => $successes,
+			'entregas' => $entregas,
+			'entregues' => $entregues,
+			'avaliados' => $avaliados,
+			'pendentes' => $pendentes
 		);
 
 		$this->loadTemplate("entregaProjetos", $dados);
 	}
 
-	public function projeto($slug = NULL)
+	public function projeto($id)
 	{
 		// Arrays para avisos de Validação
 		$errors = array();
