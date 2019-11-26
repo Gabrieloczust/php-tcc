@@ -184,4 +184,55 @@ class turmasController extends Controller
 
 		$this->loadTemplate("turma", $dados);
 	}
+
+	public function entrega($id)
+	{
+		// Arrays para avisos de Validação
+		$errors = array();
+		$warnings = array();
+		$successes = array();
+		$entrega = new Entrega($id);
+
+		// AVALIAR //
+		if (filter_input(INPUT_POST, 'avaliar_entrega') === "avaliar_entrega") {
+			$aeId = filter_input(INPUT_POST, 'ae-id');
+			$nota = filter_input(INPUT_POST, 'ae-nota');
+			$statusEntrega = $entrega->avaliar($nota, $aeId);
+			if ($statusEntrega === true) :
+				array_push($successes, "Entrega avaliada com sucesso!");
+			else :
+				array_push($errors, $statusEntrega);
+			endif;
+		}
+		// ALTERAR NOTA //
+		if (filter_input(INPUT_POST, 'alterar_nota') === "alterar_nota") {
+			$anId = filter_input(INPUT_POST, 'an-id');
+			$nota = filter_input(INPUT_POST, 'an-nota');
+			$notaAntiga = filter_input(INPUT_POST, 'an-notaAntiga');
+			$statusEntrega = $entrega->avaliar($nota, $anId);
+			if ($statusEntrega === true) :
+				array_push($successes, "Nota alterada de <b>$notaAntiga</b> para <b>$nota</b>!");
+			else :
+				array_push($errors, $statusEntrega);
+			endif;
+		}
+
+		$entregas = $entrega->getEntregasTurma();
+
+		$entregues = $entrega->getEntregaTipo('entregue');
+		$avaliados = $entrega->getEntregaTipo('avaliado');
+		$pendentes = $entrega->getEntregaTipo('pendente');
+
+		$dados = array(
+			'errors' => $errors,
+			'warnings' => $warnings,
+			'successes' => $successes,
+			'entregas' => $entregas,
+			'entregues' => $entregues,
+			'avaliados' => $avaliados,
+			'pendentes' => $pendentes
+		);
+
+		$this->loadTemplate("entregaProjetos", $dados);
+	}
 }
