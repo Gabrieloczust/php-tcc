@@ -141,7 +141,22 @@ class Entrega extends Model
         return $sql->fetchAll();
     }
 
-    public function avaliar(){}
+    public function avaliar($nota, $idEntregaProjeto)
+    {
+        $sql = $this->db->prepare("UPDATE projeto_tem_entrega SET nota = ?, status = ? WHERE idProjetoEntrega = ?");
+        $sql->execute(array($nota, 'avaliado', $idEntregaProjeto));
+        if ($sql->rowCount() > 0) :
+            if ($nota >= 7)
+                $tipo = 'aceito';
+            else
+                $tipo = 'recusado';
+            $notificacao = new Notificacao($tipo);
+            $notificacao->entregaAvaliada($idEntregaProjeto, $nota);
+            return true;
+        else :
+            return 'Erro inesperado, por favor tente novamente!';
+        endif;
+    }
 
     public function setAll($idEntrega)
     {

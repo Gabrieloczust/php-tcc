@@ -275,6 +275,16 @@ input:checked+.slider:before {
     color: #fff;
 }
 
+.accordion-menu-info[aria-expanded="true"] {
+    background: #36b9cc !important;
+    color: #fff;
+}
+
+.accordion-menu-dark[aria-expanded="true"] {
+    background: #5a5c69 !important;
+    color: #fff;
+}
+
 .accordion-menu[aria-expanded="true"] .badge {
     background: #fff;
 }
@@ -289,4 +299,12 @@ input:checked+.slider:before {
 
 .accordion-menu-primary[aria-expanded="true"] .badge {
     color: #4e73df;
+}
+
+.accordion-menu-info[aria-expanded="true"] .badge {
+    color: #36b9cc;
+}
+
+.accordion-menu-dark[aria-expanded="true"] .badge {
+    color: #5a5c69;
 }

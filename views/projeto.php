@@ -48,7 +48,7 @@
     <div class="col-6">
       <div class="accordion-menu accordion-menu-success" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
         Entregas Realizadas
-        <span class="badge badge-success badge-pill"><?= count($realizadas) ?></span>
+        <span class="badge badge-success badge-pill"><?= count($realizadas) + count($avaliados) ?></span>
       </div>
     </div>
   </div>
@@ -86,15 +86,16 @@
   </div>
 
   <div id="collapseTwo" class="row collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-    <?php if (count($realizadas) > 0) : foreach ($realizadas as $entrega) : ?>
+    <?php if (count($realizadas) > 0 || count($avaliados) > 0) : ?>
+      <?php foreach ($realizadas as $entrega) : ?>
         <div class="col-12">
-          <a class="card card-entrega border-left-success dark-off shadow py-2 mb-3" download href="<?= HOME ?>assets/uploads/<?= $entrega['idProjetoEntrega'] . '/' . $entrega['documento'] ?>" title="Baixa Documento">
+          <a class="card card-entrega border-left-info dark-off shadow py-2 mb-3" download href="<?= HOME ?>assets/uploads/<?= $entrega['idProjetoEntrega'] . '/' . $entrega['documento'] ?>" title="Baixa Documento">
             <div class=" card-body">
               <div class="row no-gutters align-items-center">
                 <div class="col d-flex align-items-center">
-                  <i class="fas fa-check-circle fa-2x text-success mr-3 dark-off"></i>
+                  <i class="fas fa-clock fa-2x text-info mr-3 dark-off"></i>
                   <div>
-                    <div class="h5 mb-0 font-weight-bold text-uppercase text-success dark-off">
+                    <div class="h5 mb-0 font-weight-bold text-uppercase text-info dark-off">
                       <?= $entrega['titulo'] ?>
                     </div>
                     <div class="text-xs font-weight-bold text-gray-800 text-uppercase">
@@ -105,6 +106,33 @@
                     </div>
                   </div>
                 </div>
+                <div class="col-auto text-center text-info">
+                  <i class="fas fa-download fa-2x"></i>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      <?php endforeach; ?>
+      <?php foreach ($avaliados as $avaliado) : ?>
+        <div class="col-12">
+          <a class="card card-entrega border-left-success dark-off shadow py-2 mb-3" download href="<?= HOME ?>assets/uploads/<?= $avaliado['idProjetoEntrega'] . '/' . $avaliado['documento'] ?>" title="Baixa Documento">
+            <div class=" card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col d-flex align-items-center">
+                  <i class="fas fa-check-circle fa-2x text-success mr-3 dark-off"></i>
+                  <div>
+                    <div class="h5 mb-0 font-weight-bold text-uppercase text-success dark-off">
+                      <?= $avaliado['titulo'] ?>
+                    </div>
+                    <div class="text-xs font-weight-bold text-gray-800 text-uppercase">
+                      ENTREGUE POR <b><?= $avaliado['nome'] ?></b> NO DIA <b><?= date("d/m/y", strtotime($avaliado['data'])) ?></b>
+                    </div>
+                    <div class="text-xs font-weight-bold text-info text-uppercase">
+                      <?= $avaliado['notaStatus'] ?>
+                    </div>
+                  </div>
+                </div>
                 <div class="col-auto text-center text-success">
                   <i class="fas fa-download fa-2x"></i>
                 </div>
@@ -112,8 +140,8 @@
             </div>
           </a>
         </div>
-      <?php endforeach;
-      else : ?>
+      <?php endforeach; ?>
+    <?php else : ?>
       <div class="col">
         <div class="alert alert-warning text-center">Você não possui nenhuma entrega realizada!</div>
       </div>

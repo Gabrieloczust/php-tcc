@@ -116,6 +116,15 @@
     $('#se-titulo').trigger('focus')
   })
 
+  //Autofocus na nota modal avaliar entrega
+  $('#avaliarModal').on('shown.bs.modal', function () {
+    $('#ae-nota').trigger('focus')
+  })
+
+  //Autofocus na nota modal avaliar entrega
+  $('#notaModal').on('shown.bs.modal', function () {
+    $('#an-nota').trigger('focus')
+  })
 
   // Modal editar titulo
   $('.btn-editar-titulo').click(function () {
@@ -221,6 +230,28 @@
     var id = $(this).attr('rel')
     $('#removerEntrega').find('#re-id').val(id)
     $('#removerEntrega').modal('show')
+  })
+
+  // Modal avalair entrega
+  $('.btn-avaliar').click(function () {
+    var id = $(this).attr('rel')
+    var projeto = $(this).attr('data-projeto')
+    $('#avaliarModal').find('#ae-id').val(id)
+    $('#avaliarModal').find('#ae-projeto').val(projeto)
+    $('#avaliarModal').find('.ae-projeto').text(projeto)
+    $('#avaliarModal').modal('show')
+  })
+
+  // Modal avalair entrega
+  $('.btn-alterar-nota').click(function () {
+    var id = $(this).attr('rel')
+    var projeto = $(this).attr('data-projeto')
+    var nota = $(this).attr('data-nota')
+    $('#notaModal').find('#an-id').val(id)
+    $('#notaModal').find('.an-nota').val(nota)
+    $('#notaModal').find('#an-projeto').val(projeto)
+    $('#notaModal').find('.an-projeto').text(projeto)
+    $('#notaModal').modal('show')
   })
 
   // Add the following code if you want the name of the file appear on select

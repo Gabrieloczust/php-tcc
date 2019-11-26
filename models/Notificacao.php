@@ -181,6 +181,24 @@ class Notificacao extends Model
         endforeach;
     }
 
+    public function entregaAvaliada($idProjetoEntrega, $nota)
+    {
+        $sql = $this->db->prepare("SELECT idProjeto, p.titulo as tituloProjeto, e.titulo as tituloEntrega FROM projeto_tem_entrega pe INNER JOIN entrega e ON (pe.fkEntrega = e.idEntrega) INNER JOIN projeto p ON (pe.fkProjeto = p.idProjeto) WHERE idProjetoEntrega = ?");
+        $sql->execute(array($idProjetoEntrega));
+        $result = $sql->fetch();
+
+        $mensagem = "A entrega <b>{$result['tituloEntrega']}</b> do projeto <b>{$result['tituloProjeto']}</b> recebeu a nota <b>$nota</b>";
+
+        // Envia a notifacao para todos os alunos do projeto
+        $sql2 = $this->db->prepare("SELECT * FROM projeto_tem_aluno WHERE fkProjeto = ?");
+        $sql2->execute(array($result['idProjeto']));
+        $ids = $sql2->fetchAll();
+        foreach ($ids as $id) :
+            $sql = $this->db->prepare("INSERT INTO notificacao SET tipo = ?, mensagem = ?, fkDestinatario = ?, tipoDestinatario = 'Aluno'");
+            $sql->execute(array($this->getTipo(), $mensagem, $id['fkAluno']));
+        endforeach;
+    }
+
     public function getNoficacoes($idUsuario)
     {
         $sql = $this->db->prepare("SELECT *, TIMESTAMPDIFF(MINUTE,data_enviada,NOW()) as tempo FROM notificacao WHERE tipoDestinatario = ? AND fkDestinatario = ? ORDER BY idNotificacao DESC");

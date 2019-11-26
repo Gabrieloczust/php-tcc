@@ -147,6 +147,7 @@ class projetosController extends Controller
         $p = $projeto->getProjeto($aluno->getId(), $slug);
         $realizadas = $entrega->getEntregasProjeto($projeto->getId(), 'entregue');
         $pendentes = $entrega->getEntregasProjeto($projeto->getId(), 'pendente');
+        $avaliados = $entrega->getEntregasProjeto($projeto->getId(), 'avaliado');
 
         $dados = array(
             'errors' => $errors,
@@ -154,7 +155,8 @@ class projetosController extends Controller
             'successes' => $successes,
             'projeto' => $p[0],
             'realizadas' => $realizadas,
-            'pendentes' => $pendentes
+            'pendentes' => $pendentes,
+            'avaliados' => $avaliados
         );
 
         $this->loadTemplate("projeto", $dados);

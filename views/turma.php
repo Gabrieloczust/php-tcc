@@ -1,4 +1,4 @@
-<div class="d-sm-flex flex-column mb-4">
+<div class="d-sm-flex flex-column mb-3">
     <?php if (!empty($turma)) : ?>
         <h1 class="h3 mb-2 text-gray-800">
             <a class="text-success" href="<?= HOME ?>turmas">TURMAS</a> - TURMA <?= @$turma[0]['nome'] ?>
@@ -33,87 +33,74 @@
     </div>
 </div>
 
-<div class="row mb-4">
-
-    <div class="col-lg-8">
-        <div class="card border-left-success shadow py-2 mb-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">ENTREGAS SOLICITADAS</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtdEntregas ?></div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                </div>
+<div class="accordion" id="accordionExample">
+    <div class="row mb-4">
+        <div class="col-lg-6 mb-2">
+            <div class="accordion-menu accordion-menu-info" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                Entregas
+                <span class="badge badge-info badge-pill"><?= $qtdEntregas ?></span>
             </div>
         </div>
-        <?php foreach ($entregas as $entrega) { ?>
-            <div class="card border-left-info shadow py-2 mb-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <a href="<?= HOME ?>turmas/entrega/<?= $entrega['idEntrega'] ?>" title="Abrir Entrega" class="col hover-success">
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                <?= $entrega['titulo'] ?>
-                            </div>
-                            <div class="text-xs font-weight-bold text-info text-uppercase">DATA DE ENTREGA: <?= date("d/m/y", strtotime($entrega['data_entrega'])) ?></div>
-                        </a>
-                        <div class="col-auto d-flex align-items-center">
-                            <div class="dropdown no-arrow">
-                                <a class="dropdown-toggle p-3" href="#" role="button" id="dropTurma<?= $entrega['idEntrega'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v fa fa-fw text-info"></i>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropTurma<?= $entrega['idEntrega'] ?>">
-                                    <div class="dropdown-header">Ações:</div>
-                                    <a class="dropdown-item btn-editar-turma" href="#" rel="<?= $entrega['idEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-data="<?= date("Y-m-d", strtotime($entrega['data_entrega'])) ?>">Alterar a data de entrega</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item btn-apagar-entrega" href="#" rel="<?= $entrega['idEntrega'] ?>">Apagar entrega</a>
+        <div class="col-lg-6 mb-2">
+            <div class="accordion-menu accordion-menu-dark" data-toggle="collapse" data-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Projetos
+                <span class="badge badge-dark badge-pill"><?= $qtdProjetos ?></span>
+            </div>
+        </div>
+        <div id="collapse1" class="col collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <?php foreach ($entregas as $entrega) { ?>
+                <div class="card border-left-info shadow py-2 mb-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <a href="<?= HOME ?>turmas/entrega/<?= $entrega['idEntrega'] ?>" title="Abrir Entrega" class="col hover-success">
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                    <?= $entrega['titulo'] ?>
+                                </div>
+                                <div class="text-xs font-weight-bold text-info text-uppercase">DATA DE ENTREGA: <?= date("d/m/y", strtotime($entrega['data_entrega'])) ?></div>
+                            </a>
+                            <div class="col-auto d-flex align-items-center">
+                                <div class="dropdown no-arrow">
+                                    <a class="dropdown-toggle p-3" href="#" role="button" id="dropTurma<?= $entrega['idEntrega'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-ellipsis-v fa fa-fw text-info"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropTurma<?= $entrega['idEntrega'] ?>">
+                                        <div class="dropdown-header">Ações:</div>
+                                        <a class="dropdown-item btn-editar-turma" href="#" rel="<?= $entrega['idEntrega'] ?>" data-titulo="<?= $entrega['titulo'] ?>" data-data="<?= date("Y-m-d", strtotime($entrega['data_entrega'])) ?>">Alterar a data de entrega</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item btn-apagar-entrega" href="#" rel="<?= $entrega['idEntrega'] ?>">Apagar entrega</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php } ?>
-    </div>
-
-    <div class="col-lg-4">
-        <div class="card border-left-dark shadow py-2 mb-2">
-            <div class="card-body">
-                <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                        <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">PROJETOS PARTICIPANTES</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $qtdProjetos ?></div>
-                    </div>
-                    <div class="col-auto">
-                        <i class="fas fa-paste fa-2x text-gray-300"></i>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
         </div>
-        <?php foreach ($turma as $projeto) : ?>
-            <div class="card shadow mb-2">
-                <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
-                    <a href="<?= HOME . 'turmas/projeto/' . $projeto['idProjeto'] ?>" class="m-0 py-2 font-weight-bold text-dark"><?= $projeto['titulo'] ?></a>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle p-3 text-dark" href="#" role="button" id="dropdownMenuLink<?= $projeto['idProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa fa-fw"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['idProjeto'] ?>">
-                            <div class="dropdown-header">Ações:</div>
-                            <?php if ($qtdTurmas > 1 && $qtdEntregas < 1) : ?>
-                                <a class="dropdown-item btn-alterar-turma" href="#" rel="<?= $projeto['idProjeto'] ?>" data-turma="<?= $projeto['nome'] ?>" data-projeto="<?= $projeto['titulo'] ?>">Alterar Turma</a>
-                                <div class="dropdown-divider"></div>
-                            <?php endif; ?>
-                            <a class="dropdown-item btn-remover-projeto" href="#" rel="<?= $projeto['idProjeto'] ?>" data-turma="<?= $projeto['nome'] ?>" data-projeto="<?= $projeto['titulo'] ?>">Remover Projeto</a>
+
+        <div id="collapse2" class="col collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <?php foreach ($turma as $projeto) : ?>
+                <div class="card shadow mb-2">
+                    <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
+                        <div class="m-0 py-2 font-weight-bold text-dark"><?= $projeto['titulo'] ?></div>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle p-3 text-dark" href="#" role="button" id="dropdownMenuLink<?= $projeto['idProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['idProjeto'] ?>">
+                                <div class="dropdown-header">Ações:</div>
+                                <?php if ($qtdTurmas > 1 && $qtdEntregas < 1) : ?>
+                                    <a class="dropdown-item btn-alterar-turma" href="#" rel="<?= $projeto['idProjeto'] ?>" data-turma="<?= $projeto['nome'] ?>" data-projeto="<?= $projeto['titulo'] ?>">Alterar Turma</a>
+                                    <div class="dropdown-divider"></div>
+                                <?php endif; ?>
+                                <a class="dropdown-item btn-remover-projeto" href="#" rel="<?= $projeto['idProjeto'] ?>" data-turma="<?= $projeto['nome'] ?>" data-projeto="<?= $projeto['titulo'] ?>">Remover Projeto</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    </div>
+            <?php endforeach; ?>
+        </div>
 
+    </div>
 </div>
 
 <!-- Modal Alterar Turma -->
