@@ -142,6 +142,14 @@ class Turma extends Model
         }
     }
 
+    public function encerrarTurma()
+    {
+        $sql = $this->db->prepare("UPDATE turma SET statusTurma = 'encerrado' WHERE idTurma = ?");
+        $sql->execute(array($this->getId()));
+        $sql2 = $this->db->prepare("UPDATE projeto SET statusProjeto = 'encerrado', data_encerrado = current_timestamp WHERE fkTurma = ?");
+        $sql2->execute(array($this->getId()));
+    }
+
     private function setAll($idTurma)
     {
         $sql01 = $this->db->prepare("SELECT * FROM turma WHERE idTurma = ?");

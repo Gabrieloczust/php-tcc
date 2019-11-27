@@ -1,11 +1,16 @@
 <div class="d-sm-flex flex-column mb-3">
     <?php if (!empty($turma)) : ?>
         <h1 class="h3 mb-2 text-gray-800">
-            <a class="text-success" href="<?= HOME ?>turmas">TURMAS</a> - TURMA <?= @$turma[0]['nome'] ?>
+            <a class="text-success" href="<?= HOME ?>turmas">TURMAS</a> - TURMA <?= $turma[0]['nome'] ?>
         </h1>
-        <a data-toggle="modal" data-target="#solicitarEntregaModal" class="btn btn-success shadow-sm btn-new text-white pointer">
-            <i class="fas fa-file-medical fa-sm pr-1"></i> Nova Entrega
-        </a>
+        <div>
+            <a data-toggle="modal" data-target="#solicitarEntregaModal" class="btn btn-success shadow-sm btn-new text-white pointer">
+                <i class="fas fa-file-medical fa-sm pr-1"></i> Nova Entrega
+            </a>
+            <a href="<?= HOME ?>turmas/encerrar/<?= $turmas[0]['slug'] ?>" class="btn btn-danger shadow-sm btn-new">
+                <i class="fas fa-door-closed fa-sm pr-1"></i> Encerrar Turma
+            </a>
+        </div>
     <?php else : ?>
         <a href="<?= HOME ?>turmas" class="btn btn-new btn-warning" title="Voltar">Voltar</a>
     <?php endif; ?>
@@ -34,7 +39,7 @@
 </div>
 
 <div class="accordion" id="accordionExample">
-    <div class="row mb-4">
+    <div class="row mb-2">
         <div class="col-lg-6 mb-2">
             <div class="accordion-menu accordion-menu-info" data-toggle="collapse" data-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
                 Entregas
@@ -47,8 +52,10 @@
                 <span class="badge badge-dark badge-pill"><?= $qtdProjetos ?></span>
             </div>
         </div>
-        <div id="collapse1" class="col collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <?php foreach ($entregas as $entrega) { ?>
+    </div>
+    <div id="collapse1" class="row collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <?php foreach ($entregas as $entrega) { ?>
+            <div class="col-12">
                 <div class="card border-left-info shadow py-2 mb-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -74,11 +81,13 @@
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-        </div>
+            </div>
+        <?php } ?>
+    </div>
 
-        <div id="collapse2" class="col collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <?php foreach ($turma as $projeto) : ?>
+    <div id="collapse2" class="row collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <?php foreach ($turma as $projeto) : ?>
+            <div class="col-lg-6">
                 <div class="card shadow mb-2">
                     <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
                         <div class="m-0 py-2 font-weight-bold text-dark"><?= $projeto['titulo'] ?></div>
@@ -97,10 +106,10 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-
+            </div>
+        <?php endforeach; ?>
     </div>
+
 </div>
 
 <!-- Modal Alterar Turma -->

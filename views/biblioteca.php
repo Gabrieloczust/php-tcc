@@ -1,4 +1,4 @@
-<!-- DataTales Example -->
+<!-- DataTales -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="mt-1 font-weight-bold text-primary">Projetos da Galera</h6>

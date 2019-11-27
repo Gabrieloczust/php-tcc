@@ -106,6 +106,17 @@ class Entrega extends Model
         }
     }
 
+    public function getNotas($idTurma, $idProjeto)
+    {
+        $sql = $this->db->prepare("SELECT e.titulo tituloEntrega, pe.nota, p.titulo tituloProjeto FROM entrega e INNER JOIN projeto_tem_entrega pe ON(pe.fkEntrega = e.idEntrega) INNER JOIN projeto p ON(pe.fkProjeto = p.idProjeto) WHERE p.idProjeto = ? AND e.fkTurma = ? ORDER BY e.data_entrega, e.idEntrega DESC");
+        $sql->execute(array($idProjeto, $idTurma));
+        if ($sql->rowCount() > 0) {
+            return $sql->fetchAll();
+        } else {
+            return [];
+        }
+    }
+
     public function getEntregasProjeto($idProjeto, $status)
     {
         $sql = $this->db->prepare("SELECT * FROM projeto_tem_entrega INNER JOIN entrega ON(fkEntrega = idEntrega) LEFT JOIN aluno ON(fkAluno = ra) WHERE status = ? AND fkProjeto = ? ORDER BY data_entrega, idEntrega DESC");

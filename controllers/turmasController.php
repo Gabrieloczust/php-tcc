@@ -235,4 +235,70 @@ class turmasController extends Controller
 
 		$this->loadTemplate("entregaProjetos", $dados);
 	}
+
+	public function encerrar($slug)
+	{
+		$prof = new Professor($_SESSION['user']);
+		$email = $prof->getEmail();
+
+		$turma = new Turma($email);
+		$turma->getTurma($slug);
+
+		$entrega = new Entrega();
+		$entregas = $entrega->getEntregas($turma->getId());
+
+		$projetoNotas = [];
+		$projetos = $turma->getTurma($slug);
+		foreach ($projetos as $projeto) {
+			$notasProjeto = $entrega->getNotas($projeto['fkTurma'], $projeto['idProjeto']);
+			array_push($projetoNotas, $notasProjeto);
+		}
+
+		$dados = array(
+			'turma' => $turma,
+			'entregas' => $entregas,
+			'projetoNotas' => $projetoNotas
+		);
+
+		$this->loadTemplate("encerrar", $dados);
+	}
+
+	public function encerrando($slug)
+	{
+		$prof = new Professor($_SESSION['user']);
+		$email = $prof->getEmail();
+
+		$turma = new Turma($email);
+		$turma->getTurma($slug);
+		$turma->encerrarTurma();
+
+		header('Location:' . HOME . 'turmas');
+	}
+
+	public function encerrada($slug)
+	{
+		$prof = new Professor($_SESSION['user']);
+		$email = $prof->getEmail();
+
+		$turma = new Turma($email);
+		$turma->getTurma($slug);
+
+		$entrega = new Entrega();
+		$entregas = $entrega->getEntregas($turma->getId());
+
+		$projetoNotas = [];
+		$projetos = $turma->getTurma($slug);
+		foreach ($projetos as $projeto) {
+			$notasProjeto = $entrega->getNotas($projeto['fkTurma'], $projeto['idProjeto']);
+			array_push($projetoNotas, $notasProjeto);
+		}
+
+		$dados = array(
+			'turma' => $turma,
+			'entregas' => $entregas,
+			'projetoNotas' => $projetoNotas
+		);
+
+		$this->loadTemplate("encerrado", $dados);
+	}
 }

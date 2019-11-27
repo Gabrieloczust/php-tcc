@@ -34,33 +34,57 @@
     <?php
     if (count($turmas) != 0) :
         foreach ($turmas as $turma) :
-            ?>
-            <div class="col-lg-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
-                    <div class="card-body d-flex">
-                        <div class="row no-gutters w-100 align-items-center">
-                            <a class="hover-turma col mr-2" href="<?= HOME ?>turmas/turma/<?= $turma['slug'] ?>" title="TURMA <?= $turma['nome'] ?>">
-                                <div class="h5 font-weight-bold text-success text-uppercase mb-1">TURMA <?= $turma['nome'] ?></div>
-                                <div class="text-xs mb-0 font-weight-bold text-gray-800"><?= $turma['qtdProjetoTurma'] ?></div>
-                            </a>
-                            <div class="col-auto d-flex align-items-center">
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $turma['idTurma'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa fa-fw text-success"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $turma['idTurma'] ?>">
-                                        <div class="dropdown-header">Ações:</div>
-                                        <a class="dropdown-item btn-editar-nome" href="#" rel="<?= $turma['hashInterno'] ?>" data-nome="<?= $turma['nome'] ?>">Editar nome</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item btn-apagar-turma" href="#" rel="<?= $turma['idTurma'] ?>" data-nome="<?= $turma['nome'] ?>">Apagar turma</a>
+            if ($turma['statusTurma'] == 'andamento') :
+                ?>
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body d-flex">
+                            <div class="row no-gutters w-100 align-items-center">
+                                <a class="hover-turma col mr-2" href="<?= HOME ?>turmas/turma/<?= $turma['slug'] ?>" title="TURMA <?= $turma['nome'] ?>">
+                                    <div class="h5 font-weight-bold text-success text-uppercase mb-1">TURMA <?= $turma['nome'] ?></div>
+                                    <div class="text-xs mb-0 font-weight-bold text-gray-800"><?= $turma['qtdProjetoTurma'] ?></div>
+                                </a>
+                                <div class="col-auto d-flex align-items-center">
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $turma['idTurma'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa fa-fw text-success"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $turma['idTurma'] ?>">
+                                            <div class="dropdown-header">Ações:</div>
+                                            <a class="dropdown-item btn-editar-nome" href="#" rel="<?= $turma['hashInterno'] ?>" data-nome="<?= $turma['nome'] ?>">Editar nome</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item btn-apagar-turma" href="#" rel="<?= $turma['idTurma'] ?>" data-nome="<?= $turma['nome'] ?>">Apagar turma</a>
+                                            <?php if ($turma['qtdProjetoTurma'] > 0) : ?>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="<?= HOME ?>turmas/encerrar/<?= $turma['slug'] ?>">Encerrar turma</a>
+                                            <?php endif; ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            <?php
+                    else :
+                        ?>
+                <div class="col-lg-6 mb-4">
+                    <div class="card border-left-info shadow h-100 py-2">
+                        <div class="card-body d-flex">
+                            <div class="row no-gutters w-100 align-items-center">
+                                <a class="hover-turma col mr-2" href="<?= HOME ?>turmas/encerrada/<?= $turma['slug'] ?>" title="TURMA <?= $turma['nome'] ?>">
+                                    <div class="h5 font-weight-bold text-dark text-uppercase mb-1">TURMA <?= $turma['nome'] ?></div>
+                                    <div class="text-xs mb-0 font-weight-bold text-info">
+                                        <?= $turma['qtdProjetoTurma'] ?>
+                                    </div>
+                                    <div class="text-xs mb-0 font-weight-bold text-info">TURMA ENCERRADA </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
         <?php
+                endif;
             endforeach;
         else :
             ?>

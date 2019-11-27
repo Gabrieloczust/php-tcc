@@ -45,31 +45,52 @@
         ?>
     </div>
 
-    <?php foreach ($projetos as $projeto) { ?>
-        <div class="col-lg-6 mb-2">
-            <div class="card card-projeto shadow">
-                <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
-                    <a href="<?= HOME . 'projetos/projeto/' . $projeto['slug'] ?>" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $projeto['fkProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa fa-fw"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['fkProjeto'] ?>">
-                            <div class="dropdown-header">Ações:</div>
-                            <?php if ($projeto['temOrientador'] == false) : ?>
-                                <a class="dropdown-item btn-convidar-orientador" href="#" rel="<?= $projeto['fkProjeto'] ?>">Convidar Orientador</a>
-                            <?php endif; ?>
-                            <a class="dropdown-item btn-convidar-aluno" href="#" rel="<?= $projeto['hashInterno'] ?>">Convidar Aluno</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn-editar-titulo" href="#" rel="<?= $projeto['hashInterno'] ?>">Editar Titulo</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn-sair-projeto" href="#" rel="<?= $projeto['fkProjeto'] ?>">Sair do Projeto</a>
+    <?php
+    foreach ($projetos as $projeto) {
+        if ($projeto['statusProjeto'] == 'andamento') {
+            ?>
+            <div class="col-lg-6 mb-2">
+                <div class="card card-projeto shadow">
+                    <div class="card-header pt-0 pb-0 pr-0 d-flex flex-row align-items-center justify-content-between">
+                        <a href="<?= HOME . 'projetos/projeto/' . $projeto['slug'] ?>" class="m-0 py-3 font-weight-bold text-primary"><?= $projeto['titulo'] ?></a>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle p-3" href="#" role="button" id="dropdownMenuLink<?= $projeto['fkProjeto'] ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa fa-fw"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink<?= $projeto['fkProjeto'] ?>">
+                                <div class="dropdown-header">Ações:</div>
+                                <?php if ($projeto['temOrientador'] == false) : ?>
+                                    <a class="dropdown-item btn-convidar-orientador" href="#" rel="<?= $projeto['fkProjeto'] ?>">Convidar Orientador</a>
+                                <?php endif; ?>
+                                <a class="dropdown-item btn-convidar-aluno" href="#" rel="<?= $projeto['hashInterno'] ?>">Convidar Aluno</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item btn-editar-titulo" href="#" rel="<?= $projeto['hashInterno'] ?>">Editar Titulo</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item btn-sair-projeto" href="#" rel="<?= $projeto['fkProjeto'] ?>">Sair do Projeto</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    <?php } ?>
+        <?php
+            } else {
+                ?>
+            <div class="col-lg-6 mb-2">
+                <a class="card card-projeto shadow" href="<?= HOME . 'projetos/finalizado/' . $projeto['slug'] ?>">
+                    <div class="card-header pt-0 pb-0">
+                        <div class="d-flex flex-row align-items-center justify-content-between">
+                            <div class="m-0 py-3 font-weight-bold text-primary">
+                                <?= $projeto['titulo'] ?>
+                            </div>
+                            <div class="text-xs text-primary">PROJETO FINALIZADO</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+    <?php
+        }
+    }
+    ?>
 
 </div>
 

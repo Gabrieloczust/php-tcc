@@ -187,6 +187,13 @@ class Projeto extends Model
 		$sql4->execute(array($turma, $idProjeto));
 	}
 
+	public function getNota()
+	{
+		$sql = $this->db->prepare("SELECT AVG(nota) as media FROM projeto_tem_entrega WHERE fkProjeto = ?");
+		$sql->execute(array($this->getId()));
+		return round($sql->fetch()['media'], 2);
+	}
+
 	private function slug($string)
 	{
 		$str = strtolower(utf8_decode($string));

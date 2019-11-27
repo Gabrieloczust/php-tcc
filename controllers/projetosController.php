@@ -161,4 +161,27 @@ class projetosController extends Controller
 
         $this->loadTemplate("projeto", $dados);
     }
+
+    public function finalizado($slug)
+    {
+        $aluno = new Aluno($_SESSION['user']);
+        $projeto = new Projeto();
+        $entrega = new Entrega();
+        $p = $projeto->getProjeto($aluno->getId(), $slug);
+        $avaliados = $entrega->getEntregasProjeto($projeto->getId(), 'avaliado');
+        $nota = $projeto->getNota();
+        if ($nota >= 7)
+            $class = 'primary';
+        else
+            $class = 'danger';
+
+        $dados = array(
+            'projeto' => $p[0],
+            'avaliados' => $avaliados,
+            'nota' => $nota,
+            'class' => $class
+        );
+
+        $this->loadTemplate("finalizado", $dados);
+    }
 }
